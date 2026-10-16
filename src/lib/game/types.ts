@@ -51,6 +51,7 @@ export type MyStatus =
       roundNumber: number | null;
       phase: SpinPhase | null;
       lockedThisRound: boolean;
+      playedThisGame: boolean;
       attempt: MyAttempt | null;
       serverNow: string;
     };

@@ -1,9 +1,9 @@
 schema_version: 1
 plan_path: docs/IMPLEMENTATION_PLAN.md
-plan_sha256: d6e55436a13661c035013bb2993fa13e882c2eec2aaacb16b2d7eb1ca5895395
-plan_size: 18113
-plan_mtime_ns: 1792166695772986977
-built: '2026-10-16T16:04:55+00:00'
+plan_sha256: b2d03cf32cb770501a7b190ac941fe20e1fddc00d4a84f17aea6aa09e7c17643
+plan_size: 20136
+plan_mtime_ns: 1792167521018658968
+built: '2026-10-16T16:18:41+00:00'
 current_phase: P4
 phases:
 - phase_id: P1
@@ -106,6 +106,10 @@ phases:
   - id: T-305
     title: 'Anti-cheat `useFocusGuard`: fullscreen, copy/select/context block, watermark, focus events'
     status: VERIFIED
+  - id: T-3.1
+    title: 'Round-1 open play: late registration during round 1 is active; never-scanned players see ''missed'' not ''eliminated'';
+      scanner opens automatically'
+    status: VERIFIED
   dependencies:
   - P2
   affected_paths:
@@ -116,10 +120,10 @@ phases:
   design_flags: true
   testing_flags: true
   last_updated: null
-  evidence_pointer: .agylite/evidence/20261016T160448413628Z.json
+  evidence_pointer: .agylite/evidence/20261016T161835272037Z.json
   section:
     start: 4580
-    end: 6255
+    end: 6612
 - phase_id: P4
   phase_name: Admin console
   status: PLANNED
@@ -150,6 +154,10 @@ phases:
   - id: T-4.2
     title: 'Admin: reset a player''s PIN'
     status: PLANNED
+  - id: T-4.3
+    title: 'Live roster: registered list plus ''in play'' view built from scans (name, USN, chair number, scan time, answer
+      state), chair tile shows BLOCKED for the spin once scanned'
+    status: PLANNED
   dependencies:
   - P2
   affected_paths:
@@ -161,8 +169,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 6255
-    end: 8242
+    start: 6612
+    end: 9016
 - phase_id: P5
   phase_name: Question bank & Gemini
   status: PLANNED
@@ -190,8 +198,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 8242
-    end: 9270
+    start: 9016
+    end: 10044
 - phase_id: P6
   phase_name: Music (Spotify)
   status: PLANNED
@@ -218,8 +226,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 9270
-    end: 10249
+    start: 10044
+    end: 11023
 - phase_id: P7
   phase_name: Projector screen & 3D assets
   status: PLANNED
@@ -236,6 +244,10 @@ phases:
   - id: T-703
     title: 'Sequences: Round over + eliminations, chairs removed, Final round, podium + confetti; event_seq-driven, reload-safe'
     status: PLANNED
+  - id: T-7.1
+    title: 'Projector counts reflect who is actually playing: ''in play'' (scanned this round) and chairs locked x/X, not
+      total registrations'
+    status: PLANNED
   dependencies:
   - P2
   - P1
@@ -249,8 +261,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 10249
-    end: 11406
+    start: 11023
+    end: 12478
 - phase_id: P8
   phase_name: Simulation, hardening & release
   status: PLANNED
@@ -284,5 +296,5 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 11406
-    end: 12735
+    start: 12478
+    end: 13807

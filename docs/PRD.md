@@ -50,6 +50,11 @@ See [FEATURES.md](FEATURES.md). Summary:
 ## Game rules (source of truth)
 
 - The admin sets the chair count **X** (active chairs) and the game takes the registered players **Y**.
+- **Who is playing (D-016):** registering doesn't put someone in the game; **sitting and scanning does**.
+  - Anyone registered can play round 1, including people who register after it started.
+  - The admin sees who is in play from the live scans (name, USN, chair number).
+  - After round 1 only its chair holders continue. Registered people who never scanned are out of this game and are told "you can play in the next game". Later registrations are spectators.
+- **One person per chair per spin:** the first scan blocks that chair's QR for everyone else in that spin. A correct answer keeps it blocked for the rest of the round. A wrong answer unblocks it for the next spin, and anyone not yet locked in may take it, including the same player.
 - **Spin:**
   1. The music plays, then the admin stops it, which opens the scan window.
   2. Each seated player scans their chair's QR code inside the website and gets a random question at the round's difficulty.

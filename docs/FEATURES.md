@@ -57,7 +57,7 @@ The feature catalogue. Phases refer to [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_P
 
 ### F3 · In-site chair scanner
 - **Behaviour:**
-  - The scanner opens the rear camera with @zxing/browser and decodes `https://<host>/c/<chairId>?k=<secret>`.
+  - The scanner opens automatically when the music stops (no extra tap) and uses the rear camera with @zxing/browser and decodes `https://<host>/c/<chairId>?k=<secret>`.
   - It calls `claim_chair`, and the question appears immediately.
   - If someone opens the chair URL directly in a camera app, they see "Scan this from the AI Musical Chair website" and nothing is recorded.
 - **Acceptance:**

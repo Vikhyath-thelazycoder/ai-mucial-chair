@@ -26,8 +26,9 @@ function allowedHosts(): string[] {
 }
 
 export function ScanPanel({ onClaimed }: { onClaimed: () => void }) {
-  const [scanning, setScanning] = useState(false);
-  const [attempt, setAttempt] = useState(0);
+  // The camera opens by itself when the music stops: no extra tap at the chair.
+  const [scanning, setScanning] = useState(true);
+  const [attempt, setAttempt] = useState(1);
   const [message, setMessage] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -35,8 +36,6 @@ export function ScanPanel({ onClaimed }: { onClaimed: () => void }) {
     setMessage(null);
     setScanning(true);
     setAttempt((n) => n + 1);
-    // Fullscreen needs a tap; it keeps players inside the game while they answer. Not all phones support it.
-    document.documentElement.requestFullscreen?.().catch(() => {});
   };
 
   const onCode = useCallback(
@@ -76,7 +75,7 @@ export function ScanPanel({ onClaimed }: { onClaimed: () => void }) {
         />
       ) : (
         <Button variant="attention" size="lg" className="w-full max-w-xs" onClick={start}>
-          {message ? "Try again" : "Open scanner"}
+          Try again
         </Button>
       )}
       {busy && <p className="text-sm text-muted">Claiming your chair…</p>}

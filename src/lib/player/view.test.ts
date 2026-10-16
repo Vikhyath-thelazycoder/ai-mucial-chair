@@ -23,6 +23,7 @@ const me = (over: Partial<Registered> = {}): Registered => ({
   roundNumber: 2,
   phase: "music",
   lockedThisRound: false,
+  playedThisGame: true,
   attempt: null,
   serverNow: "",
   ...over,
@@ -48,6 +49,12 @@ describe("playerView", () => {
     expect(playerView(me({ player: { ...me().player, status: "winner", finalRank: 1 } }), ps()).kind).toBe("winner");
     expect(playerView(me({ player: { ...me().player, status: "spectator" } }), ps()).kind).toBe("spectator");
     expect(playerView(me({ player: { ...me().player, status: "kicked" } }), ps()).kind).toBe("removed");
+  });
+
+  it("a registered player who never scanned is told they missed the game, not that they lost", () => {
+    const out = { ...me().player, status: "eliminated" as const, eliminatedInRound: 1 };
+    expect(playerView(me({ player: out, playedThisGame: false }), ps()).kind).toBe("missed");
+    expect(playerView(me({ player: out, playedThisGame: true }), ps()).kind).toBe("eliminated");
   });
 
   it("lobby and between rounds", () => {

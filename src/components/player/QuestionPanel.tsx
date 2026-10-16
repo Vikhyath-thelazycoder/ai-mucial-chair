@@ -79,7 +79,13 @@ export function QuestionPanel({ attempt, offsetMs, player, timerSeconds, onSubmi
   const urgent = left <= 5;
 
   return (
-    <section className="relative flex w-full max-w-xl select-none flex-col gap-5 [-webkit-touch-callout:none]">
+    <section
+      className="relative flex w-full max-w-xl select-none flex-col gap-5 [-webkit-touch-callout:none]"
+      // Fullscreen needs a tap; the first touch on the question keeps the player inside the game. Not all phones support it.
+      onPointerDownCapture={() => {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(() => {});
+      }}
+    >
       <Watermark text={`${player.name} · ${player.usn}`} />
       <div className="relative z-10 flex items-center justify-between">
         <p className="text-xs tracking-[0.12em] text-muted uppercase">Chair {String(attempt.chairNumber).padStart(2, "0")}</p>

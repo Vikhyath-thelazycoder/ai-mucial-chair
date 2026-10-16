@@ -23,6 +23,8 @@ function copy(view: PlayerView, pub: PublicState | null): { tone: Tone; word: st
       return { tone: "lime", word: "You're through", text: `Round ${view.round ?? ""} is over. Wait for the next round.` };
     case "eliminated":
       return { tone: "red", word: "Eliminated", text: `Out in round ${view.round ?? "?"}. Thanks for playing!` };
+    case "missed":
+      return { tone: "cyan", word: "Round 1 is over", text: "You didn't get a chair this game. You can play in the next game." };
     case "winner":
       return { tone: "gold", word: "Champion", text: view.rank ? `You finished #${view.rank}!` : "You made the final!" };
     case "spectator":

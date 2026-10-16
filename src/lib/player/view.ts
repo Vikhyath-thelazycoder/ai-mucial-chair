@@ -9,6 +9,7 @@ export type PlayerView =
   | { kind: "spectator" }
   | { kind: "removed" }
   | { kind: "eliminated"; round: number | null }
+  | { kind: "missed" }
   | { kind: "winner"; rank: number | null }
   | { kind: "lobby" }
   | { kind: "round_cleared"; round: number | null }
@@ -31,7 +32,8 @@ export function playerView(me: MyStatus | null, pub: PublicState | null): Player
     case "winner":
       return { kind: "winner", rank: player.finalRank };
     case "eliminated":
-      return { kind: "eliminated", round: player.eliminatedInRound };
+      // Registered but never sat down: they didn't lose, they just didn't play (D-016).
+      return me.playedThisGame ? { kind: "eliminated", round: player.eliminatedInRound } : { kind: "missed" };
     case "spectator":
       return { kind: "spectator" };
     case "kicked":

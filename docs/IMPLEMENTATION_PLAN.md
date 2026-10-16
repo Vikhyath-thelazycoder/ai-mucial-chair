@@ -38,7 +38,7 @@ Objective: The whole game runs on the server: schema, RLS, RPCs and realtime, pr
 | T-2.1 | Game sessions: admin 'New game' terminates the current game, keeps chair QR codes, next team registers fresh | VERIFIED | — | — | — | — | — | start_new_game ends the session and any active round; old players get NOT_REGISTERED; same chair QR works for new players; same USN can register again in the new session; old results kept; non-admins rejected |
 
 ## P3 · Player site
-Status: VERIFIED · Depends: P2 · Paths: src/app/play/**, src/components/player/**, src/hooks/** · Flags: testing, security, design · Evidence: .agylite/evidence/20261016T160448413628Z.json
+Status: VERIFIED · Depends: P2 · Paths: src/app/play/**, src/components/player/**, src/hooks/** · Flags: testing, security, design · Evidence: .agylite/evidence/20261016T161835272037Z.json
 Objective: A phone can register, follow the game live, scan a chair, answer within the timer, and trigger anti-cheat alerts.
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
@@ -48,6 +48,7 @@ Objective: A phone can register, follow the game live, scan a chair, answer with
 | T-303 | In-site scanner (@zxing/browser), strict QR parser, `/c/[id]` landing page with no side effects | VERIFIED | T-302 | engineering/frontend | T2, T5 | Permission state | vitest QR parser | Foreign URLs ignored; camera denied → help screen |
 | T-304 | Question screen: MCQ/one-word, server-deadline countdown, single submit, retry on reconnect | VERIFIED | T-303 | engineering/frontend | T6, T7 | Timer bar | vitest | Late submit → timed_out; double submit prevented |
 | T-305 | Anti-cheat `useFocusGuard`: fullscreen, copy/select/context block, watermark, focus events | VERIFIED | T-304 | engineering/security | T16 | Warning overlay | vitest (visibility events) | Alert row created on leave and return with away_ms |
+| T-3.1 | Round-1 open play: late registration during round 1 is active; never-scanned players see 'missed' not 'eliminated'; scanner opens automatically | VERIFIED | — | — | — | — | — | register during round 1 → active and can scan; during round 2 → spectator; never-scanned player after round 1 gets playedThisGame=false; camera auto-starts on SCAN NOW |
 
 ## P4 · Admin console
 Status: PLANNED · Depends: P2 · Paths: src/app/admin/**, src/components/admin/** · Flags: testing, security, design · Evidence: —
@@ -63,6 +64,7 @@ Objective: The host can run a whole game from the laptop.
 | T-406 | Players page: search, kick/restore, overrides with reason (audited) | PLANNED | T-404 | engineering/frontend | T11 | — | vitest | Override writes an audit row |
 | T-4.1 | Admin: remove a player's registration (frees a squatted USN) | PLANNED | — | — | — | — | — | Admin-only RPC deletes a current-session player row with a logged reason; the USN can then be registered again; players get NOT_ADMIN |
 | T-4.2 | Admin: reset a player's PIN | PLANNED | — | — | — | — | — | Admin-only path (Edge Function checking is_admin) sets a new PIN for a player's account; non-admins rejected; audited |
+| T-4.3 | Live roster: registered list plus 'in play' view built from scans (name, USN, chair number, scan time, answer state), chair tile shows BLOCKED for the spin once scanned | PLANNED | — | — | — | — | — | A scan appears on the admin chair map within 1 s with name, USN and chair number; players list separates registered, in play (scanned this game), locked, eliminated; works for any number of registrations |
 
 ## P5 · Question bank & Gemini
 Status: PLANNED · Depends: P4 · Paths: src/app/admin/questions/**, src/app/api/questions/**, src/lib/ai/** · Flags: testing, security · Evidence: —
@@ -93,6 +95,7 @@ Objective: The live 3D show for the audience, with round and podium sequences.
 | T-701 | Blender MCP: model chair + trophy/podium, export Draco GLB < 1 MB each | PLANNED | Blender MCP | design/visual-quality | — | DESIGN.md assets | file size check | GLBs load via useGLTF |
 | T-702 | Screen live scene: ring of N chairs, locked chairs light up with names, HUD (round, x/X, remaining), music visualizer, SCAN NOW splash | PLANNED | T-206, T-104 | design/motion | public_state only | Motion table | vitest (state→scene mapping) | Matches public_state; no correctness shown mid-spin |
 | T-703 | Sequences: Round over + eliminations, chairs removed, Final round, podium + confetti; event_seq-driven, reload-safe | PLANNED | T-702, T-701 | design/motion | — | Motion table | vitest (event_seq dedupe) | Each event plays once; reload doesn't replay |
+| T-7.1 | Projector counts reflect who is actually playing: 'in play' (scanned this round) and chairs locked x/X, not total registrations | PLANNED | — | — | — | — | — | public_state exposes players-in-play for the current round; the screen shows it during round 1 instead of total registrations |
 
 ## P8 · Simulation, hardening & release
 Status: PLANNED · Depends: P3, P4, P5, P6, P7 · Paths: scripts/**, integration/** · Flags: testing, security, release · Evidence: —
@@ -176,3 +179,10 @@ Objective: Proof that a full game works under load and attack, then deploy.
 | 2026-10-16 | T-305: IN_PROGRESS → READY_FOR_VERIFICATION |
 | 2026-10-16 | T-305: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T160448413628Z.json) |
 | 2026-10-16 | P3: IN_PROGRESS → VERIFIED (roll-up from T-305) |
+| 2026-10-16 | T-3.1 added to P3 Player site: Round-1 open play: late registration during round 1 is active; never-scanned players see 'missed' not 'eliminated'; scanner opens automatically (phase reopened) |
+| 2026-10-16 | T-4.3 added to P4 Admin console: Live roster: registered list plus 'in play' view built from scans (name, USN, chair number, scan time, answer state), chair tile shows BLOCKED for the spin once scanned |
+| 2026-10-16 | T-7.1 added to P7 Projector screen & 3D assets: Projector counts reflect who is actually playing: 'in play' (scanned this round) and chairs locked x/X, not total registrations |
+| 2026-10-16 | T-3.1: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-3.1: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-3.1: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T161835272037Z.json) |
+| 2026-10-16 | P3: IN_PROGRESS → VERIFIED (roll-up from T-3.1) |

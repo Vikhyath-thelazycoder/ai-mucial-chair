@@ -186,3 +186,16 @@ decisions:
   supersedes: null
   status: ACTIVE
   tags: []
+- decision_id: D-016
+  date: '2026-10-16'
+  kind: product
+  topic: who-is-playing
+  decision: Registration doesn't put a player in the game; scanning a chair does. Anyone registered can play round 1 (late
+    registrations during round 1 are active); after round 1 only its chair holders continue, later registrations are spectators.
+    Admin sees who is in play from live scans (name, USN, chair)
+  reason: 'User: people register freely; the real roster is whoever sits and scans in round 1'
+  alternatives: []
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []

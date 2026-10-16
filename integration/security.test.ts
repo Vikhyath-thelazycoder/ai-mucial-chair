@@ -244,10 +244,9 @@ describe("registration input", () => {
     );
   });
 
-  it("players who join after the game started are spectators and can't scan", async () => {
+  it("players who join during round 1 can still play it (D-016; later rounds are covered in roster.test)", async () => {
     const late = await makePlayer("late");
     const { data } = await service.from("players").select("status").eq("user_id", late.userId).single();
-    expect(data?.status).toBe("spectator");
-    expect(await rpcErr(late.client, "claim_chair", { p_chair_id: chairs[2].id, p_secret: chairs[2].secret })).toBe("NOT_ACTIVE");
+    expect(data?.status).toBe("active");
   });
 });
