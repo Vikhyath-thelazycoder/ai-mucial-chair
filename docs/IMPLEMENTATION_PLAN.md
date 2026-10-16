@@ -11,7 +11,7 @@ NOT_STARTED · PLANNED · IN_PROGRESS · PARTIALLY_COMPLETE · BLOCKED · READY_
 - Blender MCP connected.
 
 ## P1 · Foundations
-Status: IN_PROGRESS · Depends: — · Paths: package.json, src/app/**, src/lib/supabase/**, tailwind/globals.css · Flags: testing · Evidence: —
+Status: VERIFIED · Depends: — · Paths: package.json, src/app/**, src/lib/supabase/**, tailwind/globals.css · Flags: testing · Evidence: .agylite/evidence/20261016T151714310409Z.json
 Objective: Next.js 15 skeleton with design tokens, Supabase clients and the 3D base scene, building cleanly.
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
@@ -19,22 +19,22 @@ Objective: Next.js 15 skeleton with design tokens, Supabase clients and the 3D b
 | T-101 | Scaffold Next.js 15 + TS strict + Tailwind v4 + ESLint/Prettier + Vitest | VERIFIED | — | engineering/implementation | — | — | lint, types, build | `npm run build`, `lint`, `typecheck` and `test` all pass |
 | T-102 | Design tokens, fonts, base UI primitives (Button, Panel, Badge, StateWord) | VERIFIED | T-101 | design/design-system | — | DESIGN.md tokens | unit snapshot | Tokens match DESIGN.md; contrast ≥ 4.5:1 |
 | T-103 | Supabase browser/server clients (`@supabase/ssr`), middleware session refresh, env validation with zod | VERIFIED | T-101 | engineering/backend | server-only for secrets | — | unit | App fails fast with a clear message on missing env |
-| T-104 | 3D base: `<Stage>` canvas, chair ring (placeholder geometry), bloom, `useLowPower` fallback | READY_FOR_VERIFICATION | T-102 | design/motion, engineering/performance | — | Motion table | unit (useLowPower) | Ring renders; fallback triggers under the low-power conditions |
+| T-104 | 3D base: `<Stage>` canvas, chair ring (placeholder geometry), bloom, `useLowPower` fallback | VERIFIED | T-102 | design/motion, engineering/performance | — | Motion table | unit (useLowPower) | Ring renders; fallback triggers under the low-power conditions |
 | T-105 | Security headers + CSP in next.config | VERIFIED | T-101 | engineering/security | T15 | — | unit (headers config) | All headers from SECURITY.md present |
 
 ## P2 · Game engine & database
-Status: PLANNED · Depends: P1 · Paths: supabase/**, src/lib/engine.ts · Flags: testing, security · Evidence: —
-Objective: The whole game runs on the server: schema, RLS, RPCs and realtime, proven by pgTAP and engine tests.
+Status: VERIFIED · Depends: P1 · Paths: supabase/**, src/lib/engine.ts · Flags: testing, security · Evidence: .agylite/evidence/20261016T153800100203Z.json
+Objective: The whole game runs on the server: schema, RLS, RPCs and realtime, proven by engine unit tests and integration tests against aimc-test (D-013).
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
 |---|---|---|---|---|---|---|---|---|
-| T-201 | `engine.ts` pure rules + Vitest cases (spin loop, eliminations, podium, invalid transitions) | PLANNED | T-101 | engineering/implementation | — | — | vitest | All PRD rules covered; tests fail before and pass after |
-| T-202 | Migration 0001 schema (all TRD tables, constraints, indexes) | PLANNED | T-103 | engineering/backend | — | — | pgTAP schema | `supabase db push` to aimc-test succeeds |
-| T-203 | Migration 0002 RLS + `is_admin()` + grants | PLANNED | T-202 | engineering/security | T1, T8, T9 | — | pgTAP negative | Player can't read questions, attempts, other players or secrets |
-| T-204 | Migration 0003 player RPCs: register_player, my_status, claim_chair, submit_answer, report_focus_event | PLANNED | T-203 | engineering/backend, engineering/security | T2–T7, T12 | — | pgTAP negative + positive | Every error code reachable; no answer in any response |
-| T-205 | Admin RPCs: start_round, open/close_scan_window, next_spin, end_round, chair mgmt, overrides, reset_game, audit | PLANNED | T-204 | engineering/backend | T8, T11 | — | pgTAP | Invalid transitions rejected; end_round eliminates the right set; podium order correct |
-| T-206 | `public_state` writer + realtime publication (0004) | PLANNED | T-205 | engineering/backend | No PII beyond names | — | pgTAP | Each RPC updates public_state and event_seq in the same transaction |
-| T-207 | Seed questions (≥ 150, difficulty 1–5) | PLANNED | T-202 | — | — | — | CSV validator | ≥ 2× expected players per difficulty |
+| T-201 | `engine.ts` pure rules + Vitest cases (spin loop, eliminations, podium, invalid transitions) | VERIFIED | T-101 | engineering/implementation | — | — | vitest | All PRD rules covered; tests fail before and pass after |
+| T-202 | Migration 0001 schema (all TRD tables, constraints, indexes) | VERIFIED | T-103 | engineering/backend | — | — | integration | `supabase db push` to aimc-test succeeds |
+| T-203 | Migration 0002 RLS + `is_admin()` + grants | VERIFIED | T-202 | engineering/security | T1, T8, T9 | — | integration negative | Player can't read questions, attempts, other players or secrets |
+| T-204 | Migration 0003 player RPCs: register_player, my_status, claim_chair, submit_answer, report_focus_event | VERIFIED | T-203 | engineering/backend, engineering/security | T2–T7, T12 | — | integration negative + positive | Every error code reachable; no answer in any response |
+| T-205 | Admin RPCs: start_round, open/close_scan_window, next_spin, end_round, chair mgmt, overrides, reset_game, audit | VERIFIED | T-204 | engineering/backend | T8, T11 | — | integration | Invalid transitions rejected; end_round eliminates the right set; podium order correct |
+| T-206 | `public_state` writer + realtime publication (0004) | VERIFIED | T-205 | engineering/backend | No PII beyond names | — | integration | Each RPC updates public_state and event_seq in the same transaction |
+| T-207 | Seed questions (≥ 150, difficulty 1–5) | VERIFIED | T-202 | — | — | — | CSV validator | ≥ 2× expected players per difficulty |
 
 ## P3 · Player site
 Status: PLANNED · Depends: P2 · Paths: src/app/play/**, src/components/player/**, src/hooks/** · Flags: testing, security, design · Evidence: —
@@ -92,13 +92,13 @@ Objective: The live 3D show for the audience, with round and podium sequences.
 | T-703 | Sequences: Round over + eliminations, chairs removed, Final round, podium + confetti; event_seq-driven, reload-safe | PLANNED | T-702, T-701 | design/motion | — | Motion table | vitest (event_seq dedupe) | Each event plays once; reload doesn't replay |
 
 ## P8 · Simulation, hardening & release
-Status: PLANNED · Depends: P3, P4, P5, P6, P7 · Paths: scripts/**, supabase/tests/** · Flags: testing, security, release · Evidence: —
+Status: PLANNED · Depends: P3, P4, P5, P6, P7 · Paths: scripts/**, integration/** · Flags: testing, security, release · Evidence: —
 Objective: Proof that a full game works under load and attack, then deploy.
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
 |---|---|---|---|---|---|---|---|---|
 | T-801 | `scripts/simulate.ts`: N bots on aimc-test, concurrent claims, invariants, cleanup | PLANNED | P2 | testing/strategy | T4, T6 | — | simulation | Random Y bots and admin-style random chair add/delete schedules: correct eliminations and podium, 5 runs green |
-| T-802 | Full security test pass (SECURITY.md list) + bundle secret grep + npm audit | PLANNED | T-801 | testing/security | All | — | pgTAP, vitest, audit | All negative tests pass; no high or critical issues |
+| T-802 | Full security test pass (SECURITY.md list) + bundle secret grep + npm audit | PLANNED | T-801 | testing/security | All | — | integration, vitest, audit | All negative tests pass; no high or critical issues |
 | T-803 | Deploy to Vercel prod + Supabase prod; admin accounts; rehearsal with real phones | PLANNED | T-802 | engineering/release | Env per SECURITY.md | — | release checklist | Rehearsal checklist signed off by the user |
 
 ## Change history
@@ -122,3 +122,28 @@ Objective: Proof that a full game works under load and attack, then deploy.
 | 2026-10-16 | T-102: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T151714310409Z.json) |
 | 2026-10-16 | T-103: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T151714310409Z.json) |
 | 2026-10-16 | T-105: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T151714310409Z.json) |
+| 2026-10-16 | T-104: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T151714310409Z.json) |
+| 2026-10-16 | P1: IN_PROGRESS → VERIFIED (roll-up from T-104) |
+| 2026-10-16 | P2: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-201: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-201: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-202: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-203: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-204: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-205: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-206: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-207: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-201: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T153800100203Z.json) |
+| 2026-10-16 | T-202: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-202: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T153800100203Z.json) |
+| 2026-10-16 | T-203: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-203: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T153800100203Z.json) |
+| 2026-10-16 | T-204: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-204: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T153800100203Z.json) |
+| 2026-10-16 | T-205: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-205: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T153800100203Z.json) |
+| 2026-10-16 | T-206: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-206: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T153800100203Z.json) |
+| 2026-10-16 | T-207: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-207: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T153800100203Z.json) |
+| 2026-10-16 | P2: IN_PROGRESS → VERIFIED (roll-up from T-207) |

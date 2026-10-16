@@ -142,3 +142,17 @@ decisions:
   supersedes: null
   status: ACTIVE
   tags: []
+- decision_id: D-013
+  date: '2026-10-16'
+  kind: architecture
+  topic: db-testing
+  decision: Database security and RPC tests run as Vitest integration tests using supabase-js against the aimc-test cloud
+    project (real auth users per role), instead of pgTAP
+  reason: pgTAP via supabase test db needs local Docker; black-box tests through the public API exercise RLS and grants exactly
+    as attackers would
+  alternatives:
+  - pgTAP with Docker
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []

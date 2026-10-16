@@ -1,0 +1,151 @@
+text,type,options,answer,alternatives,difficulty,topic
+What does CPU stand for?,mcq,Central Processing Unit|Central Program Utility|Computer Personal Unit|Core Processing Utility,Central Processing Unit,,1,computers
+Which company makes the iPhone?,one_word,,Apple,,1,tech
+Binary numbers use which two digits?,mcq,0 and 1|1 and 2|0 and 9|A and B,0 and 1,,1,computers
+What does WWW stand for?,mcq,World Wide Web|World Web Wide|Wide World Web|Web World Wide,World Wide Web,,1,internet
+Which shortcut copies selected text on Windows?,mcq,Ctrl+C|Ctrl+V|Ctrl+X|Ctrl+Z,Ctrl+C,,1,computers
+What is the chemical formula of water?,one_word,,H2O,,1,science
+How many bits are in one byte?,one_word,,8,eight,1,computers
+Which planet is known as the Red Planet?,one_word,,Mars,,1,science
+What does RAM stand for?,mcq,Random Access Memory|Read Access Memory|Rapid Action Memory|Run Access Module,Random Access Memory,,1,computers
+Which hand-held device is used to point and click on a computer?,one_word,,Mouse,,1,computers
+What is the unit of electrical resistance?,one_word,,Ohm,ohms,1,electronics
+Which language gives structure to web pages?,mcq,HTML|Python|SQL|C++,HTML,,1,web
+What does USB stand for?,mcq,Universal Serial Bus|United System Bus|Universal Signal Board|Unified Serial Bridge,Universal Serial Bus,,1,computers
+Who co-founded Microsoft with Paul Allen?,mcq,Bill Gates|Steve Jobs|Larry Page|Mark Zuckerberg,Bill Gates,,1,tech
+What is 2 to the power of 10?,one_word,,1024,,1,math
+Which gas do plants absorb for photosynthesis?,mcq,Carbon dioxide|Oxygen|Nitrogen|Hydrogen,Carbon dioxide,,1,science
+Which company develops the Android operating system?,mcq,Google|Apple|Microsoft|Nokia,Google,,1,tech
+What is the SI unit of electric current?,one_word,,Ampere,amperes|amp|amps,1,electronics
+Which symbol starts a single-line comment in Python?,mcq,#|//|<!--|%,#,,1,programming
+What does PDF stand for?,mcq,Portable Document Format|Printed Document File|Public Data Format|Portable Data File,Portable Document Format,,1,computers
+Which part of a computer stores data permanently?,mcq,Hard disk|RAM|Cache|Register,Hard disk,,1,computers
+Roughly how fast does light travel in km per second?,mcq,300000|30000|3000|3000000,300000,,1,science
+Which shortcut undoes the last action on Windows?,mcq,Ctrl+Z|Ctrl+Y|Ctrl+U|Ctrl+A,Ctrl+Z,,1,computers
+Which number system has base 16?,one_word,,Hexadecimal,hex,1,math
+What is the capital city of Karnataka?,one_word,,Bengaluru,bangalore,1,general
+Which Indian space agency launched Chandrayaan-3?,one_word,,ISRO,,1,general
+What does AI stand for?,mcq,Artificial Intelligence|Automated Interface|Advanced Internet|Analog Integration,Artificial Intelligence,,1,ai
+Which of these is an input device?,mcq,Keyboard|Monitor|Printer|Speaker,Keyboard,,1,computers
+What does LAN stand for?,mcq,Local Area Network|Large Access Network|Linked Area Node|Local Access Node,Local Area Network,,1,networking
+Which component is called the brain of the computer?,one_word,,CPU,processor,1,computers
+Which data structure works on the LIFO principle?,mcq,Stack|Queue|Tree|Graph,Stack,,2,dsa
+Which data structure works on the FIFO principle?,one_word,,Queue,,2,dsa
+What does SQL stand for?,mcq,Structured Query Language|Simple Query Language|Sequential Query Logic|Standard Question Language,Structured Query Language,,2,databases
+Which protocol loads web pages over an encrypted connection?,one_word,,HTTPS,,2,networking
+What is the decimal value of binary 1010?,one_word,,10,ten,2,math
+Which logic gate outputs 1 only when both inputs are 1?,one_word,,AND,,2,electronics
+Who is known as the father of the computer?,mcq,Charles Babbage|Alan Turing|John von Neumann|Tim Berners-Lee,Charles Babbage,,2,tech
+Who invented the World Wide Web?,mcq,Tim Berners-Lee|Vint Cerf|Bill Gates|Linus Torvalds,Tim Berners-Lee,,2,internet
+Who created the Linux kernel?,mcq,Linus Torvalds|Dennis Ritchie|Richard Stallman|Ken Thompson,Linus Torvalds,,2,tech
+Which programming language did Dennis Ritchie create?,one_word,,C,,2,programming
+What is the default port number for HTTP?,one_word,,80,,2,networking
+What does DNS stand for?,mcq,Domain Name System|Digital Network Service|Data Name Server|Domain Network Server,Domain Name System,,2,networking
+What does IP stand for in IP address?,mcq,Internet Protocol|Internal Port|Internet Provider|Interface Protocol,Internet Protocol,,2,networking
+Which keyword defines a function in Python?,one_word,,def,,2,programming
+Which of these is NOT a programming language?,mcq,HTTP|Java|Rust|Kotlin,HTTP,,2,programming
+What does GPU stand for?,mcq,Graphics Processing Unit|General Processing Unit|Graphical Program Utility|Global Processing Unit,Graphics Processing Unit,,2,computers
+By Ohm's law voltage V equals?,mcq,I x R|I / R|R / I|I + R,I x R,,2,electronics
+Which version control system did Linus Torvalds create?,one_word,,Git,,2,tools
+What is the time complexity of binary search?,mcq,O(log n)|O(n)|O(n log n)|O(1),O(log n),,2,dsa
+Which HTML tag creates a hyperlink?,mcq,<a>|<link>|<href>|<p>,<a>,,2,web
+What does CSS stand for?,mcq,Cascading Style Sheets|Computer Style System|Creative Style Sheets|Colorful Style Syntax,Cascading Style Sheets,,2,web
+Which company originally created Java?,mcq,Sun Microsystems|Microsoft|Oracle|IBM,Sun Microsystems,,2,programming
+In the binary convention how many bytes make one kilobyte?,one_word,,1024,,2,computers
+What does IoT stand for?,mcq,Internet of Things|Input of Technology|Integration of Tools|Internet of Telecom,Internet of Things,,2,tech
+Which is the largest planet in our solar system?,one_word,,Jupiter,,2,science
+Which semiconductor material are most computer chips made from?,one_word,,Silicon,,2,electronics
+What does OS stand for?,mcq,Operating System|Open Software|Output Signal|Online Service,Operating System,,2,computers
+Which sorting algorithm repeatedly swaps adjacent out-of-order elements?,mcq,Bubble sort|Merge sort|Quick sort|Heap sort,Bubble sort,,2,dsa
+What does Wi-Fi use to carry data?,mcq,Radio waves|Infrared light|Copper cables|Fiber optics,Radio waves,,2,networking
+Which company makes the Snapdragon mobile processors?,mcq,Qualcomm|Intel|AMD|MediaTek,Qualcomm,,2,tech
+Which OSI layer is responsible for routing?,mcq,Network|Transport|Data link|Session,Network,,3,networking
+How many layers does the OSI model have?,one_word,,7,seven,3,networking
+What is the default port number for HTTPS?,one_word,,443,,3,networking
+What is the default port number for SSH?,one_word,,22,,3,networking
+What is the worst-case time complexity of quicksort?,mcq,O(n^2)|O(n log n)|O(n)|O(log n),O(n^2),,3,dsa
+Which data structure does breadth-first search use?,one_word,,Queue,,3,dsa
+Which data structure manages function calls during recursion?,one_word,,Stack,call stack,3,dsa
+What does ACID stand for in databases?,mcq,Atomicity Consistency Isolation Durability|Accuracy Consistency Integrity Durability|Atomicity Concurrency Isolation Data|Availability Consistency Isolation Durability,Atomicity Consistency Isolation Durability,,3,databases
+Which normal form removes partial dependencies?,mcq,2NF|1NF|3NF|BCNF,2NF,,3,databases
+Which Git command copies a remote repository to your machine?,one_word,,clone,git clone,3,tools
+Which HTTP status code means Not Found?,one_word,,404,,3,web
+Which HTTP status code means Internal Server Error?,one_word,,500,,3,web
+What is the 4-bit two's complement of 0001?,one_word,,1111,,3,math
+How many bits are in an IPv4 address?,one_word,,32,,3,networking
+How many bits are in an IPv6 address?,one_word,,128,,3,networking
+Which flip-flop toggles its output when both inputs are 1?,mcq,JK|SR|D|T,JK,,3,electronics
+Which Java keyword stops a class from being inherited?,one_word,,final,,3,programming
+What does the sizeof operator return in C?,mcq,Size in bytes|Number of elements|Memory address|Bit count,Size in bytes,,3,programming
+Which CPU scheduling algorithm can starve long jobs?,mcq,Shortest Job First|Round Robin|First Come First Served,Shortest Job First,,3,os
+Which protocol maps an IP address to a MAC address?,one_word,,ARP,,3,networking
+Which transport protocol is connectionless?,one_word,,UDP,,3,networking
+Which of these is a NoSQL database?,mcq,MongoDB|MySQL|PostgreSQL|Oracle,MongoDB,,3,databases
+What does JSON stand for?,mcq,JavaScript Object Notation|Java Standard Object Notation|JavaScript Online Network|Joint Syntax Object Notation,JavaScript Object Notation,,3,web
+Whose law predicts that transistor counts double about every two years?,one_word,,Moore,moore's law|moores law|moore law,3,tech
+What is Euler's number e rounded to two decimal places?,one_word,,2.72,,3,math
+Which JavaScript keyword declares a constant?,one_word,,const,,3,programming
+Which Python data type is immutable?,mcq,tuple|list|dict|set,tuple,,3,programming
+Which circuit converts AC to DC?,one_word,,Rectifier,,3,electronics
+Which of these is a universal logic gate?,mcq,NAND|XOR|OR|NOT,NAND,,3,electronics
+Which company's researchers wrote the paper Attention Is All You Need?,mcq,Google|OpenAI|Meta|Microsoft,Google,,3,ai
+What is the time complexity of building a binary heap from n elements?,mcq,O(n)|O(n log n)|O(log n)|O(n^2),O(n),,4,dsa
+Which algorithm finds shortest paths in a graph with non-negative edge weights?,one_word,,Dijkstra,dijkstra's|dijkstras,4,dsa
+Which shortest-path algorithm works with negative edge weights?,mcq,Bellman-Ford|Dijkstra|Prim|Kruskal,Bellman-Ford,,4,dsa
+Which minimum spanning tree algorithm sorts all edges by weight first?,one_word,,Kruskal,kruskal's|kruskals,4,dsa
+How many steps are in the TCP connection handshake?,one_word,,3,three,4,networking
+Which idempotent HTTP method replaces a resource?,one_word,,PUT,,4,web
+What is the subnet mask of a /24 network?,mcq,255.255.255.0|255.255.0.0|255.0.0.0|255.255.255.255,255.255.255.0,,4,networking
+How many usable host addresses does a /24 subnet have?,one_word,,254,,4,networking
+Which page replacement algorithm suffers from Belady's anomaly?,one_word,,FIFO,first in first out,4,os
+In the CAP theorem what does C stand for?,mcq,Consistency|Concurrency|Capacity|Correctness,Consistency,,4,systems
+Which of these sorting algorithms is stable?,mcq,Merge sort|Quick sort|Heap sort|Selection sort,Merge sort,,4,dsa
+Which data structure gives O(1) average-time lookup?,mcq,Hash table|Binary search tree|Linked list|Heap,Hash table,,4,dsa
+What is the time complexity of merge sort?,mcq,O(n log n)|O(n^2)|O(n)|O(log n),O(n log n),,4,dsa
+Which Linux command changes file permissions?,one_word,,chmod,,4,os
+Which register holds the address of the next instruction?,mcq,Program Counter|Accumulator|Stack Pointer|Instruction Register,Program Counter,,4,computers
+Which addressing scheme allows variable-length subnet masks?,mcq,CIDR|Classful addressing|NAT|DHCP,CIDR,,4,networking
+What does DHCP assign to devices automatically?,mcq,IP addresses|MAC addresses|Domain names|Port numbers,IP addresses,,4,networking
+Which SQL clause filters groups after aggregation?,one_word,,HAVING,,4,databases
+Which SQL join returns only rows that match in both tables?,mcq,INNER JOIN|LEFT JOIN|FULL JOIN|CROSS JOIN,INNER JOIN,,4,databases
+What is hexadecimal 0xFF in decimal?,one_word,,255,,4,math
+In SOLID principles what does the S stand for?,mcq,Single responsibility|Separation of concerns|Simple design|Static typing,Single responsibility,,4,programming
+Which design pattern ensures a class has only one instance?,one_word,,Singleton,,4,programming
+Which machine learning task predicts a continuous value?,one_word,,Regression,,4,ai
+Which activation function outputs max(0 and x)?,one_word,,ReLU,,4,ai
+Which metric is the harmonic mean of precision and recall?,mcq,F1 score|Accuracy|AUC|Log loss,F1 score,,4,ai
+What is the Nyquist sampling rate for a signal whose highest frequency is f?,mcq,2f|f|f/2|4f,2f,,4,electronics
+Which BJT configuration is also called an emitter follower?,mcq,Common collector|Common emitter|Common base,Common collector,,4,electronics
+Which of these encryption algorithms is asymmetric?,mcq,RSA|AES|DES|Blowfish,RSA,,4,security
+Which hash function does Bitcoin mining use?,one_word,,SHA-256,sha256|sha 256,4,security
+What is the default port number for DNS?,one_word,,53,,4,networking
+Which complexity class contains problems whose solutions can be verified in polynomial time?,one_word,,NP,,5,theory
+Who proposed the imitation game now called the Turing test?,mcq,Alan Turing|John McCarthy|Marvin Minsky|Claude Shannon,Alan Turing,,5,ai
+Who coined the term artificial intelligence?,mcq,John McCarthy|Alan Turing|Geoffrey Hinton|Herbert Simon,John McCarthy,,5,ai
+Who is known as the father of information theory?,mcq,Claude Shannon|Norbert Wiener|Alan Turing|John von Neumann,Claude Shannon,,5,theory
+Which consensus algorithm used by etcd was designed to be easy to understand?,one_word,,Raft,,5,systems
+What is the amortized time to append to a dynamic array?,mcq,O(1)|O(n)|O(log n)|O(n log n),O(1),,5,dsa
+Which self-balancing tree uses node colours and rotations?,mcq,Red-black tree|AVL tree|B-tree|Trie,Red-black tree,,5,dsa
+Which tree data structure is best suited to prefix autocomplete?,one_word,,Trie,prefix tree,5,dsa
+Which attack injects malicious scripts into pages viewed by other users?,mcq,Cross-site scripting|SQL injection|Phishing|Man-in-the-middle,Cross-site scripting,,5,security
+Which CSP directive controls which sites may embed a page in a frame?,one_word,,frame-ancestors,frame ancestors,5,security
+Which algorithm computes the gradients used to train neural networks?,one_word,,Backpropagation,backprop|back propagation,5,ai
+Which mechanism in transformers lets each token weigh every other token?,one_word,,Attention,self-attention|self attention,5,ai
+Which ensemble method trains many decision trees on bootstrap samples?,mcq,Random forest|Gradient boosting|Support vector machine|K-nearest neighbours,Random forest,,5,ai
+What does GAN stand for in machine learning?,mcq,Generative Adversarial Network|General Artificial Network|Gradient Activation Network|Graph Attention Network,Generative Adversarial Network,,5,ai
+SAT was the first problem proven complete for which complexity class?,one_word,,NP,np-complete|np complete,5,theory
+Which theorem proved that SAT is NP-complete?,mcq,Cook-Levin theorem|Church-Turing thesis|Rice's theorem|Godel's incompleteness theorem,Cook-Levin theorem,,5,theory
+What is the time complexity of the Floyd-Warshall algorithm?,mcq,O(V^3)|O(V^2)|O(E log V)|O(VE),O(V^3),,5,dsa
+Which algorithm computes the RSA private exponent from the public one?,mcq,Extended Euclidean algorithm|Sieve of Eratosthenes|Dijkstra's algorithm|Fast Fourier Transform,Extended Euclidean algorithm,,5,security
+Which protocol provides the encryption in modern HTTPS?,one_word,,TLS,transport layer security,5,security
+Which cache mapping places each memory block in exactly one cache line?,mcq,Direct mapped|Fully associative|Set associative|Write back,Direct mapped,,5,computers
+Which Unix system call creates a new process by duplicating the caller?,one_word,,fork,fork(),5,os
+Which IEEE standard defines floating-point arithmetic?,one_word,,754,ieee 754|ieee754,5,computers
+How many fraction bits does IEEE 754 single precision store?,one_word,,23,,5,computers
+Which modulation scheme varies the carrier's frequency?,one_word,,FM,frequency modulation,5,electronics
+Which theorem gives the maximum data rate of a noisy channel?,mcq,Shannon-Hartley theorem|Nyquist theorem|Fourier theorem|Bayes' theorem,Shannon-Hartley theorem,,5,electronics
+What is the smallest deployable unit in Kubernetes?,one_word,,Pod,pods,5,systems
+Which garbage collection technique cannot reclaim reference cycles on its own?,mcq,Reference counting|Mark and sweep|Copying collection|Generational collection,Reference counting,,5,programming
+Which pipeline hazard occurs when an instruction needs the result of a previous one?,mcq,Data hazard|Control hazard|Structural hazard|Memory hazard,Data hazard,,5,computers
+Which index structure do relational databases like PostgreSQL use by default?,one_word,,B-tree,btree|b tree|b+ tree|b+tree,5,databases
+Which quantum gate puts a qubit into an equal superposition?,one_word,,Hadamard,h gate|hadamard gate,5,theory

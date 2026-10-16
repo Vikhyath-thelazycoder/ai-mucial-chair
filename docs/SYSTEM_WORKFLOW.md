@@ -119,7 +119,7 @@ How the system behaves from each actor's action down to the data. Rules come fro
 ## Verification
 
 - Vitest unit tests on `src/lib/engine.ts`: transition validity, free chairs, eligibility, round completion, elimination set, podium order.
-- SQL tests (`supabase/tests/*.sql`, pgTAP via `supabase test db --linked`) for the RPC guards and RLS. Each attack from SECURITY.md is a test.
+- Integration tests (`integration/*.test.ts`, `npm run test:integration` against aimc-test, D-013) for the RPC guards and RLS, signed in as real users. Each attack from SECURITY.md is a test.
 - `scripts/simulate.ts` against the cloud project plays full games with a random number of bots and random chair add/delete schedules, and checks invariants after every spin:
   - one claim per chair and per player each spin;
   - the number of locked chairs never decreases within a round;

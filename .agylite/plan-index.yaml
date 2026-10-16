@@ -1,17 +1,16 @@
 schema_version: 1
 plan_path: docs/IMPLEMENTATION_PLAN.md
-plan_sha256: 6446e5a64bd97574ecbc8aba77a123cf536818987ac221318610077abe77e5f2
-plan_size: 12894
-plan_mtime_ns: 1792163846200913467
-built: '2026-10-16T15:17:26+00:00'
-current_phase: P1
+plan_sha256: 6babcf8686dc0ac57a283a4194b9433bf82d81cb43f9fb3090f694b6f1604d19
+plan_size: 14938
+plan_mtime_ns: 1792165117906090947
+built: '2026-10-16T15:38:38+00:00'
+current_phase: P3
 phases:
 - phase_id: P1
   phase_name: Foundations
-  status: IN_PROGRESS
+  status: VERIFIED
   objective: Next.js 15 skeleton with design tokens, Supabase clients and the 3D base scene, building cleanly.
-  active_tasks:
-  - T-104
+  active_tasks: []
   tasks:
   - id: T-101
     title: Scaffold Next.js 15 + TS strict + Tailwind v4 + ESLint/Prettier + Vitest
@@ -24,7 +23,7 @@ phases:
     status: VERIFIED
   - id: T-104
     title: '3D base: `<Stage>` canvas, chair ring (placeholder geometry), bloom, `useLowPower` fallback'
-    status: READY_FOR_VERIFICATION
+    status: VERIFIED
   - id: T-105
     title: Security headers + CSP in next.config
     status: VERIFIED
@@ -38,37 +37,38 @@ phases:
   design_flags: true
   testing_flags: true
   last_updated: null
-  evidence_pointer: null
+  evidence_pointer: .agylite/evidence/20261016T151714310409Z.json
   section:
     start: 665
-    end: 2188
+    end: 2215
 - phase_id: P2
   phase_name: Game engine & database
-  status: PLANNED
-  objective: 'The whole game runs on the server: schema, RLS, RPCs and realtime, proven by pgTAP and engine tests.'
+  status: VERIFIED
+  objective: 'The whole game runs on the server: schema, RLS, RPCs and realtime, proven by engine unit tests and integration
+    tests against aimc-test (D-013).'
   active_tasks: []
   tasks:
   - id: T-201
     title: '`engine.ts` pure rules + Vitest cases (spin loop, eliminations, podium, invalid transitions)'
-    status: PLANNED
+    status: VERIFIED
   - id: T-202
     title: Migration 0001 schema (all TRD tables, constraints, indexes)
-    status: PLANNED
+    status: VERIFIED
   - id: T-203
     title: Migration 0002 RLS + `is_admin()` + grants
-    status: PLANNED
+    status: VERIFIED
   - id: T-204
     title: 'Migration 0003 player RPCs: register_player, my_status, claim_chair, submit_answer, report_focus_event'
-    status: PLANNED
+    status: VERIFIED
   - id: T-205
     title: 'Admin RPCs: start_round, open/close_scan_window, next_spin, end_round, chair mgmt, overrides, reset_game, audit'
-    status: PLANNED
+    status: VERIFIED
   - id: T-206
     title: '`public_state` writer + realtime publication (0004)'
-    status: PLANNED
+    status: VERIFIED
   - id: T-207
     title: Seed questions (≥ 150, difficulty 1–5)
-    status: PLANNED
+    status: VERIFIED
   dependencies:
   - P1
   affected_paths:
@@ -78,10 +78,10 @@ phases:
   design_flags: false
   testing_flags: true
   last_updated: null
-  evidence_pointer: null
+  evidence_pointer: .agylite/evidence/20261016T153800100203Z.json
   section:
-    start: 2188
-    end: 4072
+    start: 2215
+    end: 4217
 - phase_id: P3
   phase_name: Player site
   status: PLANNED
@@ -115,8 +115,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 4072
-    end: 5697
+    start: 4217
+    end: 5842
 - phase_id: P4
   phase_name: Admin console
   status: PLANNED
@@ -152,8 +152,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 5697
-    end: 7255
+    start: 5842
+    end: 7400
 - phase_id: P5
   phase_name: Question bank & Gemini
   status: PLANNED
@@ -181,8 +181,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 7255
-    end: 8283
+    start: 7400
+    end: 8428
 - phase_id: P6
   phase_name: Music (Spotify)
   status: PLANNED
@@ -209,8 +209,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 8283
-    end: 9262
+    start: 8428
+    end: 9407
 - phase_id: P7
   phase_name: Projector screen & 3D assets
   status: PLANNED
@@ -240,8 +240,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 9262
-    end: 10419
+    start: 9407
+    end: 10564
 - phase_id: P8
   phase_name: Simulation, hardening & release
   status: PLANNED
@@ -265,12 +265,12 @@ phases:
   - P7
   affected_paths:
   - scripts/**
-  - supabase/tests/**
+  - integration/**
   security_flags: true
   design_flags: false
   testing_flags: true
   last_updated: null
   evidence_pointer: null
   section:
-    start: 10419
-    end: 11506
+    start: 10564
+    end: 11654

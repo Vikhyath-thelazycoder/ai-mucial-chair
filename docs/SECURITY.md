@@ -91,7 +91,7 @@ D-004 (answers secret), D-005 (chair QR rules), D-006 (anti-cheat scope). See [P
 
 All tests run before release (`agylite verify`). They are negative-first, and each threat has at least one test:
 
-1. **pgTAP** (`supabase/tests/security.test.sql`, run with `supabase test db --linked` on **aimc-test**): T1–T9, T11, T12.
+1. **Integration tests** (`integration/security.test.ts`, `npm run test:integration`, run with real signed-in users against **aimc-test**, D-013): T1–T9, T11, T12, T14.
 2. **Vitest:** input validators (names, USN, phone, CSV rows, AI output schema), QR parsing (rejects foreign URLs), focus guard behaviour, Gemini route auth (401/403/422).
 3. **Simulation:** concurrent claim races (T4), deadline enforcement (T6).
 4. **Build check:** no secret values in `.next/static`. `npm audit --omit=dev` shows no high or critical issues.

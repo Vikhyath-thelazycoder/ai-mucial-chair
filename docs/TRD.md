@@ -14,7 +14,7 @@
 | CSV | papaparse |
 | AI | `@google/genai` (Gemini) |
 | Music | Spotify Web Playback SDK (script tag) + Web API via fetch |
-| Tests | Vitest (unit), pgTAP via `supabase test db --linked` (SQL), `tsx scripts/simulate.ts` (end-to-end bots) |
+| Tests | Vitest (unit), Vitest integration tests with supabase-js against aimc-test (`npm run test:integration`, D-013), `tsx scripts/simulate.mts` (end-to-end bots) |
 | Tooling | npm, ESLint, Prettier, Supabase CLI (cloud only) |
 
 ## Architecture
@@ -40,9 +40,9 @@ src/
     qr.ts                    build/parse chair URLs
 supabase/
   migrations/                0001_schema.sql, 0002_rls.sql, 0003_rpc.sql, 0004_realtime.sql
-  tests/                     *.test.sql (pgTAP)
   seed/questions.csv
-scripts/simulate.ts
+integration/                 security.test.ts, game.test.ts, harness.ts (run against aimc-test)
+scripts/                     seed-questions.mts, simulate.mts
 public/models/{chair,trophy}.glb
 ```
 
