@@ -1,0 +1,33 @@
+schema_version: 1
+project:
+  name: ai musical chair
+  project_id: 955aa6c7bce9486f
+  created: '2026-10-16T14:26:17+00:00'
+  stage: new
+stack:
+- nextjs
+- typescript
+- supabase
+- react
+- tailwind
+plan:
+  path: docs/IMPLEMENTATION_PLAN.md
+  current_phase: P1
+answers:
+  product-goal: 'Users: tech-fest participants at Sai Vidya Institute of Technology (players on phones), the event admin/host
+    (laptop), and the audience (projector). First release must run one complete live AI Musical Chair game end-to-end: register
+    via QR, chair-QR scan, randomized server-graded questions, spin loop until all chairs correct, eliminations, round animations
+    and a top-3 podium, all realtime on Vercel+Supabase.'
+verification:
+  mode: local-test-first
+  browser_visual_verification: disabled
+  chrome_devtools: disabled
+  screenshot_verification: disabled
+  last: &id001
+    task: T-105
+    result: VERIFIED
+    evidence: .agylite/evidence/20261016T151714310409Z.json
+    at: '2026-10-16T15:17:26+00:00'
+  last_task: *id001
+updated: '2026-10-16T15:17:26+00:00'
+pending_questions: []

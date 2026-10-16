@@ -1,0 +1,144 @@
+schema_version: 1
+decisions:
+- decision_id: D-001
+  date: '2026-10-16'
+  kind: architecture
+  topic: hosting
+  decision: Next.js 15 App Router on Vercel + Supabase cloud (Postgres, Auth, Realtime); no local services
+  reason: Every player connects from their own phone over the internet; free tiers; built-in realtime and RLS
+  alternatives:
+  - Node+Socket.IO on Render
+  - Local laptop server
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []
+- decision_id: D-002
+  date: '2026-10-16'
+  kind: architecture
+  topic: game-logic-location
+  decision: All game state transitions and grading run in Postgres security-definer RPCs; clients only call RPCs and subscribe
+    to realtime
+  reason: Single source of truth, atomic chair claims under concurrency, answers never reach clients
+  alternatives:
+  - Next.js API routes holding state
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []
+- decision_id: D-003
+  date: '2026-10-16'
+  kind: architecture
+  topic: surfaces
+  decision: 'One deployment with three routes: /admin, /play, /screen (projector = another Chrome tab)'
+  reason: Shared types and auth, one deploy; user confirmed projector is just a tab
+  alternatives: []
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []
+- decision_id: D-004
+  date: '2026-10-16'
+  kind: security
+  topic: answer-secrecy
+  decision: questions.answer and attempts.is_correct are never readable by player or screen roles; grading is server-side
+    with server timestamps
+  reason: Players must not learn correctness or answers; prevents client-side tampering of times
+  alternatives: []
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []
+- decision_id: D-005
+  date: '2026-10-16'
+  kind: security
+  topic: chair-qr
+  decision: Chair QR encodes chair id + random secret; claim accepted only for an authenticated active player during scan_open
+    phase, once per spin per chair and per player
+  reason: Stops unregistered scans, photo-of-QR scans before music stops, and double claims
+  alternatives: []
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []
+- decision_id: D-006
+  date: '2026-10-16'
+  kind: security
+  topic: anti-cheat
+  decision: 'Browser-level deterrence only: fullscreen, no select/copy/context menu, name watermark, visibility/blur/pagehide
+    alerts to admin; admin decides penalty'
+  reason: A web page cannot block screenshots or second devices; honest scope agreed with user
+  alternatives: []
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []
+- decision_id: D-007
+  date: '2026-10-16'
+  kind: architecture
+  topic: music
+  decision: Spotify Web Playback SDK + Web API (PKCE) in admin on desktop Chrome, with a manual 'Music stopped' fallback button
+  reason: User choice; Premium required; fallback keeps the game running if Spotify fails
+  alternatives: []
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []
+- decision_id: D-008
+  date: '2026-10-16'
+  kind: architecture
+  topic: ai-questions
+  decision: Gemini API via @google/genai from a server route only; generated questions are reviewed by the admin before saving
+  reason: User has a Gemini key, not Claude; LLM output is untrusted and must be validated and reviewed
+  alternatives: []
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []
+- decision_id: D-009
+  date: '2026-10-16'
+  kind: design
+  topic: visual-direction
+  decision: Dark neon arcade with 3D (React Three Fiber, drei, postprocessing bloom), Framer Motion, GSAP; custom chair/trophy
+    GLBs modelled via Blender MCP; low-power 2D fallback on player phones
+  reason: User wants a modern 3D game feel; phones must stay fast during scanning
+  alternatives: []
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []
+- decision_id: D-010
+  date: '2026-10-16'
+  kind: product
+  topic: ranking
+  decision: Players who hold the last 3 chairs are the winners; podium order by correct-answer time in the final round
+  reason: 'User: luck decides, no points system'
+  alternatives: []
+  impact: ''
+  supersedes: null
+  status: SUPERSEDED
+  tags: []
+- decision_id: D-011
+  date: '2026-10-16'
+  kind: product
+  topic: admin-configurable-counts
+  decision: Chair count, player count, per-round chair schedule and final-round count are all set by the admin at runtime;
+    chairs can be added/deleted/toggled any number between spins; no fixed sequence
+  reason: 'User: the admin can add or delete anything; 10/15 and 10→8→6→4→3 were only examples'
+  alternatives: []
+  impact: ''
+  supersedes: D-010
+  status: ACTIVE
+  tags: []
+- decision_id: D-012
+  date: '2026-10-16'
+  kind: product
+  topic: ranking
+  decision: Players holding the chairs of the final round are the winners; podium order by correct-answer time in the final
+    round
+  reason: 'User: luck decides, no points system (re-records D-010, superseded by mistake)'
+  alternatives: []
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []

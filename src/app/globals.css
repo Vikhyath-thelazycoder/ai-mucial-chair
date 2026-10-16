@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/* Design tokens: values must match src/lib/design/tokens.ts (checked by tokens.test.ts). */
+:root {
+  --bg: #07070C;
+  --surface: #11121C;
+  --line: #262838;
+  --text: #F2F4FF;
+  --muted: #8A90B2;
+  --cyan: #22E4FF;
+  --lime: #B6FF3B;
+  --amber: #FFB020;
+  --red: #FF3B5C;
+  --gold: #FFD54A;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-cyan: var(--cyan);
+  --color-lime: var(--lime);
+  --color-amber: var(--amber);
+  --color-red: var(--red);
+  --color-gold: var(--gold);
+  --font-display: var(--font-orbitron);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

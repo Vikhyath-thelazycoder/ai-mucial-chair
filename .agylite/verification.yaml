@@ -1,0 +1,30 @@
+schema_version: 1
+results:
+- task: P1
+  result: PASSED
+  evidence: .agylite/evidence/20261016T151644480109Z.json
+  at: '2026-10-16T15:16:44+00:00'
+- task: P1
+  result: NOT_TESTED
+  evidence: .agylite/evidence/20261016T151649889988Z.json
+  at: '2026-10-16T15:16:49+00:00'
+- task: P1
+  result: PASSED
+  evidence: .agylite/evidence/20261016T151714310409Z.json
+  at: '2026-10-16T15:17:14+00:00'
+- task: T-101
+  result: VERIFIED
+  evidence: .agylite/evidence/20261016T151714310409Z.json
+  at: '2026-10-16T15:17:26+00:00'
+- task: T-102
+  result: VERIFIED
+  evidence: .agylite/evidence/20261016T151714310409Z.json
+  at: '2026-10-16T15:17:26+00:00'
+- task: T-103
+  result: VERIFIED
+  evidence: .agylite/evidence/20261016T151714310409Z.json
+  at: '2026-10-16T15:17:26+00:00'
+- task: T-105
+  result: VERIFIED
+  evidence: .agylite/evidence/20261016T151714310409Z.json
+  at: '2026-10-16T15:17:26+00:00'

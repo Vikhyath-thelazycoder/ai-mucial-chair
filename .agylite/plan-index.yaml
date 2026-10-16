@@ -1,0 +1,276 @@
+schema_version: 1
+plan_path: docs/IMPLEMENTATION_PLAN.md
+plan_sha256: 6446e5a64bd97574ecbc8aba77a123cf536818987ac221318610077abe77e5f2
+plan_size: 12894
+plan_mtime_ns: 1792163846200913467
+built: '2026-10-16T15:17:26+00:00'
+current_phase: P1
+phases:
+- phase_id: P1
+  phase_name: Foundations
+  status: IN_PROGRESS
+  objective: Next.js 15 skeleton with design tokens, Supabase clients and the 3D base scene, building cleanly.
+  active_tasks:
+  - T-104
+  tasks:
+  - id: T-101
+    title: Scaffold Next.js 15 + TS strict + Tailwind v4 + ESLint/Prettier + Vitest
+    status: VERIFIED
+  - id: T-102
+    title: Design tokens, fonts, base UI primitives (Button, Panel, Badge, StateWord)
+    status: VERIFIED
+  - id: T-103
+    title: Supabase browser/server clients (`@supabase/ssr`), middleware session refresh, env validation with zod
+    status: VERIFIED
+  - id: T-104
+    title: '3D base: `<Stage>` canvas, chair ring (placeholder geometry), bloom, `useLowPower` fallback'
+    status: READY_FOR_VERIFICATION
+  - id: T-105
+    title: Security headers + CSP in next.config
+    status: VERIFIED
+  dependencies: []
+  affected_paths:
+  - package.json
+  - src/app/**
+  - src/lib/supabase/**
+  - tailwind/globals.css
+  security_flags: true
+  design_flags: true
+  testing_flags: true
+  last_updated: null
+  evidence_pointer: null
+  section:
+    start: 665
+    end: 2188
+- phase_id: P2
+  phase_name: Game engine & database
+  status: PLANNED
+  objective: 'The whole game runs on the server: schema, RLS, RPCs and realtime, proven by pgTAP and engine tests.'
+  active_tasks: []
+  tasks:
+  - id: T-201
+    title: '`engine.ts` pure rules + Vitest cases (spin loop, eliminations, podium, invalid transitions)'
+    status: PLANNED
+  - id: T-202
+    title: Migration 0001 schema (all TRD tables, constraints, indexes)
+    status: PLANNED
+  - id: T-203
+    title: Migration 0002 RLS + `is_admin()` + grants
+    status: PLANNED
+  - id: T-204
+    title: 'Migration 0003 player RPCs: register_player, my_status, claim_chair, submit_answer, report_focus_event'
+    status: PLANNED
+  - id: T-205
+    title: 'Admin RPCs: start_round, open/close_scan_window, next_spin, end_round, chair mgmt, overrides, reset_game, audit'
+    status: PLANNED
+  - id: T-206
+    title: '`public_state` writer + realtime publication (0004)'
+    status: PLANNED
+  - id: T-207
+    title: Seed questions (≥ 150, difficulty 1–5)
+    status: PLANNED
+  dependencies:
+  - P1
+  affected_paths:
+  - supabase/**
+  - src/lib/engine.ts
+  security_flags: true
+  design_flags: false
+  testing_flags: true
+  last_updated: null
+  evidence_pointer: null
+  section:
+    start: 2188
+    end: 4072
+- phase_id: P3
+  phase_name: Player site
+  status: PLANNED
+  objective: A phone can register, follow the game live, scan a chair, answer within the timer, and trigger anti-cheat alerts.
+  active_tasks: []
+  tasks:
+  - id: T-301
+    title: Register/login (USN + PIN), validators, error-code mapping
+    status: PLANNED
+  - id: T-302
+    title: Live status screen (`usePublicState`, `useMyStatus`, reconnect resync)
+    status: PLANNED
+  - id: T-303
+    title: In-site scanner (@zxing/browser), strict QR parser, `/c/[id]` landing page with no side effects
+    status: PLANNED
+  - id: T-304
+    title: 'Question screen: MCQ/one-word, server-deadline countdown, single submit, retry on reconnect'
+    status: PLANNED
+  - id: T-305
+    title: 'Anti-cheat `useFocusGuard`: fullscreen, copy/select/context block, watermark, focus events'
+    status: PLANNED
+  dependencies:
+  - P2
+  affected_paths:
+  - src/app/play/**
+  - src/components/player/**
+  - src/hooks/**
+  security_flags: true
+  design_flags: true
+  testing_flags: true
+  last_updated: null
+  evidence_pointer: null
+  section:
+    start: 4072
+    end: 5697
+- phase_id: P4
+  phase_name: Admin console
+  status: PLANNED
+  objective: The host can run a whole game from the laptop.
+  active_tasks: []
+  tasks:
+  - id: T-401
+    title: Admin login + server-side `is_admin` guard on /admin
+    status: PLANNED
+  - id: T-402
+    title: 'Chairs page: create N, toggle active, rotate secret, A4 print sheet (QR + huge number)'
+    status: PLANNED
+  - id: T-403
+    title: 'Live chair map: claimed → name/USN/phone, answer, ✅/❌, time_ms, alert flag'
+    status: PLANNED
+  - id: T-404
+    title: Game control bar + keyboard shortcuts + confirm dialogs
+    status: PLANNED
+  - id: T-405
+    title: Dashboard stats + alerts feed (acknowledge) + join QR
+    status: PLANNED
+  - id: T-406
+    title: 'Players page: search, kick/restore, overrides with reason (audited)'
+    status: PLANNED
+  dependencies:
+  - P2
+  affected_paths:
+  - src/app/admin/**
+  - src/components/admin/**
+  security_flags: true
+  design_flags: true
+  testing_flags: true
+  last_updated: null
+  evidence_pointer: null
+  section:
+    start: 5697
+    end: 7255
+- phase_id: P5
+  phase_name: Question bank & Gemini
+  status: PLANNED
+  objective: The admin can fill the bank by hand, by CSV, or with Gemini plus a review step.
+  active_tasks: []
+  tasks:
+  - id: T-501
+    title: Questions CRUD + filters
+    status: PLANNED
+  - id: T-502
+    title: CSV import with per-row validation report
+    status: PLANNED
+  - id: T-503
+    title: '`/api/questions/generate` (admin check, zod, Gemini JSON schema, dedupe, rate limit) + review UI'
+    status: PLANNED
+  dependencies:
+  - P4
+  affected_paths:
+  - src/app/admin/questions/**
+  - src/app/api/questions/**
+  - src/lib/ai/**
+  security_flags: true
+  design_flags: true
+  testing_flags: true
+  last_updated: null
+  evidence_pointer: null
+  section:
+    start: 7255
+    end: 8283
+- phase_id: P6
+  phase_name: Music (Spotify)
+  status: PLANNED
+  objective: Spotify plays from the admin panel, and pausing can open the scan window.
+  active_tasks: []
+  tasks:
+  - id: T-601
+    title: PKCE login/refresh + callback route
+    status: PLANNED
+  - id: T-602
+    title: Web Playback SDK device, search, playlists, queue, play/pause/skip/volume
+    status: PLANNED
+  - id: T-603
+    title: '"Pause opens scan window" toggle + manual "Music stopped" fallback'
+    status: PLANNED
+  dependencies:
+  - P4
+  affected_paths:
+  - src/lib/spotify/**
+  - src/components/admin/music/**
+  security_flags: true
+  design_flags: true
+  testing_flags: true
+  last_updated: null
+  evidence_pointer: null
+  section:
+    start: 8283
+    end: 9262
+- phase_id: P7
+  phase_name: Projector screen & 3D assets
+  status: PLANNED
+  objective: The live 3D show for the audience, with round and podium sequences.
+  active_tasks: []
+  tasks:
+  - id: T-701
+    title: 'Blender MCP: model chair + trophy/podium, export Draco GLB < 1 MB each'
+    status: PLANNED
+  - id: T-702
+    title: 'Screen live scene: ring of N chairs, locked chairs light up with names, HUD (round, x/X, remaining), music visualizer,
+      SCAN NOW splash'
+    status: PLANNED
+  - id: T-703
+    title: 'Sequences: Round over + eliminations, chairs removed, Final round, podium + confetti; event_seq-driven, reload-safe'
+    status: PLANNED
+  dependencies:
+  - P2
+  - P1
+  affected_paths:
+  - src/app/screen/**
+  - src/components/three/**
+  - public/models/**
+  security_flags: true
+  design_flags: true
+  testing_flags: true
+  last_updated: null
+  evidence_pointer: null
+  section:
+    start: 9262
+    end: 10419
+- phase_id: P8
+  phase_name: Simulation, hardening & release
+  status: PLANNED
+  objective: Proof that a full game works under load and attack, then deploy.
+  active_tasks: []
+  tasks:
+  - id: T-801
+    title: '`scripts/simulate.ts`: N bots on aimc-test, concurrent claims, invariants, cleanup'
+    status: PLANNED
+  - id: T-802
+    title: Full security test pass (SECURITY.md list) + bundle secret grep + npm audit
+    status: PLANNED
+  - id: T-803
+    title: Deploy to Vercel prod + Supabase prod; admin accounts; rehearsal with real phones
+    status: PLANNED
+  dependencies:
+  - P3
+  - P4
+  - P5
+  - P6
+  - P7
+  affected_paths:
+  - scripts/**
+  - supabase/tests/**
+  security_flags: true
+  design_flags: false
+  testing_flags: true
+  last_updated: null
+  evidence_pointer: null
+  section:
+    start: 10419
+    end: 11506
