@@ -1,9 +1,9 @@
 schema_version: 1
 plan_path: docs/IMPLEMENTATION_PLAN.md
-plan_sha256: 1c192d56bc62474242645e0964551100a1001a21403cd4e2a7c12df2b066674e
-plan_size: 22361
-plan_mtime_ns: 1792172962274272800
-built: '2026-10-16T17:49:22+00:00'
+plan_sha256: a5e226651d240af483aa8191790bb3da1439b6493e5c9e5b2a9c60b08218c067
+plan_size: 23587
+plan_mtime_ns: 1792173586771970972
+built: '2026-10-16T17:59:46+00:00'
 current_phase: P5
 phases:
 - phase_id: P1
@@ -173,19 +173,24 @@ phases:
     end: 9070
 - phase_id: P5
   phase_name: Question bank & Gemini
-  status: PLANNED
+  status: IN_PROGRESS
   objective: The admin can fill the bank by hand, by CSV, or with Gemini plus a review step.
-  active_tasks: []
+  active_tasks:
+  - T-503
+  - T-5.1
   tasks:
   - id: T-501
     title: Questions CRUD + filters
-    status: PLANNED
+    status: VERIFIED
   - id: T-502
     title: CSV import with per-row validation report
-    status: PLANNED
+    status: VERIFIED
   - id: T-503
     title: '`/api/questions/generate` (admin check, zod, Gemini JSON schema, dedupe, rate limit) + review UI'
-    status: PLANNED
+    status: READY_FOR_VERIFICATION
+  - id: T-5.1
+    title: Upload any question file (PDF, Word, image, text, CSV) → Gemini extracts questions → review → save
+    status: READY_FOR_VERIFICATION
   dependencies:
   - P4
   affected_paths:
@@ -199,7 +204,7 @@ phases:
   evidence_pointer: null
   section:
     start: 9070
-    end: 10098
+    end: 10417
 - phase_id: P6
   phase_name: Music (Spotify)
   status: PLANNED
@@ -226,8 +231,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 10098
-    end: 11077
+    start: 10417
+    end: 11396
 - phase_id: P7
   phase_name: Projector screen & 3D assets
   status: PLANNED
@@ -261,8 +266,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 11077
-    end: 12532
+    start: 11396
+    end: 12851
 - phase_id: P8
   phase_name: Simulation, hardening & release
   status: PLANNED
@@ -296,5 +301,5 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 12532
-    end: 13861
+    start: 12851
+    end: 14180

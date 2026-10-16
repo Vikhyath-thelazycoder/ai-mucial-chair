@@ -18,6 +18,7 @@ The feature catalogue. Phases refer to [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_P
 | F10 | Admin dashboard and alerts | Counts, answered this spin, fastest times, live anti-cheat alert feed | P4 | PLANNED |
 | F11 | Player management | List, search, status, kick, manual overrides | P4 | PLANNED |
 | F12 | Question bank | Manual add/edit, CSV import, difficulty 1–5, topics | P5 | PLANNED |
+| F13a | Upload any question file | PDF, Word, photo, text or CSV → Gemini extracts questions and answers → review → save | P5 | PLANNED |
 | F13 | Gemini question generation | Generate by topic, difficulty and count, then review before saving | P5 | PLANNED |
 | F14 | Spotify music control | Log in, search, playlist, play/pause/skip/volume; pause can open the scan window | P6 | PLANNED |
 | F15 | Projector screen | Live 3D scene, SCAN NOW splash, round-over and elimination animations, 3D podium | P7 | PLANNED |

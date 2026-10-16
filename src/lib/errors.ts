@@ -26,6 +26,18 @@ const messages: Record<string, string> = {
   ROUND_COMPLETE: "Every chair is locked: end the round.",
   NO_CHAIRS: "Add or activate at least one chair first.",
   NO_PLAYERS: "No active players yet.",
+  // Question bank / AI (P5)
+  AI_NOT_CONFIGURED: "AI isn't set up yet: add GEMINI_API_KEY to the server environment.",
+  RATE_LIMITED: "Too many AI requests. Wait a minute and try again.",
+  AI_BAD_OUTPUT: "The AI's reply didn't make sense. Try again.",
+  AI_TIMEOUT: "The AI took too long. Try a smaller file or fewer questions.",
+  AI_FAILED: "The AI request failed. Check the API key and try again.",
+  UNSUPPORTED_FILE: "Use a PDF, Word (.docx), image, text or CSV file.",
+  FILE_TOO_LARGE: "That file is over 4 MB. Split it or use a smaller one.",
+  EMPTY_FILE: "That file is empty.",
+  UNREADABLE_FILE: "Couldn't read any text from that file.",
+  NO_FILE: "Choose a file first.",
+  FORBIDDEN: "Request blocked. Reload the page and try again.",
   // Supabase Auth messages
   "Invalid login credentials": "Wrong USN or PIN.",
   "User already registered": "That USN already has an account. Log in with your PIN.",

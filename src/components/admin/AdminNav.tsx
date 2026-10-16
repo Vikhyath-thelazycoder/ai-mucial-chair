@@ -8,6 +8,7 @@ const LINKS = [
   { href: "/admin", label: "Game" },
   { href: "/admin/chairs", label: "Chairs & QR" },
   { href: "/admin/players", label: "Players" },
+  { href: "/admin/questions", label: "Questions" },
   { href: "/admin/settings", label: "Settings" },
 ];
 

@@ -97,6 +97,19 @@ Errors are raised as `RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = '<CODE>
   - All sit under the `(console)` route group, whose server layout redirects non-admins (SECURITY.md T8).
 - Data comes from `loadAdminData()` (`src/hooks/useAdminData.ts`): admin-only RLS reads, re-run when Realtime reports a change on `public_state`, `spins`, `chairs`, `attempts`, `players`, `alerts` or `game_sessions`.
 
+### Question bank routes (P5)
+
+- `POST /api/questions/extract` (multipart `file`, optional `difficulty`, `topic`): accepts PDF, DOCX, PNG/JPG/WEBP, TXT/MD, CSV up to 4 MB.
+  - CSV in our own column format imports directly without the AI.
+  - Every other file goes to Gemini: PDFs and images as file parts, DOCX converted to text with mammoth, text wrapped in `<material>` delimiters. Gemini returns drafts.
+- `POST /api/questions/generate` `{topic, difficulty, count ≤ 50, type: mcq | one_word | mixed}` returns drafts.
+- Both routes are admin-only (401/403) and refuse cross-site origins (403).
+- Rate limit: `log_ai_request` RPC, 10 requests per admin per minute (429). Returns 503 when `GEMINI_API_KEY` is missing, 502 on unusable model output, 504 after 50 s.
+- Model output is untrusted: `validateDrafts` repairs common slips (option letter as the answer, case, difficulty range), validates with the CSV schema, removes duplicates and caps at 100.
+- Drafts are saved only after admin review, via `import_questions(questions jsonb, source)`. Duplicates (case-insensitive unique index) and invalid rows are counted, not fatal.
+- Model: `GEMINI_MODEL` env, default alias `gemini-flash-latest`.
+- Handler logic lives in `src/lib/ai/handlers.ts` with injected dependencies (unit-tested); the route files only wire in Supabase and Gemini.
+
 ### HTTP route
 
 - `POST /api/questions/generate`
