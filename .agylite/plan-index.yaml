@@ -1,10 +1,10 @@
 schema_version: 1
 plan_path: docs/IMPLEMENTATION_PLAN.md
-plan_sha256: 4a066f4bc602864e803a0f8da537f74ca638cf22632fea2ede4061ff305ef34c
-plan_size: 24372
-plan_mtime_ns: 1792175314141280744
-built: '2026-10-16T18:28:34+00:00'
-current_phase: P4
+plan_sha256: dbc052a658c542b2033f7a6b1380c767bc9162f0fb9470a315eb4a2828a6ea1c
+plan_size: 24666
+plan_mtime_ns: 1792175419960082927
+built: '2026-10-16T18:30:20+00:00'
+current_phase: P6
 phases:
 - phase_id: P1
   phase_name: Foundations
@@ -126,7 +126,7 @@ phases:
     end: 6612
 - phase_id: P4
   phase_name: Admin console
-  status: IN_PROGRESS
+  status: VERIFIED
   objective: The host can run a whole game from the laptop.
   active_tasks: []
   tasks:
@@ -160,7 +160,7 @@ phases:
     status: VERIFIED
   - id: T-4.4
     title: 'Admin fixes: Start round always visible with reason; 2-per-A4 print sheet; On/Off chair wording'
-    status: PLANNED
+    status: VERIFIED
   dependencies:
   - P2
   affected_paths:
@@ -170,10 +170,10 @@ phases:
   design_flags: true
   testing_flags: true
   last_updated: null
-  evidence_pointer: .agylite/evidence/20261016T174913126378Z.json
+  evidence_pointer: .agylite/evidence/20261016T183015172412Z.json
   section:
     start: 6612
-    end: 9368
+    end: 9366
 - phase_id: P5
   phase_name: Question bank & Gemini
   status: VERIFIED
@@ -204,8 +204,8 @@ phases:
   last_updated: null
   evidence_pointer: .agylite/evidence/20261016T182025407389Z.json
   section:
-    start: 9368
-    end: 10728
+    start: 9366
+    end: 10726
 - phase_id: P6
   phase_name: Music (Spotify)
   status: PLANNED
@@ -232,8 +232,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 10728
-    end: 11707
+    start: 10726
+    end: 11705
 - phase_id: P7
   phase_name: Projector screen & 3D assets
   status: PLANNED
@@ -267,8 +267,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 11707
-    end: 13162
+    start: 11705
+    end: 13160
 - phase_id: P8
   phase_name: Simulation, hardening & release
   status: PLANNED
@@ -302,5 +302,5 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 13162
-    end: 14491
+    start: 13160
+    end: 14489
