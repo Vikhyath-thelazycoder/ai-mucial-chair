@@ -1,10 +1,10 @@
 schema_version: 1
 plan_path: docs/IMPLEMENTATION_PLAN.md
-plan_sha256: 9b54a4a92c62b1c8a818686150a3e4ada07febba2cc477892dc8a48fdcb154d9
-plan_size: 15792
-plan_mtime_ns: 1792165714596532357
-built: '2026-10-16T15:48:34+00:00'
-current_phase: P3
+plan_sha256: d6e55436a13661c035013bb2993fa13e882c2eec2aaacb16b2d7eb1ca5895395
+plan_size: 18113
+plan_mtime_ns: 1792166695772986977
+built: '2026-10-16T16:04:55+00:00'
+current_phase: P4
 phases:
 - phase_id: P1
   phase_name: Foundations
@@ -87,25 +87,25 @@ phases:
     end: 4580
 - phase_id: P3
   phase_name: Player site
-  status: PLANNED
+  status: VERIFIED
   objective: A phone can register, follow the game live, scan a chair, answer within the timer, and trigger anti-cheat alerts.
   active_tasks: []
   tasks:
   - id: T-301
     title: Register/login (USN + PIN), validators, error-code mapping
-    status: PLANNED
+    status: VERIFIED
   - id: T-302
     title: Live status screen (`usePublicState`, `useMyStatus`, reconnect resync)
-    status: PLANNED
+    status: VERIFIED
   - id: T-303
     title: In-site scanner (@zxing/browser), strict QR parser, `/c/[id]` landing page with no side effects
-    status: PLANNED
+    status: VERIFIED
   - id: T-304
     title: 'Question screen: MCQ/one-word, server-deadline countdown, single submit, retry on reconnect'
-    status: PLANNED
+    status: VERIFIED
   - id: T-305
     title: 'Anti-cheat `useFocusGuard`: fullscreen, copy/select/context block, watermark, focus events'
-    status: PLANNED
+    status: VERIFIED
   dependencies:
   - P2
   affected_paths:
@@ -116,10 +116,10 @@ phases:
   design_flags: true
   testing_flags: true
   last_updated: null
-  evidence_pointer: null
+  evidence_pointer: .agylite/evidence/20261016T160448413628Z.json
   section:
     start: 4580
-    end: 6205
+    end: 6255
 - phase_id: P4
   phase_name: Admin console
   status: PLANNED
@@ -144,6 +144,12 @@ phases:
   - id: T-406
     title: 'Players page: search, kick/restore, overrides with reason (audited)'
     status: PLANNED
+  - id: T-4.1
+    title: 'Admin: remove a player''s registration (frees a squatted USN)'
+    status: PLANNED
+  - id: T-4.2
+    title: 'Admin: reset a player''s PIN'
+    status: PLANNED
   dependencies:
   - P2
   affected_paths:
@@ -155,8 +161,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 6205
-    end: 7763
+    start: 6255
+    end: 8242
 - phase_id: P5
   phase_name: Question bank & Gemini
   status: PLANNED
@@ -184,8 +190,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 7763
-    end: 8791
+    start: 8242
+    end: 9270
 - phase_id: P6
   phase_name: Music (Spotify)
   status: PLANNED
@@ -212,8 +218,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 8791
-    end: 9770
+    start: 9270
+    end: 10249
 - phase_id: P7
   phase_name: Projector screen & 3D assets
   status: PLANNED
@@ -243,8 +249,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 9770
-    end: 10927
+    start: 10249
+    end: 11406
 - phase_id: P8
   phase_name: Simulation, hardening & release
   status: PLANNED
@@ -259,6 +265,9 @@ phases:
     status: PLANNED
   - id: T-803
     title: Deploy to Vercel prod + Supabase prod; admin accounts; rehearsal with real phones
+    status: PLANNED
+  - id: T-8.1
+    title: 'Rehearsal: confirm sign-in rate limits on shared campus WiFi'
     status: PLANNED
   dependencies:
   - P3
@@ -275,5 +284,5 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 10927
-    end: 12017
+    start: 11406
+    end: 12735

@@ -77,6 +77,14 @@ public/models/{chair,trophy}.glb
 Errors are raised as `RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = '<CODE>'`. The UI maps the codes to friendly text:
 `NOT_AUTHENTICATED`, `NOT_ADMIN`, `NOT_REGISTERED`, `NOT_ACTIVE`, `ALREADY_LOCKED`, `ALREADY_SCANNED_THIS_SPIN`, `SCAN_WINDOW_CLOSED`, `CHAIR_INACTIVE`, `CHAIR_TAKEN`, `CHAIR_LOCKED`, `BAD_QR`, `ALREADY_ANSWERED`, `INVALID_TRANSITION`, `ROUND_NOT_COMPLETE`, `REGISTRATION_CLOSED`, `DUPLICATE_USN`, `DUPLICATE_PHONE`, `VALIDATION`.
 
+### Edge Function
+
+- `player-signup` (Supabase Edge Function, `supabase/functions/player-signup`, deployed with `--no-verify-jwt`)
+  - Body: `{usn, pin}`. Returns 200 `{status: "created" | "exists"}`, 422 `{code: "VALIDATION"}`, 500 `{code: "SERVER"}`.
+  - Creates a pre-confirmed auth user (D-015). The browser then signs in with USN + PIN and calls `register_player`.
+  - Function secret `ALLOWED_ORIGINS` (comma-separated) sets the CORS allow-list; it defaults to the local dev origins.
+  - Deploy: `supabase functions deploy player-signup --use-api --no-verify-jwt --project-ref <ref>`.
+
 ### HTTP route
 
 - `POST /api/questions/generate`

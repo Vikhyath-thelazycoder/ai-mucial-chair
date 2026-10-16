@@ -30,12 +30,15 @@ The threat model follows STRIDE over every trust boundary in [ARCHITECTURE.md](A
 | T13 | Injection (LLM) | A topic like "ignore instructions…", or Gemini returning malicious or off-format content | Topic passed as JSON data, with length and charset caps. zod validation of output. Admin review before saving. Rendered as text (no `dangerouslySetInnerHTML`) | Unit: invalid AI JSON is rejected (502) |
 | T14 | XSS | A player name like `<script>` shown on the admin panel or projector | React escaping everywhere. Name validated (letters, spaces, `.-'`, 2–40). CSP header | Unit: validator rejects it. No `innerHTML` in the code (lint rule) |
 | T15 | Information disclosure | Secrets leaking into the client bundle or the repo | Only `NEXT_PUBLIC_*` reach the client. `server-only` imports. `.env*` git-ignored. Service role never in Vercel | Build check: `grep` the `.next/static` output for key prefixes → none |
+| T17 | Spoofing / DoS | Someone registers another student's USN first ("squatting"), so the real student can't join | USN is unique per game. The admin can remove a registration to free the USN and reset a player's PIN (P4, T-4.1 / T-4.2). Physical check by hosts at sign-up | Integration: duplicate USN → `DUPLICATE_USN`; admin removal frees it (P4) |
 | T16 | Cheating (out of band) | Looking up an answer on a second phone or another app | Fullscreen, copy/select blocked, watermark, alerts for leaving the site (`visibilitychange`/`blur`/`pagehide`), timer. **A second device cannot be detected.** The physical game hosts watch for it | Unit: the focus guard fires on visibility change |
 
 ## Authentication and authorization
 
 - **Players:**
-  - Supabase Auth with email/password. The email is synthetic (`<usn>@players.<site-domain>`), the password is a 6-digit PIN, and email confirmation is off.
+  - Supabase Auth with email/password. The email is synthetic (`<usn>@players.aimusicalchair.app`) and the password is a 6-digit PIN.
+  - Accounts are created by the `player-signup` Edge Function (D-015): pre-confirmed, so no email is ever sent and browser sign-up stays unused. The function validates USN and PIN, only creates accounts, and runs with the service key that Supabase injects (never stored in Vercel or the repo).
+  - A chair link opened outside the game (`/c/<id>?k=…`) is redirected to `/c/<id>` so the secret doesn't stay in the page or browser history.
   - Sessions are kept in `@supabase/ssr` cookies (httpOnly where server-set), never in custom localStorage tokens.
   - `register_player` links `auth.uid()` to a `players` row.
 - **Admins:**

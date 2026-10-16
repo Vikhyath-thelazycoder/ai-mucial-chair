@@ -1,9 +1,13 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { publicEnv } from "@/lib/env";
+import { stripChairSecret } from "@/lib/security/chairLink";
 import { buildCsp } from "@/lib/security/csp";
 
 export async function middleware(request: NextRequest) {
+  const clean = stripChairSecret(request.nextUrl);
+  if (clean) return NextResponse.redirect(clean, 307);
+
   const env = publicEnv();
   const nonce = btoa(crypto.randomUUID());
   const csp = buildCsp({

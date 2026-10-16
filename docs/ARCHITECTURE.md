@@ -24,6 +24,7 @@ Decisions referenced as D-xxx live in [PROJECT_DECISIONS.md](PROJECT_DECISIONS.m
 | Component | Responsibility | Lives in |
 |---|---|---|
 | Game engine (SQL) | All state transitions, claims, grading, eliminations, podium (D-002) | `supabase/migrations/*_rpc.sql` |
+| Player sign-up (Edge Function) | Creates pre-confirmed player accounts; holds the only use of the service key (D-015) | `supabase/functions/player-signup` |
 | Engine model (TS) | Pure mirror of the rules. Drives UI enablement and unit tests | `src/lib/engine.ts` |
 | Data access | Typed RPC wrappers and realtime hooks | `src/lib/supabase/*`, `src/hooks/*` |
 | Player app | Mobile flow and anti-cheat | `src/app/play/**`, `src/components/player/**` |

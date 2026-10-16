@@ -38,16 +38,16 @@ Objective: The whole game runs on the server: schema, RLS, RPCs and realtime, pr
 | T-2.1 | Game sessions: admin 'New game' terminates the current game, keeps chair QR codes, next team registers fresh | VERIFIED | — | — | — | — | — | start_new_game ends the session and any active round; old players get NOT_REGISTERED; same chair QR works for new players; same USN can register again in the new session; old results kept; non-admins rejected |
 
 ## P3 · Player site
-Status: PLANNED · Depends: P2 · Paths: src/app/play/**, src/components/player/**, src/hooks/** · Flags: testing, security, design · Evidence: —
+Status: VERIFIED · Depends: P2 · Paths: src/app/play/**, src/components/player/**, src/hooks/** · Flags: testing, security, design · Evidence: .agylite/evidence/20261016T160448413628Z.json
 Objective: A phone can register, follow the game live, scan a chair, answer within the timer, and trigger anti-cheat alerts.
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
 |---|---|---|---|---|---|---|---|---|
-| T-301 | Register/login (USN + PIN), validators, error-code mapping | PLANNED | T-204 | engineering/frontend, engineering/security | T10, T14 | Content states | vitest validators | Duplicate USN/phone handled; session persists on reload |
-| T-302 | Live status screen (`usePublicState`, `useMyStatus`, reconnect resync) | PLANNED | T-206 | engineering/frontend | Never shows correctness | State words, aria-live | vitest hooks | Status reflects admin actions; reconnect resyncs |
-| T-303 | In-site scanner (@zxing/browser), strict QR parser, `/c/[id]` landing page with no side effects | PLANNED | T-302 | engineering/frontend | T2, T5 | Permission state | vitest QR parser | Foreign URLs ignored; camera denied → help screen |
-| T-304 | Question screen: MCQ/one-word, server-deadline countdown, single submit, retry on reconnect | PLANNED | T-303 | engineering/frontend | T6, T7 | Timer bar | vitest | Late submit → timed_out; double submit prevented |
-| T-305 | Anti-cheat `useFocusGuard`: fullscreen, copy/select/context block, watermark, focus events | PLANNED | T-304 | engineering/security | T16 | Warning overlay | vitest (visibility events) | Alert row created on leave and return with away_ms |
+| T-301 | Register/login (USN + PIN), validators, error-code mapping | VERIFIED | T-204 | engineering/frontend, engineering/security | T10, T14 | Content states | vitest validators | Duplicate USN/phone handled; session persists on reload |
+| T-302 | Live status screen (`usePublicState`, `useMyStatus`, reconnect resync) | VERIFIED | T-206 | engineering/frontend | Never shows correctness | State words, aria-live | vitest hooks | Status reflects admin actions; reconnect resyncs |
+| T-303 | In-site scanner (@zxing/browser), strict QR parser, `/c/[id]` landing page with no side effects | VERIFIED | T-302 | engineering/frontend | T2, T5 | Permission state | vitest QR parser | Foreign URLs ignored; camera denied → help screen |
+| T-304 | Question screen: MCQ/one-word, server-deadline countdown, single submit, retry on reconnect | VERIFIED | T-303 | engineering/frontend | T6, T7 | Timer bar | vitest | Late submit → timed_out; double submit prevented |
+| T-305 | Anti-cheat `useFocusGuard`: fullscreen, copy/select/context block, watermark, focus events | VERIFIED | T-304 | engineering/security | T16 | Warning overlay | vitest (visibility events) | Alert row created on leave and return with away_ms |
 
 ## P4 · Admin console
 Status: PLANNED · Depends: P2 · Paths: src/app/admin/**, src/components/admin/** · Flags: testing, security, design · Evidence: —
@@ -61,6 +61,8 @@ Objective: The host can run a whole game from the laptop.
 | T-404 | Game control bar + keyboard shortcuts + confirm dialogs | PLANNED | T-403 | engineering/frontend | Server enforces transitions | Interaction rules | vitest (engine-driven enablement) | Only valid actions enabled; full loop playable |
 | T-405 | Dashboard stats + alerts feed (acknowledge) + join QR | PLANNED | T-403 | engineering/frontend | — | — | vitest | Counts correct; alert appears within 2 s |
 | T-406 | Players page: search, kick/restore, overrides with reason (audited) | PLANNED | T-404 | engineering/frontend | T11 | — | vitest | Override writes an audit row |
+| T-4.1 | Admin: remove a player's registration (frees a squatted USN) | PLANNED | — | — | — | — | — | Admin-only RPC deletes a current-session player row with a logged reason; the USN can then be registered again; players get NOT_ADMIN |
+| T-4.2 | Admin: reset a player's PIN | PLANNED | — | — | — | — | — | Admin-only path (Edge Function checking is_admin) sets a new PIN for a player's account; non-admins rejected; audited |
 
 ## P5 · Question bank & Gemini
 Status: PLANNED · Depends: P4 · Paths: src/app/admin/questions/**, src/app/api/questions/**, src/lib/ai/** · Flags: testing, security · Evidence: —
@@ -101,6 +103,7 @@ Objective: Proof that a full game works under load and attack, then deploy.
 | T-801 | `scripts/simulate.ts`: N bots on aimc-test, concurrent claims, invariants, cleanup | PLANNED | P2 | testing/strategy | T4, T6 | — | simulation | Random Y bots and admin-style random chair add/delete schedules: correct eliminations and podium, 5 runs green |
 | T-802 | Full security test pass (SECURITY.md list) + bundle secret grep + npm audit | PLANNED | T-801 | testing/security | All | — | integration, vitest, audit | All negative tests pass; no high or critical issues |
 | T-803 | Deploy to Vercel prod + Supabase prod; admin accounts; rehearsal with real phones | PLANNED | T-802 | engineering/release | Env per SECURITY.md | — | release checklist | Rehearsal checklist signed off by the user |
+| T-8.1 | Rehearsal: confirm sign-in rate limits on shared campus WiFi | PLANNED | — | — | — | — | — | 30+ phones on one WiFi register and log in within 5 minutes without rate-limit errors, or limits are raised in Supabase Auth settings |
 
 ## Change history
 
@@ -153,3 +156,23 @@ Objective: Proof that a full game works under load and attack, then deploy.
 | 2026-10-16 | T-2.1: IN_PROGRESS → READY_FOR_VERIFICATION |
 | 2026-10-16 | T-2.1: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T154828692422Z.json) |
 | 2026-10-16 | P2: IN_PROGRESS → VERIFIED (roll-up from T-2.1) |
+| 2026-10-16 | P3: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-301: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-302: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-303: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-304: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-305: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-4.1 added to P4 Admin console: Admin: remove a player's registration (frees a squatted USN) |
+| 2026-10-16 | T-4.2 added to P4 Admin console: Admin: reset a player's PIN |
+| 2026-10-16 | T-8.1 added to P8 Simulation, hardening & release: Rehearsal: confirm sign-in rate limits on shared campus WiFi |
+| 2026-10-16 | T-301: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-301: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T160448413628Z.json) |
+| 2026-10-16 | T-302: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-302: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T160448413628Z.json) |
+| 2026-10-16 | T-303: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-303: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T160448413628Z.json) |
+| 2026-10-16 | T-304: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-304: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T160448413628Z.json) |
+| 2026-10-16 | T-305: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-305: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T160448413628Z.json) |
+| 2026-10-16 | P3: IN_PROGRESS → VERIFIED (roll-up from T-305) |
