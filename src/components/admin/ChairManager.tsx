@@ -52,7 +52,7 @@ export function ChairManager() {
     const off = sorted.slice(n).map((c) => c.id);
     if (on.length && (await run("set_chairs_active", { p_ids: on, p_active: true }, ""))) return;
     if (off.length && (await run("set_chairs_active", { p_ids: off, p_active: false }, ""))) return;
-    setMessage({ ok: true, text: `Chairs 1–${n} are in play; the rest are switched off.` });
+    setMessage({ ok: true, text: `Chairs 1–${n} are switched on; the rest are off.` });
   };
 
   if (loading) return <p className="text-muted motion-safe:animate-pulse">Loading chairs…</p>;
@@ -63,7 +63,7 @@ export function ChairManager() {
         <div>
           <h1 className="text-2xl font-bold">Chairs &amp; QR codes</h1>
           <p className="text-sm text-muted">
-            {chairs.length} chair(s) · {active.length} in play. Print once: the codes stay the same for every game.
+            {chairs.length} chair(s) · {active.length} switched on. Print once: the codes stay the same for every game.
           </p>
         </div>
         <Link href="/admin/chairs/print" target="_blank" className="rounded-xl bg-cyan px-4 py-3 text-sm font-bold text-bg">
@@ -127,7 +127,10 @@ export function ChairManager() {
               Apply
             </Button>
           </form>
-          <p className="mt-2 text-xs text-muted">Or switch chairs on and off one by one below. A chair someone has won this round can&apos;t be removed until the round ends.</p>
+          <p className="mt-2 text-xs text-muted">
+            <strong>On</strong> = the chair is used in the game (players can scan it). <strong>Off</strong> = put aside, e.g. chairs removed between
+            rounds. Switch chairs one by one below, or use this box. A chair someone has won this round can&apos;t be switched off until the round ends.
+          </p>
         </Panel>
       </div>
 
@@ -146,7 +149,7 @@ export function ChairManager() {
                   disabled={busy || scanning}
                   onChange={(e) => void run("set_chairs_active", { p_ids: [c.id], p_active: e.target.checked }, `Chair ${c.number} ${e.target.checked ? "on" : "off"}.`)}
                 />
-                In play
+                {c.is_active ? "On" : "Off"}
               </label>
               <div className="flex gap-1 text-xs">
                 <button type="button" className="rounded-md border border-line px-2 py-1" onClick={() => setPending({ kind: "rotate", id: c.id, number: c.number })}>

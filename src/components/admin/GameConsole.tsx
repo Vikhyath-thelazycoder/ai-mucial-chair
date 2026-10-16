@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Panel } from "@/components/ui/Panel";
 import { adminRpc, useAdminData, type AdminData } from "@/hooks/useAdminData";
-import { buildRoster, chairTiles, controlState, shortcutAction } from "@/lib/admin/model";
+import { buildRoster, chairTiles, controlState, shortcutAction, startBlocker } from "@/lib/admin/model";
 import { allowedActions, nextDifficulty, type AdminAction } from "@/lib/engine";
 import { siteUrl } from "@/lib/env";
 import { friendlyError } from "@/lib/errors";
@@ -83,6 +83,7 @@ export function GameConsole() {
         busy={busy}
         onAction={trigger}
         onForceEnd={() => setDialog("force_end")}
+        startBlocked={derived.startBlocked}
         answered={derived.answered}
         claimed={derived.claimed}
       />
@@ -180,6 +181,7 @@ function derive(data: AdminData) {
     tiles,
     roster,
     allowed: state ? allowedActions(state) : new Set<AdminAction>(),
+    startBlocked: state ? startBlocker(state) : null,
     lockedCount: state?.lockedChairCount ?? 0,
     activePlayers,
     standingCount: activePlayers - lockedPlayerIds.size,
@@ -197,6 +199,7 @@ function ControlBar({
   busy,
   onAction,
   onForceEnd,
+  startBlocked,
   answered,
   claimed,
 }: {
@@ -205,6 +208,7 @@ function ControlBar({
   busy: boolean;
   onAction: (a: AdminAction) => void;
   onForceEnd: () => void;
+  startBlocked: "NO_CHAIRS" | "NO_PLAYERS" | null;
   answered: number;
   claimed: number;
 }) {
@@ -253,6 +257,20 @@ function ControlBar({
       )}
       <div className="flex flex-wrap gap-2">
         {btn("start_round", round && game?.status !== "lobby" ? `Start round ${round.number + 1}` : "Start round 1")}
+        {startBlocked && (
+          <span className="flex items-center gap-3">
+            <Button disabled>{game?.status === "round_complete" && round ? `Start round ${round.number + 1}` : "Start round 1"}</Button>
+            <span className="text-sm text-amber">
+              {startBlocked === "NO_PLAYERS" ? (
+                "Waiting for players to register. Show them the join QR."
+              ) : (
+                <>
+                  Switch on at least one chair in <Link href="/admin/chairs" className="underline">Chairs &amp; QR</Link>.
+                </>
+              )}
+            </span>
+          </span>
+        )}
         {btn("open_scan_window", "Music stopped · open scan  [Space]", "attention")}
         {btn("close_scan_window", allAnswered ? "Everyone answered · judge  [J]" : "Close scan & judge  [J]", allAnswered ? "attention" : "primary")}
         {btn("next_spin", "Next spin  [N]")}

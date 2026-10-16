@@ -1,10 +1,10 @@
 schema_version: 1
 plan_path: docs/IMPLEMENTATION_PLAN.md
-plan_sha256: 625839a40337fbcc20ca3c76918bd72ab350b670425e1a1dc2510444edc66b94
-plan_size: 23901
-plan_mtime_ns: 1792174831157053082
-built: '2026-10-16T18:20:31+00:00'
-current_phase: P6
+plan_sha256: 4a066f4bc602864e803a0f8da537f74ca638cf22632fea2ede4061ff305ef34c
+plan_size: 24372
+plan_mtime_ns: 1792175314141280744
+built: '2026-10-16T18:28:34+00:00'
+current_phase: P4
 phases:
 - phase_id: P1
   phase_name: Foundations
@@ -126,7 +126,7 @@ phases:
     end: 6612
 - phase_id: P4
   phase_name: Admin console
-  status: VERIFIED
+  status: IN_PROGRESS
   objective: The host can run a whole game from the laptop.
   active_tasks: []
   tasks:
@@ -158,6 +158,9 @@ phases:
     title: 'Live roster: registered list plus ''in play'' view built from scans (name, USN, chair number, scan time, answer
       state), chair tile shows BLOCKED for the spin once scanned'
     status: VERIFIED
+  - id: T-4.4
+    title: 'Admin fixes: Start round always visible with reason; 2-per-A4 print sheet; On/Off chair wording'
+    status: PLANNED
   dependencies:
   - P2
   affected_paths:
@@ -170,7 +173,7 @@ phases:
   evidence_pointer: .agylite/evidence/20261016T174913126378Z.json
   section:
     start: 6612
-    end: 9070
+    end: 9368
 - phase_id: P5
   phase_name: Question bank & Gemini
   status: VERIFIED
@@ -201,8 +204,8 @@ phases:
   last_updated: null
   evidence_pointer: .agylite/evidence/20261016T182025407389Z.json
   section:
-    start: 9070
-    end: 10430
+    start: 9368
+    end: 10728
 - phase_id: P6
   phase_name: Music (Spotify)
   status: PLANNED
@@ -229,8 +232,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 10430
-    end: 11409
+    start: 10728
+    end: 11707
 - phase_id: P7
   phase_name: Projector screen & 3D assets
   status: PLANNED
@@ -264,8 +267,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 11409
-    end: 12864
+    start: 11707
+    end: 13162
 - phase_id: P8
   phase_name: Simulation, hardening & release
   status: PLANNED
@@ -299,5 +302,5 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 12864
-    end: 14193
+    start: 13162
+    end: 14491

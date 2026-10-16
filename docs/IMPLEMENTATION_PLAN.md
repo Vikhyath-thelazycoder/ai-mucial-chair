@@ -51,7 +51,7 @@ Objective: A phone can register, follow the game live, scan a chair, answer with
 | T-3.1 | Round-1 open play: late registration during round 1 is active; never-scanned players see 'missed' not 'eliminated'; scanner opens automatically | VERIFIED | — | — | — | — | — | register during round 1 → active and can scan; during round 2 → spectator; never-scanned player after round 1 gets playedThisGame=false; camera auto-starts on SCAN NOW |
 
 ## P4 · Admin console
-Status: VERIFIED · Depends: P2 · Paths: src/app/admin/**, src/components/admin/** · Flags: testing, security, design · Evidence: .agylite/evidence/20261016T174913126378Z.json
+Status: IN_PROGRESS · Depends: P2 · Paths: src/app/admin/**, src/components/admin/** · Flags: testing, security, design · Evidence: .agylite/evidence/20261016T174913126378Z.json
 Objective: The host can run a whole game from the laptop.
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
@@ -65,6 +65,7 @@ Objective: The host can run a whole game from the laptop.
 | T-4.1 | Admin: remove a player's registration (frees a squatted USN) | VERIFIED | — | — | — | — | — | Admin-only RPC deletes a current-session player row with a logged reason; the USN can then be registered again; players get NOT_ADMIN |
 | T-4.2 | Admin: reset a player's PIN | VERIFIED | — | — | — | — | — | Admin-only path (Edge Function checking is_admin) sets a new PIN for a player's account; non-admins rejected; audited |
 | T-4.3 | Live roster: registered list plus 'in play' view built from scans (name, USN, chair number, scan time, answer state), chair tile shows BLOCKED for the spin once scanned | VERIFIED | — | — | — | — | — | A scan appears on the admin chair map within 1 s with name, USN and chair number; players list separates registered, in play (scanned this game), locked, eliminated; works for any number of registrations |
+| T-4.4 | Admin fixes: Start round always visible with reason; 2-per-A4 print sheet; On/Off chair wording | PLANNED | — | — | — | — | — | Fresh game shows a disabled Start round 1 with the reason; print sheet = 2 chairs per A4 with aligned big numbers; chairs labelled On/Off with explanation |
 
 ## P5 · Question bank & Gemini
 Status: VERIFIED · Depends: P4 · Paths: src/app/admin/questions/**, src/app/api/questions/**, src/lib/ai/** · Flags: testing, security · Evidence: .agylite/evidence/20261016T182025407389Z.json
@@ -231,3 +232,4 @@ Objective: Proof that a full game works under load and attack, then deploy.
 | 2026-10-16 | T-503: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T182025407389Z.json) |
 | 2026-10-16 | T-5.1: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T182025407389Z.json) |
 | 2026-10-16 | P5: IN_PROGRESS → VERIFIED (roll-up from T-5.1) |
+| 2026-10-16 | T-4.4 added to P4 Admin console: Admin fixes: Start round always visible with reason; 2-per-A4 print sheet; On/Off chair wording (phase reopened) |

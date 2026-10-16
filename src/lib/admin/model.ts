@@ -151,6 +151,14 @@ export function shortcutAction(key: string, allowed: ReadonlySet<AdminAction>): 
   return action && allowed.has(action) ? action : null;
 }
 
+/** Why "Start round" can't be pressed yet (shown on the greyed-out button), or null when it can. */
+export function startBlocker(s: EngineState): "NO_CHAIRS" | "NO_PLAYERS" | null {
+  if (s.status !== "lobby" && s.status !== "round_complete") return null;
+  if (s.activeChairCount < 1) return "NO_CHAIRS";
+  if (s.activePlayerCount < 1) return "NO_PLAYERS";
+  return null;
+}
+
 export function adminAccess({ signedIn, admin }: { signedIn: boolean; admin: boolean }): "allow" | "login" | "denied" {
   if (!signedIn) return "login";
   return admin ? "allow" : "denied";

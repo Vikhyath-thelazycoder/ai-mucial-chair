@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { adminAccess, buildRoster, chairTiles, controlState, shortcutAction, type AdminAttempt, type AdminChair, type AdminPlayer } from "./model";
+import { adminAccess, buildRoster, chairTiles, controlState, shortcutAction, startBlocker, type AdminAttempt, type AdminChair, type AdminPlayer } from "./model";
 
 const chair = (n: number, over: Partial<AdminChair> = {}): AdminChair => ({
   id: `c${n}`,
@@ -97,6 +97,16 @@ describe("shortcutAction", () => {
     expect(shortcutAction("N", allowed)).toBe("next_spin");
     expect(shortcutAction("j", allowed)).toBeNull();
     expect(shortcutAction("x", allowed)).toBeNull();
+  });
+});
+
+describe("startBlocker", () => {
+  const lobby = { status: "lobby" as const, phase: null, activeChairCount: 10, lockedChairCount: 0, activePlayerCount: 0 };
+  it("explains why a fresh game can't start yet instead of hiding the button", () => {
+    expect(startBlocker(lobby)).toBe("NO_PLAYERS");
+    expect(startBlocker({ ...lobby, activeChairCount: 0 })).toBe("NO_CHAIRS");
+    expect(startBlocker({ ...lobby, activePlayerCount: 3 })).toBeNull();
+    expect(startBlocker({ ...lobby, status: "in_round" })).toBeNull();
   });
 });
 
