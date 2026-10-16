@@ -50,6 +50,9 @@ export function AdminNav({ email }: { email: string }) {
           })}
         </nav>
         <div className="flex items-center gap-2 text-sm text-muted">
+          <a href="/screen" target="_blank" rel="noopener" className="flex min-h-11 items-center rounded-lg px-2 hover:text-text">
+            Projector ↗
+          </a>
           <MusicStatus />
           <span className="hidden max-w-48 truncate md:inline">{email}</span>
           <button type="button" onClick={logout} className="min-h-11 rounded-lg px-3 hover:text-text">

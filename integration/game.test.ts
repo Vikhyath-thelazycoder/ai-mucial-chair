@@ -23,6 +23,7 @@ type PublicState = {
   winners: { rank: number; name: string }[];
   event: { kind: string; eliminated?: string[] } | null;
   playersRemaining: number;
+  playersInPlay?: number;
 };
 
 // Deterministic pseudo-random so failures are reproducible.
@@ -88,6 +89,7 @@ describe("full game", () => {
 
         const lockedChairs = new Set<string>();
         const lockedPlayers = new Set<string>();
+        const scannedThisRound = new Set<string>();
         let spins = 0;
         while (lockedChairs.size < chairCount) {
           spins++;
@@ -105,6 +107,7 @@ describe("full game", () => {
           await Promise.all(
             seated.map(async ({ chair, player }) => {
               const claim = await rpcOk<Claim>(player.client, "claim_chair", { p_chair_id: chair.id, p_secret: chair.secret });
+              scannedThisRound.add(player.playerId);
               const correct = rand() < 0.6;
               await rpcOk(player.client, "submit_answer", {
                 p_attempt_id: claim.attemptId,
@@ -124,6 +127,8 @@ describe("full game", () => {
           const ps = await publicState();
           expect(ps.spin?.phase).toBe("judging");
           expect(ps.chairs.filter((c) => c.holder !== null)).toHaveLength(lockedChairs.size);
+          // T-7.1: the projector's "in play" is who actually scanned this round, not who registered.
+          expect(ps.playersInPlay).toBe(scannedThisRound.size);
 
           if (lockedChairs.size < chairCount) {
             expect(await rpcErr(admin.client, "end_round")).toBe("ROUND_NOT_COMPLETE");

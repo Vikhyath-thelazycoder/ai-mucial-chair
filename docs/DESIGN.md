@@ -111,7 +111,7 @@ Every animation has a job:
 - **Performance:**
   - DPR capped at 1.5 on phones, 2 on the projector.
   - `frameloop="demand"` when nothing animates.
-  - `useLowPower()` (`hardwareConcurrency ≤ 4`, `deviceMemory ≤ 4`, Save-Data, reduced-motion, or a measured FPS < 40) → 2D CSS fallback.
+  - Always the realistic 3D chairs, never a 2D stand-in (D-020). A measured FPS drop switches the scene to low quality (no mirrored floor or bloom); phones' status ring starts at low quality. `prefers-reduced-motion` stops the ring turning.
 
 ## Reference sources
 

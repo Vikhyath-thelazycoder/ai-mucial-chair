@@ -31,7 +31,7 @@ src/
     c/[chairId]/page.tsx     "scan from the website" landing
     api/questions/generate/route.ts
   components/{player,admin,screen,three,ui}/
-  hooks/                     useRealtimeTable, usePublicState, useMyStatus, useFocusGuard, useLowPower
+  hooks/                     useRealtimeTable, usePublicState, useMyStatus, useFocusGuard
   lib/
     engine.ts                pure rules (+ engine.test.ts)
     supabase/{client,server,rpc,types}.ts
@@ -170,7 +170,7 @@ Errors are raised as `RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = '<CODE>
 
 - **Player pages:**
   - First-load JS for `/play` is ≤ 250 KB gzipped (target), and three.js is not loaded on the scanner or question screens.
-  - The status screen loads 3D lazily (`dynamic(..., {ssr:false})`) and only when `useLowPower()` is false.
+  - The status screen loads 3D lazily (`dynamic(..., {ssr:false})`) at low quality.
 - **Realtime:** one channel per client. Player subscribes to `public_state` (+ refetches `my_status` on change). Admin subscribes to `public_state`, `attempts`, `alerts` and `players`. Screen subscribes to `public_state`.
 - Server time is the authority. The client shows countdowns from `deadline` corrected by a time offset measured on login (`select now()`).
 

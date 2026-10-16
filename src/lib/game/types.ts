@@ -16,6 +16,8 @@ export type PublicState = {
   chairs: { number: number; holder: string | null }[];
   playersRemaining: number;
   playersTotal: number;
+  /** Distinct players who scanned a chair this round (0010). Optional so older snapshots still parse. */
+  playersInPlay?: number;
   winners: { rank: number; name: string }[];
   event: { kind: string; seq: number; round?: number; eliminated?: string[]; isFinal?: boolean } | null;
 };

@@ -105,7 +105,7 @@ decisions:
   alternatives: []
   impact: ''
   supersedes: null
-  status: ACTIVE
+  status: SUPERSEDED
   tags: []
 - decision_id: D-010
   date: '2026-10-16'
@@ -197,5 +197,59 @@ decisions:
   alternatives: []
   impact: ''
   supersedes: null
+  status: ACTIVE
+  tags: []
+- decision_id: D-017
+  date: '2026-10-17'
+  kind: architecture
+  topic: 3d-assets
+  decision: Blender GLBs (public/models/chair.glb, podium.glb) ship uncompressed, without Draco
+  reason: Low-poly models are 34 KB and 137 KB; a Draco decoder adds ~300 KB of wasm, an external decoder host and CSP 'wasm-unsafe-eval'
+    for no real saving
+  alternatives:
+  - Draco compression with a self-hosted decoder
+  impact: T-701 acceptance (< 1 MB, loads via useGLTF) met without Draco
+  supersedes: null
+  status: SUPERSEDED
+  tags: []
+- decision_id: D-018
+  date: '2026-10-17'
+  kind: architecture
+  topic: screen-motion
+  decision: Projector sequences use motion (2D overlays) and react-three-fiber useFrame easing (3D); confetti is an instanced
+    three.js particle burst
+  reason: Both libraries are already in the bundle; GSAP and canvas-confetti would add dependencies for effects these cover
+  alternatives:
+  - GSAP timelines + canvas-confetti as listed in DESIGN.md Motion
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []
+- decision_id: D-019
+  date: '2026-10-17'
+  kind: architecture
+  topic: 3d-assets
+  decision: 'Realistic PBR models from Blender: walnut + leather chair (707 KB), lacquer/marble/gold podium with separate
+    Trophy node (595 KB); procedural materials baked to WebP colour/roughness/normal maps; no Draco'
+  reason: User asked for ultra-realistic visuals; baked WebP textures keep each GLB under 1 MB, and skipping Draco avoids
+    a wasm decoder plus CSP wasm-unsafe-eval
+  alternatives:
+  - Stylised neon models; Draco/meshopt compression
+  impact: ''
+  supersedes: D-017
+  status: ACTIVE
+  tags: []
+- decision_id: D-020
+  date: '2026-10-17'
+  kind: design
+  topic: 3d-fallback
+  decision: Home page, player status ring and projector always show the realistic 3D chairs; the 2D chair fallback and neon
+    chair are removed. Slow devices drop to low quality (no mirrored floor or bloom); reduced motion stops the turning
+  reason: User wants the realistic 3D everywhere and no 2D chairs
+  alternatives:
+  - Keep the low-power 2D fallback
+  impact: Phones download three.js + chair.glb (~0.7 MB) lazily on the home and status screens; scanner and question screens
+    still load no 3D
+  supersedes: D-009
   status: ACTIVE
   tags: []

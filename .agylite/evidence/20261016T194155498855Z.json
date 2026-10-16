@@ -1,0 +1,126 @@
+{
+ "schema_version": 1,
+ "mode": "local-test-first",
+ "task": null,
+ "result": "PASSED",
+ "impact": null,
+ "checks": [
+  {
+   "command": [
+    "npm",
+    "run",
+    "test"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 2602,
+   "diagnosis": [],
+   "kind": "test",
+   "name": "test",
+   "reason": "full suite: full suite requested",
+   "tests": [],
+   "at": "2026-10-16T19:40:33Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "test:watch"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 2500,
+   "diagnosis": [],
+   "kind": "test",
+   "name": "test:watch",
+   "reason": "full suite: full suite requested",
+   "tests": [],
+   "at": "2026-10-16T19:40:36Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "test:integration"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 66033,
+   "diagnosis": [],
+   "kind": "test",
+   "name": "test:integration",
+   "reason": "full suite: full suite requested",
+   "tests": [],
+   "at": "2026-10-16T19:41:42Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "typecheck"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 2330,
+   "diagnosis": [],
+   "kind": "typecheck",
+   "name": "typecheck",
+   "reason": "typecheck check for the project",
+   "tests": [],
+   "at": "2026-10-16T19:41:44Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "lint"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 1381,
+   "diagnosis": [],
+   "kind": "lint",
+   "name": "lint",
+   "reason": "lint check for the project",
+   "tests": [],
+   "at": "2026-10-16T19:41:46Z"
+  },
+  {
+   "command": [
+    "/Users/vikhyathmgowda007/.agylite/core/bin/python",
+    "-m",
+    "compileall",
+    "-q",
+    "-x",
+    "(^|/)(\\.|node_modules|venv)",
+    "."
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 204,
+   "diagnosis": [],
+   "kind": "build",
+   "name": "compileall",
+   "reason": "build check for the project",
+   "tests": [],
+   "at": "2026-10-16T19:41:46Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "build"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 9182,
+   "diagnosis": [],
+   "kind": "build",
+   "name": "build",
+   "reason": "build check for the project",
+   "tests": [],
+   "at": "2026-10-16T19:41:55Z"
+  }
+ ],
+ "at": "2026-10-16T19:41:55Z"
+}

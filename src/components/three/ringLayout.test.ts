@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ringLayout } from "./ringLayout";
+import { ringLayout, stageRadius } from "./ringLayout";
 
 describe("ringLayout", () => {
   it("places one slot per chair on the ellipse, facing the centre", () => {
@@ -23,5 +23,16 @@ describe("ringLayout", () => {
     expect(ringLayout(0, 5, 3)).toEqual([]);
     expect(ringLayout(1, 5, 3)).toHaveLength(1);
     expect(ringLayout(50, 5, 3)).toHaveLength(50);
+  });
+});
+
+describe("stageRadius", () => {
+  it("gives every real-size chair room on the ring, with a minimum for small rounds", () => {
+    expect(stageRadius(1)).toBe(1.4);
+    expect(stageRadius(3)).toBe(1.4);
+    for (const n of [12, 30, 60]) {
+      const spacing = (2 * Math.PI * stageRadius(n)) / n;
+      expect(spacing).toBeGreaterThanOrEqual(0.85 - 1e-9);
+    }
   });
 });

@@ -87,5 +87,5 @@ Full sequences: [SYSTEM_WORKFLOW.md](SYSTEM_WORKFLOW.md).
 | The admin double-clicks a transition | Double transition | Every RPC checks the expected current phase (idempotent) |
 | The admin laptop crashes | Console lost | All state is on the server. Log in from another device and continue |
 | Supabase free-tier connection limit (200) | New phones can't connect | Expected load is ≤ 120. Upgrade to Pro for the event day if needed |
-| Low-end phone stalls on 3D | Slow scanning | Low-power detection and `prefers-reduced-motion` → 2D fallback. No 3D on the scanner or question screens |
+| Low-end phone stalls on 3D | Slow scanning | 3D drops to low quality (no mirrored floor or bloom) when the frame rate falls; `prefers-reduced-motion` stops the motion. No 3D on the scanner or question screens |
 | Running out of questions at a difficulty | No question to serve | Falls back to the nearest difficulty. The admin dashboard warns when fewer than 2× the active players are left per difficulty |

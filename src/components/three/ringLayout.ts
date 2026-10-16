@@ -1,3 +1,8 @@
+/** Real-scale chairs (≈0.45 m wide) need ≈0.85 m of ring each, with a sensible minimum for 1–3 chairs. */
+export function stageRadius(count: number): number {
+  return Math.max(1.4, (count * 0.85) / (2 * Math.PI));
+}
+
 export type RingSlot = { position: [number, number, number]; rotationY: number };
 
 /** Positions `count` chairs evenly on an ellipse in the XZ plane, each turned to face the centre. */

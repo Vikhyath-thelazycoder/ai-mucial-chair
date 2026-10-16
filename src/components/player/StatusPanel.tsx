@@ -45,7 +45,7 @@ export function StatusPanel({ view, pub }: { view: PlayerView; pub: PublicState 
       <StateWord tone={tone}>{word}</StateWord>
       <p className="max-w-sm text-lg text-text/80">{text}</p>
       {view.kind === "lobby" && (
-        <ChairRing count={Math.max(3, pub?.chairs.length ?? 0)} className="mt-2 h-64 w-full max-w-md" maxDpr={1.25} />
+        <ChairRing count={Math.max(3, pub?.chairs.length ?? 0)} className="mt-2 h-64 w-full max-w-md" maxDpr={1.25} quality="low" />
       )}
     </section>
   );

@@ -88,18 +88,18 @@ Objective: Spotify plays from the admin panel, and pausing can open the scan win
 | T-602 | Web Playback SDK device, search, playlists, queue, play/pause/skip/volume | VERIFIED | T-601 | engineering/frontend | — | Music panel | vitest (api wrapper) | Plays on the admin laptop |
 | T-603 | "Pause opens scan window" toggle + manual "Music stopped" fallback | VERIFIED | T-602, T-404 | engineering/frontend | — | — | vitest | Pause → open_scan_window when on; manual button always works |
 | T-6.1 | Live Spotify check on the admin laptop: connect a Premium account (added under Users and access, redirect URI registered), play a playlist, pause opens the scan window, logout clears the token | PLANNED | — | — | — | — | — | On desktop Chrome against the deployed site: music plays on the 'AI Musical Chair' device; pausing during the music phase opens the scan window when the toggle is on and not when off; the manual button works with Spotify disconnected |
-| T-6.2 | Settings: Spotify check (account, in-browser player, all Spotify devices, what's playing, Play test song) + music status in the admin nav on every page | READY_FOR_VERIFICATION | — | — | — | — | — | Check lists each step pass/fail with a fix hint; test song starts on the AI Musical Chair device and is confirmed via the Web API; the test never opens the scan window; nav shows Spotify status on every admin page |
+| T-6.2 | Settings: Spotify check (account, in-browser player, all Spotify devices, what's playing, Play test song) + music status in the admin nav on every page | VERIFIED | — | — | — | — | — | Check lists each step pass/fail with a fix hint; test song starts on the AI Musical Chair device and is confirmed via the Web API; the test never opens the scan window; nav shows Spotify status on every admin page |
 
 ## P7 · Projector screen & 3D assets
-Status: PLANNED · Depends: P2, P1 · Paths: src/app/screen/**, src/components/three/**, public/models/** · Flags: design, testing · Evidence: —
+Status: VERIFIED · Depends: P2, P1 · Paths: src/app/screen/**, src/components/three/**, public/models/** · Flags: design, testing · Evidence: .agylite/evidence/20261016T194155498855Z.json
 Objective: The live 3D show for the audience, with round and podium sequences.
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
 |---|---|---|---|---|---|---|---|---|
-| T-701 | Blender MCP: model chair + trophy/podium, export Draco GLB < 1 MB each | PLANNED | Blender MCP | design/visual-quality | — | DESIGN.md assets | file size check | GLBs load via useGLTF |
-| T-702 | Screen live scene: ring of N chairs, locked chairs light up with names, HUD (round, x/X, remaining), music visualizer, SCAN NOW splash | PLANNED | T-206, T-104 | design/motion | public_state only | Motion table | vitest (state→scene mapping) | Matches public_state; no correctness shown mid-spin |
-| T-703 | Sequences: Round over + eliminations, chairs removed, Final round, podium + confetti; event_seq-driven, reload-safe | PLANNED | T-702, T-701 | design/motion | — | Motion table | vitest (event_seq dedupe) | Each event plays once; reload doesn't replay |
-| T-7.1 | Projector counts reflect who is actually playing: 'in play' (scanned this round) and chairs locked x/X, not total registrations | PLANNED | — | — | — | — | — | public_state exposes players-in-play for the current round; the screen shows it during round 1 instead of total registrations |
+| T-701 | Blender MCP: model chair + trophy/podium, export Draco GLB < 1 MB each | VERIFIED | Blender MCP | design/visual-quality | — | DESIGN.md assets | file size check | GLBs load via useGLTF |
+| T-702 | Screen live scene: ring of N chairs, locked chairs light up with names, HUD (round, x/X, remaining), music visualizer, SCAN NOW splash | VERIFIED | T-206, T-104 | design/motion | public_state only | Motion table | vitest (state→scene mapping) | Matches public_state; no correctness shown mid-spin |
+| T-703 | Sequences: Round over + eliminations, chairs removed, Final round, podium + confetti; event_seq-driven, reload-safe | VERIFIED | T-702, T-701 | design/motion | — | Motion table | vitest (event_seq dedupe) | Each event plays once; reload doesn't replay |
+| T-7.1 | Projector counts reflect who is actually playing: 'in play' (scanned this round) and chairs locked x/X, not total registrations | VERIFIED | — | — | — | — | — | public_state exposes players-in-play for the current round; the screen shows it during round 1 instead of total registrations |
 
 ## P8 · Simulation, hardening & release
 Status: PLANNED · Depends: P3, P4, P5, P6, P7 · Paths: scripts/**, integration/** · Flags: testing, security, release · Evidence: —
@@ -254,3 +254,18 @@ Objective: Proof that a full game works under load and attack, then deploy.
 | 2026-10-17 | T-6.2 added to P6 Music (Spotify): Settings: Spotify check (account, in-browser player, all Spotify devices, what's playing, Play test song) + music status in the admin nav on every page |
 | 2026-10-17 | T-6.2: PLANNED → IN_PROGRESS |
 | 2026-10-17 | T-6.2: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-17 | T-701: PLANNED → IN_PROGRESS |
+| 2026-10-17 | P7: PLANNED → IN_PROGRESS (roll-up from T-701) |
+| 2026-10-17 | T-702: PLANNED → IN_PROGRESS |
+| 2026-10-17 | T-703: PLANNED → IN_PROGRESS |
+| 2026-10-17 | T-7.1: PLANNED → IN_PROGRESS |
+| 2026-10-17 | T-701: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-17 | T-702: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-17 | T-703: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-17 | T-7.1: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-17 | T-701: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T194155498855Z.json) |
+| 2026-10-17 | T-702: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T194155498855Z.json) |
+| 2026-10-17 | T-703: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T194155498855Z.json) |
+| 2026-10-17 | T-7.1: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T194155498855Z.json) |
+| 2026-10-17 | P7: IN_PROGRESS → VERIFIED (roll-up from T-7.1) |
+| 2026-10-17 | T-6.2: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T194155498855Z.json) |
