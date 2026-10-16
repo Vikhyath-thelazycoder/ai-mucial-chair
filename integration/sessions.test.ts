@@ -89,7 +89,7 @@ describe("start_new_game", () => {
 
   it("a student from an earlier game can join a later one with the same USN", async () => {
     await rpcOk(admin.client, "start_new_game", { p_confirm: "NEW GAME" });
-    const { data: old } = await service.from("players").select("usn, phone").eq("user_id", teamA[0].userId).single();
+    const { data: old } = await service.from("players").select("usn, phone").eq("user_id", teamA[0].userId).order("created_at", { ascending: false }).limit(1).single();
     await rpcOk(teamA[0].client, "register_player", {
       p_name: "Returning Player",
       p_usn: old!.usn,

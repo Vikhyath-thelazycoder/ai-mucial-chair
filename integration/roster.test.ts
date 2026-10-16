@@ -3,6 +3,7 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import {
   answerFor,
+  currentPlayer,
   deleteCreatedUsers,
   makeAdmin,
   makePlayer,
@@ -49,8 +50,7 @@ describe("who is playing", () => {
   it("someone who registers after round 1 started can still sit and scan in round 1", async () => {
     await rpcOk(admin.client, "start_round");
     late = await makePlayer("late");
-    const { data } = await service.from("players").select("status").eq("user_id", late.userId).single();
-    expect(data?.status).toBe("active");
+    expect((await currentPlayer<{ status: string }>(late.userId, "status")).status).toBe("active");
 
     await rpcOk(admin.client, "open_scan_window");
     await Promise.all([sitAndAnswer(early, chairs[0]), sitAndAnswer(late, chairs[1])]);
@@ -70,8 +70,7 @@ describe("who is playing", () => {
     await rpcOk(admin.client, "set_chairs_active", { p_ids: [chairs[1].id], p_active: false });
     await rpcOk(admin.client, "start_round");
     const newcomer = await makePlayer("round2");
-    const { data } = await service.from("players").select("status").eq("user_id", newcomer.userId).single();
-    expect(data?.status).toBe("spectator");
+    expect((await currentPlayer<{ status: string }>(newcomer.userId, "status")).status).toBe("spectator");
     await rpcOk(admin.client, "open_scan_window");
     expect(await rpcErr(newcomer.client, "claim_chair", { p_chair_id: chairs[0].id, p_secret: chairs[0].secret })).toBe("NOT_ACTIVE");
     expect(await rpcErr(bystander.client, "claim_chair", { p_chair_id: chairs[0].id, p_secret: chairs[0].secret })).toBe("NOT_ACTIVE");

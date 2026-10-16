@@ -7,18 +7,14 @@ const EMAIL_DOMAIN = "players.aimusicalchair.app";
 const USN = /^[0-9A-Z]{6,12}$/;
 const PIN = /^[0-9]{6}$/;
 
-const allowedOrigins = (Deno.env.get("ALLOWED_ORIGINS") ?? "http://localhost:3000,http://127.0.0.1:3000")
-  .split(",")
-  .map((o) => o.trim())
-  .filter(Boolean);
-
-function cors(origin: string | null): Record<string, string> {
-  const allow = origin && allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
+// CORS is not a security boundary here: anyone can call these endpoints outside a browser. player-signup only
+// creates pre-confirmed accounts from valid input; admin-reset-pin authenticates with a bearer token (no cookies).
+// Allowing any origin means the Vercel domain (and previews) work without extra configuration.
+function cors(_origin: string | null): Record<string, string> {
   return {
-    "Access-Control-Allow-Origin": allow,
+    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info",
-    Vary: "Origin",
   };
 }
 

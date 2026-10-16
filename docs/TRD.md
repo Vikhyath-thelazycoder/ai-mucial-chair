@@ -72,6 +72,7 @@ public/models/{chair,trophy}.glb
 | `set_chairs_active(ids uuid[], active bool)` / `create_chairs(n int)` / `delete_chairs(ids uuid[])` / `rotate_chair_secret(id)` / `set_final_chair_count(n int)` / `mark_final_round()` | Admin | chairs |
 | `override_attempt(attempt_id, correct bool, reason)` / `free_chair(chair_id, reason)` / `kick_player(player_id, reason)` / `restore_player(player_id, reason)` | Admin | updated rows |
 | `start_new_game(confirm text, name text default null)` | Admin | Ends the current session (stopping any round), opens a new lobby; `confirm` must equal `'NEW GAME'`. Chairs/QR codes unchanged (D-014) |
+| `remove_player(player_id, reason)` | Admin | Deletes a current-game registration (frees the USN and phone; SECURITY.md T17). Audited |
 | `reset_game(confirm text)` | Admin | Clears rounds, spins, attempts and alerts, and resets players to active. `confirm` must equal `'RESET'` |
 
 Errors are raised as `RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = '<CODE>'`. The UI maps the codes to friendly text:
@@ -82,8 +83,19 @@ Errors are raised as `RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = '<CODE>
 - `player-signup` (Supabase Edge Function, `supabase/functions/player-signup`, deployed with `--no-verify-jwt`)
   - Body: `{usn, pin}`. Returns 200 `{status: "created" | "exists"}`, 422 `{code: "VALIDATION"}`, 500 `{code: "SERVER"}`.
   - Creates a pre-confirmed auth user (D-015). The browser then signs in with USN + PIN and calls `register_player`.
-  - Function secret `ALLOWED_ORIGINS` (comma-separated) sets the CORS allow-list; it defaults to the local dev origins.
+  - CORS allows any origin: it isn't a security boundary for this endpoint (it only creates pre-confirmed accounts from valid input), and it lets the Vercel domain and previews work without configuration.
   - Deploy: `supabase functions deploy player-signup --use-api --no-verify-jwt --project-ref <ref>`.
+
+- `admin-reset-pin` (Edge Function, `--no-verify-jwt`): body `{playerId, pin}` with the admin's access token.
+  - Verifies the caller is signed in and listed in `admins`, then sets the player's password to the new 6-digit PIN.
+  - Audited. Returns 200 `{status: "updated"}`, or 401 / 403 / 404 / 422.
+
+### Admin console routes
+
+- `/admin/login`: email + password. Signs out again immediately if the account isn't in `admins`.
+- `/admin` (Game), `/admin/chairs` (+ `/print`), `/admin/players`, `/admin/settings`.
+  - All sit under the `(console)` route group, whose server layout redirects non-admins (SECURITY.md T8).
+- Data comes from `loadAdminData()` (`src/hooks/useAdminData.ts`): admin-only RLS reads, re-run when Realtime reports a change on `public_state`, `spins`, `chairs`, `attempts`, `players`, `alerts` or `game_sessions`.
 
 ### HTTP route
 
@@ -144,7 +156,9 @@ Errors are raised as `RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = '<CODE>
 ## Deployment
 
 1. `supabase link --project-ref <aimc-prod>`, then `supabase db push`. Repeat for `aimc-test`.
-2. Create admin users in Supabase Auth and insert them into `admins` (SQL editor).
+2. Create the admin account in each project:
+   - Supabase dashboard → **Authentication → Users → Add user**: email + strong password, **Auto Confirm User** on.
+   - Then in **SQL Editor** run: `insert into public.admins (user_id) select id from auth.users where email = '<admin email>';`
 3. Set the Vercel environment variables, then `vercel --prod` (or Git integration).
 4. Rehearsal: run `scripts/simulate.ts` against `aimc-test`, then a real-phone dry run on Preview.
 5. Event day: `reset_game('RESET')` on prod, open registration, then show the join QR.

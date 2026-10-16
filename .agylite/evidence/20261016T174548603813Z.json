@@ -1,0 +1,144 @@
+{
+ "schema_version": 1,
+ "mode": "local-test-first",
+ "task": "P4",
+ "result": "FAILED",
+ "impact": null,
+ "checks": [
+  {
+   "command": [
+    "npm",
+    "run",
+    "test"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 2846,
+   "diagnosis": [],
+   "kind": "test",
+   "name": "test",
+   "reason": "full suite: full suite requested",
+   "tests": [],
+   "at": "2026-10-16T17:43:31Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "test:watch"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 1645,
+   "diagnosis": [],
+   "kind": "test",
+   "name": "test:watch",
+   "reason": "full suite: full suite requested",
+   "tests": [],
+   "at": "2026-10-16T17:43:33Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "test:integration"
+   ],
+   "exit_code": 1,
+   "result": "FAILED",
+   "duration_ms": 73257,
+   "diagnosis": [
+    " ❯ integration/admin.test.ts (8 tests | 1 failed) 16248ms",
+    " ❯ integration/roster.test.ts (3 tests | 3 failed) 2114ms",
+    " ❯ integration/sessions.test.ts (7 tests | 1 failed) 4045ms",
+    " ❯ integration/game.test.ts (3 tests | 2 failed) 25369ms",
+    " Test Files  4 failed | 2 passed (6)",
+    "      Tests  7 failed | 49 passed (56)",
+    "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯",
+    " FAIL  integration/admin.test.ts > live chair map data (T-4.3) > shows who scanned which chair, with name, USN and chair number, and blocks the chair",
+    "TypeError: Cannot read properties of null (reading 'name')",
+    " FAIL  integration/game.test.ts > full game > runs every round to completion and crowns the final chair holders",
+    "AssertionError: expected 40 to be less than 40",
+    " FAIL  integration/game.test.ts > full game > my_status tells each player their outcome without revealing answers"
+   ],
+   "rerun": {
+    "exit_code": 1,
+    "result": "FAILED"
+   },
+   "flaky": false,
+   "kind": "test",
+   "name": "test:integration",
+   "reason": "full suite: full suite requested",
+   "tests": [],
+   "at": "2026-10-16T17:45:37Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "typecheck"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 1134,
+   "diagnosis": [],
+   "kind": "typecheck",
+   "name": "typecheck",
+   "reason": "typecheck check for the project",
+   "tests": [],
+   "at": "2026-10-16T17:45:39Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "lint"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 1266,
+   "diagnosis": [],
+   "kind": "lint",
+   "name": "lint",
+   "reason": "lint check for the project",
+   "tests": [],
+   "at": "2026-10-16T17:45:40Z"
+  },
+  {
+   "command": [
+    "/Users/vikhyathmgowda007/.agylite/core/bin/python",
+    "-m",
+    "compileall",
+    "-q",
+    "-x",
+    "(^|/)(\\.|node_modules|venv)",
+    "."
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 302,
+   "diagnosis": [],
+   "kind": "build",
+   "name": "compileall",
+   "reason": "build check for the project",
+   "tests": [],
+   "at": "2026-10-16T17:45:40Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "build"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 7968,
+   "diagnosis": [],
+   "kind": "build",
+   "name": "build",
+   "reason": "build check for the project",
+   "tests": [],
+   "at": "2026-10-16T17:45:48Z"
+  }
+ ],
+ "at": "2026-10-16T17:45:48Z"
+}

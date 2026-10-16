@@ -36,18 +36,37 @@ export async function signedInUser(label: string): Promise<Actor> {
   return { client, userId: data.user.id, email };
 }
 
-export async function makeAdmin(label = "admin"): Promise<Actor> {
-  const actor = await signedInUser(label);
-  const { error } = await service.from("admins").insert({ user_id: actor.userId });
-  if (error) throw error;
+// Supabase Auth rate-limits sign-ins per IP, so players and the admin are pooled: each pooled account signs in
+// once per run and is reused by every test file (vitest runs them in one module context, isolate: false).
+// resetWorld() opens a fresh game session, so pooled accounts start each file unregistered.
+const pool: Actor[] = [];
+let poolUsed = 0;
+let adminActor: Actor | null = null;
+
+async function pooledActor(label: string): Promise<Actor> {
+  if (poolUsed < pool.length) return pool[poolUsed++];
+  const actor = await signedInUser(`pool-${label}`);
+  pool.push(actor);
+  poolUsed++;
   return actor;
+}
+
+// The label is kept so call sites read clearly; the admin is a single pooled account.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function makeAdmin(_label = "admin"): Promise<Actor> {
+  if (!adminActor) {
+    adminActor = await signedInUser("admin");
+    const { error } = await service.from("admins").insert({ user_id: adminActor.userId });
+    if (error) throw error;
+  }
+  return adminActor;
 }
 
 let usnCounter = 0;
 const runSalt = String(Math.floor(Math.random() * 900) + 100);
 /** Registers a player through the real RPC with valid unique details. */
 export async function makePlayer(label: string): Promise<Actor & { usn: string }> {
-  const actor = await signedInUser(label);
+  const actor = await pooledActor(label);
   usnCounter++;
   const n = String(usnCounter).padStart(6, "0");
   const usn = `4SUT${runSalt}${n.slice(-3)}`;
@@ -63,6 +82,24 @@ export async function rpcOk<T = unknown>(client: SupabaseClient, fn: string, arg
   return data as T;
 }
 
+export async function currentSessionId(): Promise<string> {
+  const { data, error } = await service.from("games").select("current_session_id").single();
+  if (error) throw error;
+  return data.current_session_id as string;
+}
+
+/** The account's player row in the CURRENT game (pooled accounts have rows in earlier games too). */
+export async function currentPlayer<T = Record<string, unknown>>(userId: string, columns: string): Promise<T> {
+  const { data, error } = await service
+    .from("players")
+    .select(columns)
+    .eq("user_id", userId)
+    .eq("session_id", await currentSessionId())
+    .single();
+  if (error) throw error;
+  return data as T;
+}
+
 /** Calls an RPC that must fail, returning the error code (the message). */
 export async function rpcErr(client: SupabaseClient, fn: string, args: Record<string, unknown> = {}): Promise<string> {
   const { error } = await client.rpc(fn, args);
@@ -70,10 +107,32 @@ export async function rpcErr(client: SupabaseClient, fn: string, args: Record<st
   return error.message;
 }
 
-/** Wipes game state and test-created chairs/questions; leaves the schema intact. */
+/** Deletes test accounts left behind by an earlier run that crashed before its cleanup. */
+async function purgeStaleTestUsers() {
+  for (let page = 1; page < 20; page++) {
+    const { data } = await service.auth.admin.listUsers({ page, perPage: 200 });
+    const stale = (data?.users ?? []).filter((u) => u.email?.startsWith("itest-") && !createdUsers.includes(u.id));
+    for (const u of stale) await service.auth.admin.deleteUser(u.id);
+    if (!data || data.users.length < 200) break;
+  }
+}
+
+/**
+ * Wipes game state and test-created chairs/questions, removes stale test users, and moves the game to a
+ * fresh session so every test file starts with an empty roster. Leaves the schema intact.
+ */
 export async function resetWorld() {
+  await purgeStaleTestUsers();
+  poolUsed = 0;
+  const { data: last } = await service.from("game_sessions").select("number").order("number", { ascending: false }).limit(1).single();
+  const { data: session, error: sessionError } = await service
+    .from("game_sessions")
+    .insert({ number: (last?.number ?? 0) + 1, name: "Integration test" })
+    .select("id")
+    .single();
+  if (sessionError) throw sessionError;
   const steps = [
-    service.from("games").update({ current_round_id: null, status: "lobby", registration_open: true, final_chair_count: 3, timer_seconds: 30 }).eq("id", 1),
+    service.from("games").update({ current_session_id: session.id, current_round_id: null, status: "lobby", registration_open: true, final_chair_count: 3, timer_seconds: 30 }).eq("id", 1),
     service.from("alerts").delete().gte("id", 0),
     service.from("attempts").delete().not("id", "is", null),
     service.from("spins").delete().not("id", "is", null),
@@ -87,8 +146,13 @@ export async function resetWorld() {
   }
 }
 
+/** Deletes the accounts this file created; pooled accounts live for the whole run (purged on the next run). */
 export async function deleteCreatedUsers() {
-  for (const id of createdUsers.splice(0)) {
+  const keep = new Set([...pool.map((a) => a.userId), adminActor?.userId]);
+  for (let i = createdUsers.length - 1; i >= 0; i--) {
+    const id = createdUsers[i];
+    if (keep.has(id)) continue;
+    createdUsers.splice(i, 1);
     await service.auth.admin.deleteUser(id);
   }
 }

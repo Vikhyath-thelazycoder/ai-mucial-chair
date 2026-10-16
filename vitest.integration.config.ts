@@ -12,6 +12,8 @@ export default defineConfig({
     include: ["integration/**/*.test.ts"],
     env: loadEnv("", process.cwd(), ["TEST_", "NEXT_PUBLIC_"]),
     fileParallelism: false,
+    // One module context for all files, so harness.ts can reuse signed-in accounts (Auth sign-in rate limits).
+    isolate: false,
     testTimeout: 60_000,
     hookTimeout: 120_000,
   },

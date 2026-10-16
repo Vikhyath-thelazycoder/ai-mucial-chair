@@ -2,6 +2,7 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import {
   anon,
+  currentPlayer,
   answerFor,
   deleteCreatedUsers,
   makeAdmin,
@@ -65,7 +66,8 @@ describe("T1/T9: reading data players must never see", () => {
 
   it("a player sees only their own player row", async () => {
     const { data } = await p1.client.from("players").select("user_id");
-    expect(data).toEqual([{ user_id: p1.userId }]);
+    expect(data!.length).toBeGreaterThan(0);
+    expect(new Set(data!.map((r) => r.user_id))).toEqual(new Set([p1.userId]));
   });
 
   it("public_state contains no answers, secrets or phone numbers", async () => {
@@ -102,8 +104,7 @@ describe("T8: privilege escalation", () => {
       const { error, data } = await q.select();
       expect(error !== null || (data ?? []).length === 0).toBe(true);
     }
-    const { data: me } = await service.from("players").select("status").eq("user_id", p1.userId).single();
-    expect(me?.status).toBe("active");
+    expect((await currentPlayer<{ status: string }>(p1.userId, "status")).status).toBe("active");
     const { count } = await service.from("admins").select("*", { count: "exact", head: true }).eq("user_id", p1.userId);
     expect(count).toBe(0);
   });
@@ -189,8 +190,7 @@ describe("T2-T7: chair claims and answers", () => {
       ),
     );
     const { count } = await service.from("alerts").select("*", { count: "exact", head: true }).eq("attempt_id", mine!.id);
-    expect(count).toBeLessThanOrEqual(52); // concurrent inserts may race the cap by a little
-    expect(count).toBeGreaterThanOrEqual(50);
+    expect(count).toBe(50);
     const { data: other } = await service.from("attempts").select("id").eq("chair_id", chairs[0].id).single();
     expect(await rpcErr(p3.client, "report_focus_event", { p_attempt_id: other!.id, p_kind: "away_start" })).toBe("NOT_FOUND");
   });
@@ -234,10 +234,10 @@ describe("registration input", () => {
   });
 
   it("rejects a duplicate USN and a second registration", async () => {
-    const { data: existing } = await service.from("players").select("usn").eq("user_id", p1.userId).single();
+    const existing = await currentPlayer<{ usn: string }>(p1.userId, "usn");
     const u = await signedInUser("dup");
     expect(
-      await rpcErr(u.client, "register_player", { p_name: "Dup Person", p_usn: existing!.usn, p_phone: "9000000001", p_branch: "CSE" }),
+      await rpcErr(u.client, "register_player", { p_name: "Dup Person", p_usn: existing.usn, p_phone: "9000000001", p_branch: "CSE" }),
     ).toBe("DUPLICATE_USN");
     expect(await rpcErr(p1.client, "register_player", { p_name: "Again", p_usn: "4SU22CS997", p_phone: "9000000002", p_branch: "CSE" })).toBe(
       "ALREADY_REGISTERED",
@@ -246,7 +246,6 @@ describe("registration input", () => {
 
   it("players who join during round 1 can still play it (D-016; later rounds are covered in roster.test)", async () => {
     const late = await makePlayer("late");
-    const { data } = await service.from("players").select("status").eq("user_id", late.userId).single();
-    expect(data?.status).toBe("active");
+    expect((await currentPlayer<{ status: string }>(late.userId, "status")).status).toBe("active");
   });
 });

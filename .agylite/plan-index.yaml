@@ -1,10 +1,10 @@
 schema_version: 1
 plan_path: docs/IMPLEMENTATION_PLAN.md
-plan_sha256: b2d03cf32cb770501a7b190ac941fe20e1fddc00d4a84f17aea6aa09e7c17643
-plan_size: 20136
-plan_mtime_ns: 1792167521018658968
-built: '2026-10-16T16:18:41+00:00'
-current_phase: P4
+plan_sha256: 1c192d56bc62474242645e0964551100a1001a21403cd4e2a7c12df2b066674e
+plan_size: 22361
+plan_mtime_ns: 1792172962274272800
+built: '2026-10-16T17:49:22+00:00'
+current_phase: P5
 phases:
 - phase_id: P1
   phase_name: Foundations
@@ -126,38 +126,38 @@ phases:
     end: 6612
 - phase_id: P4
   phase_name: Admin console
-  status: PLANNED
+  status: VERIFIED
   objective: The host can run a whole game from the laptop.
   active_tasks: []
   tasks:
   - id: T-401
     title: Admin login + server-side `is_admin` guard on /admin
-    status: PLANNED
+    status: VERIFIED
   - id: T-402
     title: 'Chairs page: create N, toggle active, rotate secret, A4 print sheet (QR + huge number)'
-    status: PLANNED
+    status: VERIFIED
   - id: T-403
     title: 'Live chair map: claimed → name/USN/phone, answer, ✅/❌, time_ms, alert flag'
-    status: PLANNED
+    status: VERIFIED
   - id: T-404
     title: Game control bar + keyboard shortcuts + confirm dialogs
-    status: PLANNED
+    status: VERIFIED
   - id: T-405
     title: Dashboard stats + alerts feed (acknowledge) + join QR
-    status: PLANNED
+    status: VERIFIED
   - id: T-406
     title: 'Players page: search, kick/restore, overrides with reason (audited)'
-    status: PLANNED
+    status: VERIFIED
   - id: T-4.1
     title: 'Admin: remove a player''s registration (frees a squatted USN)'
-    status: PLANNED
+    status: VERIFIED
   - id: T-4.2
     title: 'Admin: reset a player''s PIN'
-    status: PLANNED
+    status: VERIFIED
   - id: T-4.3
     title: 'Live roster: registered list plus ''in play'' view built from scans (name, USN, chair number, scan time, answer
       state), chair tile shows BLOCKED for the spin once scanned'
-    status: PLANNED
+    status: VERIFIED
   dependencies:
   - P2
   affected_paths:
@@ -167,10 +167,10 @@ phases:
   design_flags: true
   testing_flags: true
   last_updated: null
-  evidence_pointer: null
+  evidence_pointer: .agylite/evidence/20261016T174913126378Z.json
   section:
     start: 6612
-    end: 9016
+    end: 9070
 - phase_id: P5
   phase_name: Question bank & Gemini
   status: PLANNED
@@ -198,8 +198,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 9016
-    end: 10044
+    start: 9070
+    end: 10098
 - phase_id: P6
   phase_name: Music (Spotify)
   status: PLANNED
@@ -226,8 +226,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 10044
-    end: 11023
+    start: 10098
+    end: 11077
 - phase_id: P7
   phase_name: Projector screen & 3D assets
   status: PLANNED
@@ -261,8 +261,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 11023
-    end: 12478
+    start: 11077
+    end: 12532
 - phase_id: P8
   phase_name: Simulation, hardening & release
   status: PLANNED
@@ -296,5 +296,5 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 12478
-    end: 13807
+    start: 12532
+    end: 13861

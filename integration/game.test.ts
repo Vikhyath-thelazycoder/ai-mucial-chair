@@ -3,6 +3,7 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import {
   answerFor,
+  currentSessionId,
   deleteCreatedUsers,
   makeAdmin,
   makePlayer,
@@ -52,7 +53,8 @@ beforeAll(async () => {
   await seedTestQuestions(60);
   admin = await makeAdmin("game-admin");
   const made = await Promise.all(Array.from({ length: PLAYERS }, (_, i) => makePlayer(`g${i}`)));
-  const { data } = await service.from("players").select("id, user_id").in("user_id", made.map((m) => m.userId));
+  const sid = await currentSessionId();
+  const { data } = await service.from("players").select("id, user_id").eq("session_id", sid).in("user_id", made.map((m) => m.userId));
   players = made.map((m) => ({ ...m, playerId: data!.find((d) => d.user_id === m.userId)!.id }));
   await rpcOk(admin.client, "update_game_settings", { p_final_chair_count: FINAL_COUNT });
   await rpcOk(admin.client, "create_chairs", { p_count: SCHEDULE[0] });
@@ -75,7 +77,8 @@ describe("full game", () => {
         const outOfPlay = allChairs!.slice(chairCount).map((c) => c.id);
         if (outOfPlay.length) await rpcOk(admin.client, "set_chairs_active", { p_ids: outOfPlay, p_active: false });
 
-        const { data: activeRows } = await service.from("players").select("id").eq("status", "active");
+        const { data: game } = await service.from("games").select("current_session_id").single();
+        const { data: activeRows } = await service.from("players").select("id").eq("status", "active").eq("session_id", game!.current_session_id);
         const activeIds = new Set(activeRows!.map((r) => r.id));
         expect(activeIds.size).toBeGreaterThan(chairCount);
 

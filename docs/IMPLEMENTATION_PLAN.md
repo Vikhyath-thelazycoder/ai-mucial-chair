@@ -51,20 +51,20 @@ Objective: A phone can register, follow the game live, scan a chair, answer with
 | T-3.1 | Round-1 open play: late registration during round 1 is active; never-scanned players see 'missed' not 'eliminated'; scanner opens automatically | VERIFIED | — | — | — | — | — | register during round 1 → active and can scan; during round 2 → spectator; never-scanned player after round 1 gets playedThisGame=false; camera auto-starts on SCAN NOW |
 
 ## P4 · Admin console
-Status: PLANNED · Depends: P2 · Paths: src/app/admin/**, src/components/admin/** · Flags: testing, security, design · Evidence: —
+Status: VERIFIED · Depends: P2 · Paths: src/app/admin/**, src/components/admin/** · Flags: testing, security, design · Evidence: .agylite/evidence/20261016T174913126378Z.json
 Objective: The host can run a whole game from the laptop.
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
 |---|---|---|---|---|---|---|---|---|
-| T-401 | Admin login + server-side `is_admin` guard on /admin | PLANNED | T-203 | engineering/security | T8 | Permission state | vitest guard | Non-admin redirected server-side |
-| T-402 | Chairs page: create N, toggle active, rotate secret, A4 print sheet (QR + huge number) | PLANNED | T-401 | engineering/frontend | T5 | Print layout | vitest qr build | Print preview shows correct number and QR per chair |
-| T-403 | Live chair map: claimed → name/USN/phone, answer, ✅/❌, time_ms, alert flag | PLANNED | T-401 | engineering/frontend | Admin-only data | Fixed tiles | vitest reducer | Tile updates within 1 s of a scan or answer |
-| T-404 | Game control bar + keyboard shortcuts + confirm dialogs | PLANNED | T-403 | engineering/frontend | Server enforces transitions | Interaction rules | vitest (engine-driven enablement) | Only valid actions enabled; full loop playable |
-| T-405 | Dashboard stats + alerts feed (acknowledge) + join QR | PLANNED | T-403 | engineering/frontend | — | — | vitest | Counts correct; alert appears within 2 s |
-| T-406 | Players page: search, kick/restore, overrides with reason (audited) | PLANNED | T-404 | engineering/frontend | T11 | — | vitest | Override writes an audit row |
-| T-4.1 | Admin: remove a player's registration (frees a squatted USN) | PLANNED | — | — | — | — | — | Admin-only RPC deletes a current-session player row with a logged reason; the USN can then be registered again; players get NOT_ADMIN |
-| T-4.2 | Admin: reset a player's PIN | PLANNED | — | — | — | — | — | Admin-only path (Edge Function checking is_admin) sets a new PIN for a player's account; non-admins rejected; audited |
-| T-4.3 | Live roster: registered list plus 'in play' view built from scans (name, USN, chair number, scan time, answer state), chair tile shows BLOCKED for the spin once scanned | PLANNED | — | — | — | — | — | A scan appears on the admin chair map within 1 s with name, USN and chair number; players list separates registered, in play (scanned this game), locked, eliminated; works for any number of registrations |
+| T-401 | Admin login + server-side `is_admin` guard on /admin | VERIFIED | T-203 | engineering/security | T8 | Permission state | vitest guard | Non-admin redirected server-side |
+| T-402 | Chairs page: create N, toggle active, rotate secret, A4 print sheet (QR + huge number) | VERIFIED | T-401 | engineering/frontend | T5 | Print layout | vitest qr build | Print preview shows correct number and QR per chair |
+| T-403 | Live chair map: claimed → name/USN/phone, answer, ✅/❌, time_ms, alert flag | VERIFIED | T-401 | engineering/frontend | Admin-only data | Fixed tiles | vitest reducer | Tile updates within 1 s of a scan or answer |
+| T-404 | Game control bar + keyboard shortcuts + confirm dialogs | VERIFIED | T-403 | engineering/frontend | Server enforces transitions | Interaction rules | vitest (engine-driven enablement) | Only valid actions enabled; full loop playable |
+| T-405 | Dashboard stats + alerts feed (acknowledge) + join QR | VERIFIED | T-403 | engineering/frontend | — | — | vitest | Counts correct; alert appears within 2 s |
+| T-406 | Players page: search, kick/restore, overrides with reason (audited) | VERIFIED | T-404 | engineering/frontend | T11 | — | vitest | Override writes an audit row |
+| T-4.1 | Admin: remove a player's registration (frees a squatted USN) | VERIFIED | — | — | — | — | — | Admin-only RPC deletes a current-session player row with a logged reason; the USN can then be registered again; players get NOT_ADMIN |
+| T-4.2 | Admin: reset a player's PIN | VERIFIED | — | — | — | — | — | Admin-only path (Edge Function checking is_admin) sets a new PIN for a player's account; non-admins rejected; audited |
+| T-4.3 | Live roster: registered list plus 'in play' view built from scans (name, USN, chair number, scan time, answer state), chair tile shows BLOCKED for the spin once scanned | VERIFIED | — | — | — | — | — | A scan appears on the admin chair map within 1 s with name, USN and chair number; players list separates registered, in play (scanned this game), locked, eliminated; works for any number of registrations |
 
 ## P5 · Question bank & Gemini
 Status: PLANNED · Depends: P4 · Paths: src/app/admin/questions/**, src/app/api/questions/**, src/lib/ai/** · Flags: testing, security · Evidence: —
@@ -186,3 +186,32 @@ Objective: Proof that a full game works under load and attack, then deploy.
 | 2026-10-16 | T-3.1: IN_PROGRESS → READY_FOR_VERIFICATION |
 | 2026-10-16 | T-3.1: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T161835272037Z.json) |
 | 2026-10-16 | P3: IN_PROGRESS → VERIFIED (roll-up from T-3.1) |
+| 2026-10-16 | P4: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-401: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-402: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-403: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-404: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-405: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-406: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-4.1: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-4.2: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-4.3: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-401: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-401: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T174913126378Z.json) |
+| 2026-10-16 | T-402: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-402: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T174913126378Z.json) |
+| 2026-10-16 | T-403: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-403: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T174913126378Z.json) |
+| 2026-10-16 | T-404: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-404: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T174913126378Z.json) |
+| 2026-10-16 | T-405: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-405: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T174913126378Z.json) |
+| 2026-10-16 | T-406: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-406: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T174913126378Z.json) |
+| 2026-10-16 | T-4.1: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-4.1: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T174913126378Z.json) |
+| 2026-10-16 | T-4.2: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-4.2: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T174913126378Z.json) |
+| 2026-10-16 | T-4.3: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-4.3: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T174913126378Z.json) |
+| 2026-10-16 | P4: IN_PROGRESS → VERIFIED (roll-up from T-4.3) |
