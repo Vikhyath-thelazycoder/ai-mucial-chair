@@ -50,6 +50,14 @@ describe("allowedActions", () => {
     expect(a.has("next_spin")).toBe(false);
   });
 
+  it("judging → show results on the projector once, alongside next spin / end round", () => {
+    expect(allowedActions(base).has("reveal_results")).toBe(true);
+    expect(allowedActions({ ...base, revealed: true }).has("reveal_results")).toBe(false);
+    expect(allowedActions({ ...base, revealed: true }).has("next_spin")).toBe(true);
+    expect(allowedActions({ ...base, phase: "music" }).has("reveal_results")).toBe(false);
+    expect(allowedActions({ ...base, phase: "scan_open" }).has("reveal_results")).toBe(false);
+  });
+
   it("round complete → start the next round; finished → nothing", () => {
     expect(allowedActions({ ...base, status: "round_complete", phase: null }).has("start_round")).toBe(true);
     expect(allowedActions({ ...base, status: "finished", phase: null }).size).toBe(0);

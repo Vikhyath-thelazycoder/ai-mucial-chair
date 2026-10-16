@@ -11,11 +11,20 @@ describe("realistic 3D everywhere (D-020)", () => {
     }
   });
 
-  it("the home page, player status ring and projector all render the realistic stage", () => {
+  it("the player status ring and projector render the realistic stage", () => {
     expect(src("components/three/ChairRing.tsx")).toMatch(/import\("\.\/StageScene"\)/);
     expect(src("components/screen/ScreenApp.tsx")).toMatch(/<StageScene /);
     expect(src("components/screen/ScreenApp.tsx")).not.toMatch(/lowPower|ChairRing2D/);
-    expect(src("app/page.tsx")).toMatch(/<ChairRing /);
+  });
+
+  it("the main link goes straight to the admin login, with no landing page", () => {
+    const home = src("app/page.tsx");
+    expect(home).toMatch(/redirect\("\/admin"\)/);
+    expect(home).not.toMatch(/Grab a chair|ChairRing/);
+  });
+
+  it("the projector shows no join QR code", () => {
+    expect(src("components/screen/Overlays.tsx")).not.toMatch(/QrImage|\/play/);
   });
 
   it("slow devices drop to low quality instead of 2D", () => {

@@ -4,6 +4,7 @@ import { useReducedMotion } from "motion/react";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { usePublicState } from "@/hooks/usePublicState";
+import { useStageSeats } from "@/hooks/useStageSeats";
 import { mergePresence, nextSequence, type PresentChair, type Sequence } from "@/lib/screen/sequence";
 import { screenView, type ScreenView } from "@/lib/screen/view";
 import { Hud, SequenceOverlay, StageWord } from "./Overlays";
@@ -48,9 +49,10 @@ function useSequences(event: ReturnType<typeof usePublicState>["state"]) {
 
 /** /screen: the projector tab. Read-only; everything comes from public_state (F15). Press F for fullscreen. */
 export function ScreenApp() {
-  const { state, connection } = usePublicState();
-  const view: ScreenView | null = state ? screenView(state) : null;
-  const presence = useChairPresence(view?.chairs.map((c) => c.number) ?? []);
+  const { state, connection, version } = usePublicState();
+  const seats = useStageSeats(version);
+  const view: ScreenView | null = state ? screenView(state, seats) : null;
+  const presence = useChairPresence(view?.seats.map((c) => c.number) ?? []);
   const { sequence, confettiKey } = useSequences(state);
   const reducedMotion = Boolean(useReducedMotion());
 
@@ -72,14 +74,18 @@ export function ScreenApp() {
     );
   }
 
-  const holders = new Map(view.chairs.map((c) => [c.number, c.holder]));
-  const chairs = presence.map((c) => ({ ...c, holder: holders.get(c.number) ?? null }));
+  const byNumber = new Map(view.seats.map((c) => [c.number, c]));
+  const chairs = presence.map((c) => ({
+    ...c,
+    occupant: byNumber.get(c.number)?.occupant ?? null,
+    state: byNumber.get(c.number)?.state ?? ("empty" as const),
+  }));
   const podium = view.stage === "podium" ? view.winners : null;
 
   return (
     <main className="relative h-dvh w-full cursor-none overflow-hidden bg-bg text-text select-none">
       <div className="absolute inset-0">
-        <StageScene chairs={chairs} spinning={view.stage === "music"} podium={podium} confettiKey={confettiKey} reducedMotion={reducedMotion} maxDpr={2} />
+        <StageScene chairs={chairs} spinning={view.stage === "music"} podium={podium} confettiKey={confettiKey} reducedMotion={reducedMotion} showPeople maxDpr={2} />
       </div>
       <Hud view={view} />
       <StageWord view={view} reducedMotion={reducedMotion} />

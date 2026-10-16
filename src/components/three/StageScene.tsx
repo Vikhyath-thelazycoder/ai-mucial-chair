@@ -1,15 +1,16 @@
 "use client";
 
-import { Environment, Html, Lightformer, MeshReflectorMaterial, PerformanceMonitor, useGLTF } from "@react-three/drei";
+import { Billboard, Environment, Html, Lightformer, MeshReflectorMaterial, PerformanceMonitor, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
-import { AdditiveBlending, Color, Group, InstancedMesh, Matrix4, Object3D, Quaternion, Vector3, type Mesh } from "three";
+import { AdditiveBlending, CanvasTexture, Color, Group, InstancedMesh, Matrix4, MeshBasicMaterial, MeshStandardMaterial, Object3D, SRGBColorSpace, Vector3, type Mesh } from "three";
 import { tokens } from "@/lib/design/tokens";
-import { stageRadius, ringLayout } from "./ringLayout";
+import { fitCamera, SEAT_LIGHT, shirtColor } from "@/lib/screen/stage";
+import type { SeatState } from "@/lib/screen/view";
+import { ringLayout, stageRadius } from "./ringLayout";
 
-/** `lit` lights a chair without a name (e.g. the home page demo); a holder name always lights it. */
-export type StageChair = { number: number; holder: string | null; leaving: boolean; lit?: boolean };
+export type StageChair = { number: number; occupant: string | null; state: SeatState; leaving: boolean };
 
 type Props = {
   chairs: StageChair[];
@@ -20,31 +21,169 @@ type Props = {
   /** Changes once per podium reveal to fire one confetti burst (event_seq). */
   confettiKey: number | null;
   reducedMotion: boolean;
+  /** Show chair number plates and seated people (projector). Off for the small decorative ring. */
+  showPeople?: boolean;
   /** "low" drops the mirrored floor and bloom (phones). A slow frame rate also switches to it, never to 2D. */
   quality?: "high" | "low";
   maxDpr?: number;
 };
 
 const CHAIR_URL = "/models/chair.glb";
+const MAN_URL = "/models/man.glb";
 const PODIUM_URL = "/models/podium.glb";
-const PODIUM_X = 0; // the podium stands at the centre of the ring, revealed when the chairs clear
+const LEAVE_MS = 1600;
 const ease = (current: number, target: number, rate: number, dt: number) => current + (target - current) * (1 - Math.exp(-rate * dt));
 
-function Chair({ position, rotationY, holder, lit: litFlag, leaving, reducedMotion }: { position: [number, number, number]; rotationY: number; holder: string | null; lit?: boolean; leaving: boolean; reducedMotion: boolean }) {
-  const { scene } = useGLTF(CHAIR_URL);
+function withShadows<T extends Object3D>(o: T): T {
+  o.traverse((m) => {
+    if ((m as Mesh).isMesh) {
+      m.castShadow = true;
+      m.receiveShadow = true;
+    }
+  });
+  return o;
+}
+
+/** Seat number on a small plate floating behind the backrest, always facing the audience. */
+function NumberPlate({ number }: { number: number }) {
+  const texture = useMemo(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = canvas.height = 256;
+    const tex = new CanvasTexture(canvas);
+    tex.colorSpace = SRGBColorSpace;
+    const draw = () => {
+      const ctx = canvas.getContext("2d")!;
+      const family = getComputedStyle(document.body).getPropertyValue("--font-orbitron").trim() || "sans-serif";
+      ctx.clearRect(0, 0, 256, 256);
+      ctx.fillStyle = "rgba(7,7,12,0.82)";
+      ctx.beginPath();
+      ctx.roundRect(8, 8, 240, 240, 48);
+      ctx.fill();
+      ctx.lineWidth = 8;
+      ctx.strokeStyle = tokens.gold;
+      ctx.stroke();
+      ctx.fillStyle = "#FFFFFF";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.font = `900 ${number >= 100 ? 92 : 128}px ${family}`;
+      ctx.fillText(String(number), 128, 138);
+      tex.needsUpdate = true;
+    };
+    draw();
+    void document.fonts?.ready.then(draw);
+    return tex;
+  }, [number]);
+  useEffect(() => () => texture.dispose(), [texture]);
+  return (
+    <Billboard position={[0, 1.12, -0.36]}>
+      <mesh>
+        <planeGeometry args={[0.3, 0.3]} />
+        <meshBasicMaterial map={texture} transparent toneMapped={false} depthWrite={false} />
+      </mesh>
+    </Billboard>
+  );
+}
+
+/** A realistic seated man (Blender, CC0 base mesh) in the player's shirt colour. Sits down on mount. */
+function Person({ name, leaving, reducedMotion }: { name: string; leaving: boolean; reducedMotion: boolean }) {
+  const { scene } = useGLTF(MAN_URL);
   const model = useMemo(() => {
-    const clone = scene.clone(true);
+    const clone = withShadows(scene.clone(true));
     clone.traverse((o) => {
-      if ((o as Mesh).isMesh) {
-        o.castShadow = true;
-        o.receiveShadow = true;
+      const mesh = o as Mesh;
+      if (mesh.isMesh && (mesh.material as MeshStandardMaterial).name === "ManShirt") {
+        const shirt = (mesh.material as MeshStandardMaterial).clone();
+        shirt.color = new Color(shirtColor(name));
+        mesh.material = shirt;
       }
     });
     return clone;
-  }, [scene]);
+  }, [scene, name]);
   const group = useRef<Group>(null);
-  const glow = useRef<Group>(null);
-  const lit = Boolean(holder) || Boolean(litFlag);
+  const t0 = useRef<number | null>(null);
+
+  useFrame((state, dt) => {
+    const g = group.current;
+    if (!g) return;
+    t0.current ??= state.clock.elapsedTime;
+    if (leaving) {
+      // Stands up and walks off backwards out of the ring.
+      g.position.y = ease(g.position.y, 0.55, reducedMotion ? 30 : 3, dt);
+      g.position.z = ease(g.position.z, -0.9, reducedMotion ? 30 : 1.6, dt);
+      g.scale.setScalar(ease(g.scale.x, 0.001, reducedMotion ? 30 : 2.2, dt));
+    } else {
+      g.position.y = ease(g.position.y, 0, reducedMotion ? 30 : 5, dt);
+      g.scale.setScalar(ease(g.scale.x, 1, reducedMotion ? 30 : 6, dt));
+      if (!reducedMotion) g.rotation.y = Math.sin((state.clock.elapsedTime - t0.current) * 0.7 + name.length) * 0.025; // alive, not frozen
+    }
+  });
+
+  return (
+    <group ref={group} position={[0, reducedMotion ? 0 : 0.45, 0]} scale={reducedMotion ? 1 : 0.6}>
+      <primitive object={model} />
+    </group>
+  );
+}
+
+function SeatLight({ state }: { state: SeatState }) {
+  const color = SEAT_LIGHT[state];
+  const pool = useRef<MeshBasicMaterial>(null);
+  const cone = useRef<MeshBasicMaterial>(null);
+  const strength = useRef(0);
+  useFrame((_, dt) => {
+    strength.current = ease(strength.current, color ? 1 : 0, 4, dt);
+    if (pool.current) pool.current.opacity = 0.42 * strength.current;
+    if (cone.current) cone.current.opacity = (state === "seated" ? 0.05 : 0.11) * strength.current;
+  });
+  const c = color ?? "#000000";
+  return (
+    <group>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.004, 0]}>
+        <circleGeometry args={[0.5, 48]} />
+        <meshBasicMaterial ref={pool} color={c} transparent opacity={0} blending={AdditiveBlending} depthWrite={false} toneMapped={false} />
+      </mesh>
+      <mesh position={[0, 1.75, 0]}>
+        <coneGeometry args={[0.55, 3.5, 40, 1, true]} />
+        <meshBasicMaterial ref={cone} color={c} transparent opacity={0} blending={AdditiveBlending} depthWrite={false} toneMapped={false} />
+      </mesh>
+    </group>
+  );
+}
+
+const TAG: Record<SeatState, string> = {
+  empty: "",
+  seated: "border-text/50 text-text",
+  correct: "border-[#2BE36F] text-[#2BE36F] shadow-[0_0_28px_rgb(43_227_111/0.55)]",
+  wrong: "border-red text-red shadow-[0_0_28px_rgb(255_59_92/0.55)]",
+};
+
+function Chair({
+  number,
+  occupant,
+  state,
+  leaving,
+  position,
+  rotationY,
+  showPeople,
+  reducedMotion,
+}: StageChair & { position: [number, number, number]; rotationY: number; showPeople: boolean; reducedMotion: boolean }) {
+  const { scene } = useGLTF(CHAIR_URL);
+  const model = useMemo(() => withShadows(scene.clone(true)), [scene]);
+  const group = useRef<Group>(null);
+
+  // Keep a person who just lost their seat on stage long enough to stand up and leave.
+  const [ghost, setGhost] = useState<string | null>(null);
+  const prev = useRef(occupant);
+  useEffect(() => {
+    if (prev.current && !occupant) {
+      setGhost(prev.current);
+      const t = setTimeout(() => setGhost(null), LEAVE_MS);
+      prev.current = occupant;
+      return () => clearTimeout(t);
+    }
+    if (occupant) setGhost(null);
+    prev.current = occupant;
+  }, [occupant]);
 
   useFrame((_, dt) => {
     const g = group.current;
@@ -55,32 +194,23 @@ function Chair({ position, rotationY, holder, lit: litFlag, leaving, reducedMoti
     g.position.z = ease(g.position.z, position[2], rate, dt);
     g.position.y = ease(g.position.y, leaving ? -1.2 : 0, leaving ? 2.2 : rate, dt);
     g.rotation.y = ease(g.rotation.y, rotationY, rate, dt);
-    const s = ease(g.scale.x, leaving ? 0.001 : 1, leaving ? 2.5 : rate, dt);
-    g.scale.setScalar(s);
-    if (glow.current) {
-      const target = lit && !leaving ? 1 : 0.001;
-      glow.current.scale.setScalar(ease(glow.current.scale.x, target, reducedMotion ? 30 : 5, dt));
-    }
+    g.scale.setScalar(ease(g.scale.x, leaving ? 0.001 : 1, leaving ? 2.5 : rate, dt));
   });
 
+  const shownState: SeatState = occupant ? state : "empty";
   return (
     <group ref={group} position={position} rotation={[0, rotationY, 0]}>
       <primitive object={model} />
-      {/* Locked: a warm spotlight pool and beam, plus the holder's name. */}
-      <group ref={glow} scale={0.001}>
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.004, 0]}>
-          <circleGeometry args={[0.42, 48]} />
-          <meshBasicMaterial color={tokens.gold} transparent opacity={0.35} blending={AdditiveBlending} depthWrite={false} toneMapped={false} />
-        </mesh>
-        <mesh position={[0, 1.6, 0]}>
-          <coneGeometry args={[0.45, 3.2, 40, 1, true]} />
-          <meshBasicMaterial color={tokens.gold} transparent opacity={0.07} blending={AdditiveBlending} depthWrite={false} toneMapped={false} />
-        </mesh>
-      </group>
-      {holder && !leaving && (
-        <Html position={[0, 1.18, 0]} center distanceFactor={6} zIndexRange={[20, 0]}>
-          <div className="pointer-events-none max-w-[14ch] truncate rounded-full border border-gold/60 bg-bg/80 px-4 py-1.5 font-display text-2xl font-extrabold whitespace-nowrap text-gold shadow-[0_0_24px_rgb(255_213_74/0.35)]">
-            {holder}
+      {showPeople && <NumberPlate number={number} />}
+      {showPeople && <SeatLight state={shownState} />}
+      {showPeople && occupant && <Person key={occupant} name={occupant} leaving={false} reducedMotion={reducedMotion} />}
+      {showPeople && ghost && !occupant && <Person key={`ghost-${ghost}`} name={ghost} leaving reducedMotion={reducedMotion} />}
+      {showPeople && occupant && !leaving && (
+        <Html position={[0, 1.68, 0.05]} center distanceFactor={7} zIndexRange={[20, 0]}>
+          <div
+            className={`pointer-events-none max-w-[16ch] truncate rounded-full border-2 bg-bg/85 px-4 py-1.5 font-display text-2xl font-extrabold whitespace-nowrap transition-colors duration-300 ${TAG[shownState]}`}
+          >
+            {occupant}
           </div>
         </Html>
       )}
@@ -88,7 +218,7 @@ function Chair({ position, rotationY, holder, lit: litFlag, leaving, reducedMoti
   );
 }
 
-function Ring({ chairs, spinning, hidden, reducedMotion }: { chairs: StageChair[]; spinning: boolean; hidden: boolean; reducedMotion: boolean }) {
+function Ring({ chairs, spinning, hidden, showPeople, reducedMotion }: { chairs: StageChair[]; spinning: boolean; hidden: boolean; showPeople: boolean; reducedMotion: boolean }) {
   const group = useRef<Group>(null);
   const speed = useRef(0);
   const present = chairs.filter((c) => !c.leaving).length;
@@ -106,10 +236,9 @@ function Ring({ chairs, spinning, hidden, reducedMotion }: { chairs: StageChair[
   useFrame((_, dt) => {
     const g = group.current;
     if (!g) return;
-    speed.current = ease(speed.current, spinning && !reducedMotion ? 0.16 : 0, 1.5, dt);
+    speed.current = ease(speed.current, spinning && !reducedMotion ? 0.12 : 0, 1.5, dt);
     g.rotation.y += speed.current * dt;
-    const s = ease(g.scale.x, hidden ? 0.001 : 1, 2.5, dt);
-    g.scale.setScalar(s);
+    g.scale.setScalar(ease(g.scale.x, hidden ? 0.001 : 1, 2.5, dt));
   });
 
   return (
@@ -117,7 +246,7 @@ function Ring({ chairs, spinning, hidden, reducedMotion }: { chairs: StageChair[
       {chairs.map((c) => {
         const seat = seats.get(c.number) ?? lastSeat.current.get(c.number) ?? { position: [0, 0, 0] as [number, number, number], rotationY: 0 };
         if (!c.leaving) lastSeat.current.set(c.number, seat);
-        return <Chair key={c.number} position={seat.position} rotationY={seat.rotationY} holder={c.holder} lit={c.lit} leaving={c.leaving} reducedMotion={reducedMotion} />;
+        return <Chair key={c.number} {...c} position={seat.position} rotationY={seat.rotationY} showPeople={showPeople} reducedMotion={reducedMotion} />;
       })}
     </group>
   );
@@ -125,8 +254,8 @@ function Ring({ chairs, spinning, hidden, reducedMotion }: { chairs: StageChair[
 
 function Podium({ winners, visible, reducedMotion }: { winners: { rank: number; name: string }[]; visible: boolean; reducedMotion: boolean }) {
   const { nodes } = useGLTF(PODIUM_URL);
-  const podium = useMemo(() => prepare(nodes.Podium), [nodes]);
-  const trophy = useMemo(() => prepare(nodes.Trophy), [nodes]);
+  const podium = useMemo(() => withShadows((nodes.Podium ?? new Object3D()).clone(true)), [nodes]);
+  const trophy = useMemo(() => withShadows((nodes.Trophy ?? new Object3D()).clone(true)), [nodes]);
   const group = useRef<Group>(null);
   const trophyRef = useRef<Group>(null);
 
@@ -140,7 +269,7 @@ function Podium({ winners, visible, reducedMotion }: { winners: { rank: number; 
 
   const steps: Record<number, [number, number]> = { 1: [0, 0.62], 2: [-1.02, 0.44], 3: [1.02, 0.3] };
   return (
-    <group ref={group} position={[PODIUM_X, -1.5, 0]}>
+    <group ref={group} position={[0, -1.5, 0]}>
       <primitive object={podium} />
       <group ref={trophyRef} position={[0, -0.8, 0]}>
         <primitive object={trophy} />
@@ -163,17 +292,6 @@ function Podium({ winners, visible, reducedMotion }: { winners: { rank: number; 
   );
 }
 
-function prepare(node: Object3D | undefined): Object3D {
-  const o = (node ?? new Object3D()).clone(true);
-  o.traverse((m) => {
-    if ((m as Mesh).isMesh) {
-      m.castShadow = true;
-      m.receiveShadow = true;
-    }
-  });
-  return o;
-}
-
 const CONFETTI = 320;
 const CONFETTI_COLORS = [tokens.gold, tokens.cyan, tokens.red, tokens.text, tokens.lime];
 
@@ -181,13 +299,7 @@ const CONFETTI_COLORS = [tokens.gold, tokens.cyan, tokens.red, tokens.text, toke
 function Confetti({ burstKey }: { burstKey: number | null }) {
   const mesh = useRef<InstancedMesh>(null);
   const parts = useMemo(
-    () =>
-      Array.from({ length: CONFETTI }, () => ({
-        p: new Vector3(),
-        v: new Vector3(),
-        spin: new Vector3(Math.random() * 6, Math.random() * 6, Math.random() * 6),
-        q: new Quaternion(),
-      })),
+    () => Array.from({ length: CONFETTI }, () => ({ p: new Vector3(), v: new Vector3(), spin: new Vector3(Math.random() * 6, Math.random() * 6, Math.random() * 6) })),
     [],
   );
   const started = useRef<number | null>(null);
@@ -212,7 +324,7 @@ function Confetti({ burstKey }: { burstKey: number | null }) {
     started.current += dt;
     const step = Math.min(dt, 1 / 30);
     parts.forEach((pt, i) => {
-      pt.v.y -= 4.2 * step; // gravity, softened by air drag below
+      pt.v.y -= 4.2 * step;
       pt.v.multiplyScalar(1 - 1.4 * step);
       pt.p.addScaledVector(pt.v, step);
       tmp.o.position.copy(pt.p);
@@ -226,20 +338,21 @@ function Confetti({ burstKey }: { burstKey: number | null }) {
   });
 
   return (
-    <instancedMesh ref={mesh} args={[undefined, undefined, CONFETTI]} position={[PODIUM_X, 0, 0]} frustumCulled={false}>
+    <instancedMesh ref={mesh} args={[undefined, undefined, CONFETTI]} frustumCulled={false}>
       <planeGeometry args={[0.035, 0.055]} />
       <meshStandardMaterial side={2} roughness={0.5} metalness={0.3} />
     </instancedMesh>
   );
 }
 
-/** Eases the camera between the ring view and the podium close-up. */
-function CameraRig({ radius, podium }: { radius: number; podium: boolean }) {
-  const { camera } = useThree();
-  const look = useRef(new Vector3(0, 0.5, 0));
+/** Frames the whole ring to fill the viewport at any aspect ratio; eases to the podium close-up. */
+function CameraRig({ radius, podium, fov }: { radius: number; podium: boolean; fov: number }) {
+  const { camera, size } = useThree();
+  const look = useRef(new Vector3(0, 0.8, 0));
   useFrame((_, dt) => {
-    const target = podium ? new Vector3(PODIUM_X, 1.25, 3.6) : new Vector3(0, radius * 0.95 + 1.1, radius * 2.15 + 1.6);
-    const lookAt = podium ? new Vector3(PODIUM_X, 0.75, 0) : new Vector3(0, 0.35, 0);
+    const fit = fitCamera(radius, size.width / Math.max(size.height, 1), fov);
+    const target = podium ? new Vector3(0, 1.25, 3.6) : new Vector3(...fit.position);
+    const lookAt = podium ? new Vector3(0, 0.75, 0) : new Vector3(...fit.target);
     camera.position.lerp(target, 1 - Math.exp(-1.6 * dt));
     look.current.lerp(lookAt, 1 - Math.exp(-1.6 * dt));
     camera.lookAt(look.current);
@@ -247,77 +360,79 @@ function CameraRig({ radius, podium }: { radius: number; podium: boolean }) {
   return null;
 }
 
-/** The projector's live 3D stage (F15): realistic chairs on a glossy stage under studio light. */
-export default function StageScene({ chairs, spinning, podium, confettiKey, reducedMotion, quality: initialQuality = "high", maxDpr = 2 }: Props) {
+const FOV = 38;
+
+/** The live 3D stage: realistic chairs (and seated players on the projector) on a glossy floor under studio light. */
+export default function StageScene({ chairs, spinning, podium, confettiKey, reducedMotion, showPeople = false, quality: initialQuality = "high", maxDpr = 2 }: Props) {
   const [quality, setQuality] = useState(initialQuality);
   const high = quality === "high";
   const present = chairs.filter((c) => !c.leaving).length;
   const radius = stageRadius(present);
   const showPodium = podium !== null;
+  const start = fitCamera(radius, 16 / 9, FOV);
   return (
     <Canvas
       shadows
       dpr={[1, maxDpr]}
-      camera={{ position: [0, radius + 1.1, radius * 2.15 + 1.6], fov: 38, near: 0.1, far: 80 }}
+      camera={{ position: start.position, fov: FOV, near: 0.1, far: 120 }}
       gl={{ antialias: true, powerPreference: "high-performance" }}
       aria-hidden="true"
     >
       <PerformanceMonitor onDecline={() => setQuality("low")} />
       <color attach="background" args={[tokens.bg]} />
-      <fog attach="fog" args={[tokens.bg, radius * 2.5 + 4, radius * 5 + 10]} />
+      <fog attach="fog" args={[tokens.bg, radius * 3 + 6, radius * 6 + 16]} />
 
-      {/* Studio reflections for wood, leather, lacquer and gold; built from light panels, no downloads. */}
+      {/* Studio reflections for wood, leather, skin, lacquer and gold; built from light panels, no downloads. */}
       <Environment resolution={256} frames={1}>
         <Lightformer form="rect" intensity={2.2} position={[0, 5, -2]} scale={[10, 2, 1]} />
         <Lightformer form="rect" intensity={1.4} position={[-5, 2, 2]} rotation-y={Math.PI / 2} scale={[6, 2, 1]} />
         <Lightformer form="rect" intensity={1.2} position={[5, 2, 2]} rotation-y={-Math.PI / 2} scale={[6, 2, 1]} />
         <Lightformer form="ring" color={tokens.amber} intensity={1.5} position={[0, 3, 6]} scale={3} />
       </Environment>
-      <ambientLight intensity={0.08} />
+      <ambientLight intensity={0.1} />
       <spotLight
-        position={[2.5, 7, 4]}
-        angle={0.62}
+        position={[2.5, radius + 6, radius + 4]}
+        angle={0.7}
         penumbra={0.8}
-        intensity={90}
+        intensity={110 + radius * 20}
         castShadow
         shadow-mapSize={high ? [2048, 2048] : [1024, 1024]}
         shadow-bias={-0.0002}
         color="#FFF1DC"
       />
-      <spotLight position={[-4, 4, -4]} angle={0.7} penumbra={1} intensity={30} color={tokens.cyan} />
+      <spotLight position={[-radius - 3, 4, -radius - 3]} angle={0.8} penumbra={1} intensity={40} color={tokens.cyan} />
 
       <Suspense fallback={null}>
-        <Ring chairs={chairs} spinning={spinning} hidden={showPodium} reducedMotion={reducedMotion} />
-        <Podium winners={podium ?? []} visible={showPodium} reducedMotion={reducedMotion} />
-        {!reducedMotion && <Confetti burstKey={confettiKey} />}
+        <Ring chairs={chairs} spinning={spinning} hidden={showPodium} showPeople={showPeople} reducedMotion={reducedMotion} />
+        {showPeople && <Podium winners={podium ?? []} visible={showPodium} reducedMotion={reducedMotion} />}
+        {showPeople && !reducedMotion && <Confetti burstKey={confettiKey} />}
       </Suspense>
 
-      {/* Glossy black stage floor with soft, blurred reflections. */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <circleGeometry args={[radius + 6, 96]} />
+        <circleGeometry args={[radius + 10, 96]} />
         {high ? (
-        <MeshReflectorMaterial
-          resolution={512}
-          blur={[400, 120]}
-          mixBlur={1}
-          mixStrength={1.6}
-          mirror={0.6}
-          roughness={0.85}
-          depthScale={1}
-          minDepthThreshold={0.4}
-          maxDepthThreshold={1.2}
-          color="#0B0B12"
-          metalness={0.4}
-        />
+          <MeshReflectorMaterial
+            resolution={512}
+            blur={[400, 120]}
+            mixBlur={1}
+            mixStrength={1.6}
+            mirror={0.6}
+            roughness={0.85}
+            depthScale={1}
+            minDepthThreshold={0.4}
+            maxDepthThreshold={1.2}
+            color="#0B0B12"
+            metalness={0.4}
+          />
         ) : (
           <meshStandardMaterial color="#0B0B12" roughness={0.55} metalness={0.3} />
         )}
       </mesh>
 
-      <CameraRig radius={radius} podium={showPodium} />
+      <CameraRig radius={radius} podium={showPodium} fov={FOV} />
       {high && (
         <EffectComposer>
-          <Bloom intensity={0.45} luminanceThreshold={0.85} mipmapBlur />
+          <Bloom intensity={0.5} luminanceThreshold={0.8} mipmapBlur />
         </EffectComposer>
       )}
     </Canvas>
@@ -325,4 +440,3 @@ export default function StageScene({ chairs, spinning, podium, confettiKey, redu
 }
 
 useGLTF.preload(CHAIR_URL);
-useGLTF.preload(PODIUM_URL);

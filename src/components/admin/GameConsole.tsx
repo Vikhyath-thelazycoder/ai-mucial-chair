@@ -183,7 +183,7 @@ function derive(data: AdminData) {
   const roster = buildRoster(data.players, data.scannedThisGame, lockedPlayerIds);
   const activePlayers = data.players.filter((p) => p.status === "active").length;
   const state = data.game
-    ? controlState({ gameStatus: data.game.status, phase: data.spin?.phase ?? null, chairs: data.chairs, lockedChairIds, activePlayers })
+    ? controlState({ gameStatus: data.game.status, phase: data.spin?.phase ?? null, chairs: data.chairs, lockedChairIds, activePlayers, revealed: Boolean(data.spin?.revealed_at) })
     : null;
   const thisSpin = data.attempts.filter((a) => a.spin_id === spinId);
   return {
@@ -282,6 +282,7 @@ function ControlBar({
         )}
         {btn("open_scan_window", "Music stopped · open scan  [Space]", "attention")}
         {btn("close_scan_window", allAnswered ? "Everyone answered · judge  [J]" : "Close scan & judge  [J]", allAnswered ? "attention" : "primary")}
+        {btn("reveal_results", "Show results on projector  [R]", "attention")}
         {btn("next_spin", "Next spin  [N]")}
         {btn("end_round", "End round  [E]", "attention")}
         {game?.status === "in_round" && spin?.phase !== "scan_open" && !allowed.has("end_round") && (

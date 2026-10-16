@@ -144,16 +144,16 @@ The feature catalogue. Phases refer to [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_P
   - The Spotify token stays in the admin's browser session only.
 
 ### F15 · Projector screen
-- **Behaviour:** `/screen`, read-only and opened in another tab, shows:
-  - a 3D chair ring that lights each locked chair with its holder's name;
-  - round, chairs locked out of total, and players remaining;
-  - a music-state visualizer and the SCAN NOW splash;
-  - a "Round N over" sequence with eliminated names fading out;
-  - a "Final round" sting;
-  - a 3D podium (1st/2nd/3rd) with confetti.
+- **Behaviour:** `/screen`, read-only, opened from the admin panel's Projector link (the main site link goes to the admin login), shows:
+  - a header with TECHVIDYA, AI Musical Chair and Sai Vidya Institute of Technology, plus only the round number and the number of chairs;
+  - a realistic 3D ring with exactly the admin's active chairs, each with its seat number on a plate behind it;
+  - the moment a player scans a chair, a realistic seated person appears on it with their name floating above;
+  - when the admin presses **Show results on projector**, right answers light green and wrong ones red; on the next spin the wrong players stand up and leave, the green ones stay;
+  - a music visualizer, the SCAN NOW splash, "Round N over" with eliminated names, a "Final round" sting, and a 3D podium with confetti.
 - **Acceptance:**
-  - It never shows answers or correct/wrong during a spin.
-  - It recovers its state on reload.
+  - It never shows right or wrong until the admin reveals that spin, and never shows answers or questions.
+  - It shows no join QR code (that stays on the admin panel).
+  - It fills the screen at any aspect ratio and recovers its state on reload.
 
 ### F16 · Bot simulation
 - `scripts/simulate.ts` creates N bot players in a test game on cloud Supabase. It drives a full game through the same RPCs with random right or wrong answers, checks the invariants, and deletes the bots.

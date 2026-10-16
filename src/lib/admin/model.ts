@@ -127,6 +127,7 @@ export function controlState(input: {
   chairs: readonly AdminChair[];
   lockedChairIds: ReadonlySet<string>;
   activePlayers: number;
+  revealed?: boolean;
 }): EngineState {
   const active = input.chairs.filter((c) => c.is_active && !c.deleted_at);
   return {
@@ -135,12 +136,14 @@ export function controlState(input: {
     activeChairCount: active.length,
     lockedChairCount: active.filter((c) => input.lockedChairIds.has(c.id)).length,
     activePlayerCount: input.activePlayers,
+    revealed: input.revealed ?? false,
   };
 }
 
 const SHORTCUTS: Record<string, AdminAction> = {
   " ": "open_scan_window",
   j: "close_scan_window",
+  r: "reveal_results",
   n: "next_spin",
   e: "end_round",
 };

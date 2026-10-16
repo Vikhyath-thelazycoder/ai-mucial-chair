@@ -1,6 +1,6 @@
-/** Real-scale chairs (≈0.45 m wide) need ≈0.85 m of ring each, with a sensible minimum for 1–3 chairs. */
+/** Real-scale chairs with a seated person (≈0.5 m wide) need ≈1 m of ring each, with a minimum for 1–3 chairs. */
 export function stageRadius(count: number): number {
-  return Math.max(1.4, (count * 0.85) / (2 * Math.PI));
+  return Math.max(1.4, (count * 1.0) / (2 * Math.PI));
 }
 
 export type RingSlot = { position: [number, number, number]; rotationY: number };

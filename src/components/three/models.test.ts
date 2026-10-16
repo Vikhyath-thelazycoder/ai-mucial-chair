@@ -29,7 +29,7 @@ const triangles = (g: Gltf) =>
   g.meshes.flatMap((m) => m.primitives).reduce((n, p) => n + (p.indices !== undefined ? g.accessors[p.indices].count : g.accessors[p.attributes.POSITION].count) / 3, 0);
 
 describe("Blender models (T-701)", () => {
-  for (const file of ["chair.glb", "podium.glb"]) {
+  for (const file of ["chair.glb", "podium.glb", "man.glb"]) {
     it(`${file} is a glTF 2.0 binary under 1 MB that loads without a decoder`, () => {
       expect(statSync(join(MODELS, file)).size).toBeLessThan(1_000_000);
       const g = readGlb(file);
@@ -50,5 +50,11 @@ describe("Blender models (T-701)", () => {
     const g = readGlb("podium.glb");
     expect(g.nodes.map((n) => n.name)).toEqual(expect.arrayContaining(["Podium", "Trophy"]));
     expect(g.materials.map((m) => m.name)).toEqual(expect.arrayContaining(["BlackLacquer", "BrushedGold", "PolishedGold", "Carrara", "Nero"]));
+  });
+
+  it("the seated man is a realistic person with a tintable shirt, light enough for a full ring", () => {
+    const g = readGlb("man.glb");
+    expect(g.materials.map((m) => m.name).sort()).toEqual(["ManHair", "ManJeans", "ManShirt", "ManShoes", "ManSkin", "ManSole"]);
+    expect(triangles(g)).toBeLessThan(16_000);
   });
 });

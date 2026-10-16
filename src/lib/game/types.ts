@@ -12,7 +12,7 @@ export type PublicState = {
     autoOpenOnPause: boolean;
   };
   round: { number: number; difficulty: number; isFinal: boolean; status: "active" | "complete"; timerSeconds: number } | null;
-  spin: { number: number; phase: SpinPhase; scanOpenedAt: string | null } | null;
+  spin: { number: number; phase: SpinPhase; scanOpenedAt: string | null; revealed?: boolean } | null;
   chairs: { number: number; holder: string | null }[];
   playersRemaining: number;
   playersTotal: number;

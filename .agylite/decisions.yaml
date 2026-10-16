@@ -253,3 +253,20 @@ decisions:
   supersedes: D-009
   status: ACTIVE
   tags: []
+- decision_id: D-021
+  date: '2026-10-17'
+  kind: design
+  topic: projector-stage
+  decision: 'Projector mirrors the physical game: one numbered realistic chair per active chair; a realistic seated man (Blender
+    Studio Human Base Meshes, CC0, posed and dressed in Blender, 283 KB) appears with the player''s name when they scan; results
+    stay hidden until the admin presses Show results (reveal_results), then seats light green/red; the main link redirects
+    to /admin'
+  reason: User wants the audience to see a lively 3D version of the physical game, not the admin panel, with answers shown
+    only when the host decides
+  alternatives:
+  - Show holders only after judging (previous behaviour)
+  impact: Migration 0011 (stage_seats + spins.revealed_at + reveal_results); only /screen subscribes to stage_seats so scans
+    don't wake phones
+  supersedes: null
+  status: ACTIVE
+  tags: []

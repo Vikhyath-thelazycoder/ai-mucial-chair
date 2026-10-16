@@ -2,36 +2,38 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { QrImage } from "@/components/admin/QrImage";
-import { siteUrl } from "@/lib/env";
 import type { Sequence } from "@/lib/screen/sequence";
 import type { ScreenView } from "@/lib/screen/view";
 
 // Projector type is sized in vw so it stays readable from the back of a hall (≥ 48 px at 1080p = 2.5vw).
 const fade = { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, transition: { duration: 0.25 } };
 
+/** Event branding plus the only two numbers the hall needs: the round and how many chairs. */
 export function Hud({ view }: { view: ScreenView }) {
   const items = [
     { label: "Round", value: view.roundNumber ?? "–" },
-    { label: "Chairs locked", value: `${view.locked}/${view.chairs.length}` },
-    { label: view.inPlayLabel, value: view.inPlay },
+    { label: "Chairs", value: view.chairCount },
   ];
   return (
-    <header className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-[2vw] p-[2vw]">
+    <header className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-[2vw] bg-gradient-to-b from-bg/90 to-transparent p-[2vw] pb-[4vw]">
       <div>
-        <p className="font-display text-[2vw] font-extrabold tracking-[0.08em]">{view.title.toUpperCase()}</p>
-        {view.isFinal && view.stage !== "podium" && <p className="mt-[0.4vw] font-display text-[1.4vw] font-extrabold tracking-[0.2em] text-gold">FINAL ROUND</p>}
+        <p className="font-display text-[1.3vw] font-extrabold tracking-[0.35em] text-gold">TECHVIDYA</p>
+        <p className="mt-[0.3vw] font-display text-[2.6vw] leading-none font-black tracking-[0.06em]">
+          AI MUSICAL <span className="text-cyan [text-shadow:0_0_2vw_rgb(34_228_255/0.6)]">CHAIR</span>
+        </p>
+        <p className="mt-[0.5vw] text-[1.1vw] tracking-[0.12em] text-muted uppercase">Sai Vidya Institute of Technology</p>
       </div>
-      {view.stage !== "lobby" && view.stage !== "podium" && (
+      <div className="flex flex-col items-end gap-[0.8vw]">
         <dl className="flex gap-[1vw]">
           {items.map((s) => (
-            <div key={s.label} className="min-w-[10vw] rounded-[1vw] border border-line bg-surface/60 px-[1.2vw] py-[0.8vw] text-center backdrop-blur-md">
+            <div key={s.label} className="min-w-[9vw] rounded-[1vw] border border-line bg-surface/60 px-[1.2vw] py-[0.8vw] text-center backdrop-blur-md">
               <dd className="font-mono text-[3vw] leading-none font-bold tabular-nums">{s.value}</dd>
               <dt className="mt-[0.4vw] text-[1vw] tracking-[0.12em] text-muted uppercase">{s.label}</dt>
             </div>
           ))}
         </dl>
-      )}
+        {view.isFinal && view.stage !== "podium" && <p className="font-display text-[1.4vw] font-extrabold tracking-[0.2em] text-gold">FINAL ROUND</p>}
+      </div>
     </header>
   );
 }
@@ -75,13 +77,9 @@ export function StageWord({ view, reducedMotion }: { view: ScreenView; reducedMo
     <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center gap-[1vw] p-[2.5vw] text-center">
       <AnimatePresence mode="wait">
         {view.stage === "lobby" && (
-          <motion.div key="lobby" {...fade} className="flex items-center gap-[2.5vw] rounded-[1.5vw] border border-line bg-surface/70 p-[1.5vw] text-left backdrop-blur-md">
-            <QrImage text={`${siteUrl()}/play`} size={360} label="QR code to join the game" className="h-[11vw] w-[11vw] rounded-[0.8vw]" />
-            <div>
-              <p className="font-display text-[3.4vw] leading-none font-extrabold">SCAN TO JOIN</p>
-              <p className="mt-[0.8vw] font-mono text-[1.6vw] text-cyan">{siteUrl().replace(/^https?:\/\//, "")}/play</p>
-              <p className="mt-[0.8vw] text-[1.6vw] text-muted">{view.joined} joined</p>
-            </div>
+          <motion.div key="lobby" {...fade}>
+            <p className="font-display text-[4vw] leading-none font-black tracking-[0.08em]">GET READY</p>
+            <p className="mt-[0.8vw] text-[1.8vw] text-muted">The game starts soon</p>
           </motion.div>
         )}
         {view.stage === "music" && (
@@ -104,15 +102,21 @@ export function StageWord({ view, reducedMotion }: { view: ScreenView; reducedMo
             </p>
           </motion.div>
         )}
-        {view.stage === "judging" && (
+        {view.stage === "judging" && !view.revealed && (
           <motion.p key="judging" {...fade} className="font-display text-[3.4vw] font-extrabold tracking-[0.06em]">
             Checking answers…
           </motion.p>
         )}
+        {view.stage === "judging" && view.revealed && (
+          <motion.div key="results" {...fade} className="flex items-center gap-[3vw] font-display text-[3.6vw] font-black">
+            <span className="text-[#2BE36F] drop-shadow-[0_0_24px_rgb(43_227_111/0.6)]">✓ {view.correct} RIGHT</span>
+            <span className="text-red drop-shadow-[0_0_24px_rgb(255_59_92/0.6)]">✗ {view.wrong} WRONG</span>
+          </motion.div>
+        )}
         {view.stage === "between" && (
           <motion.div key="between" {...fade}>
             <p className="font-display text-[3.4vw] font-extrabold">ROUND {view.roundNumber} COMPLETE</p>
-            <p className="mt-[0.6vw] text-[1.8vw] text-muted">{view.inPlay} still in · next round soon</p>
+            <p className="mt-[0.6vw] text-[1.8vw] text-muted">Next round soon</p>
           </motion.div>
         )}
       </AnimatePresence>

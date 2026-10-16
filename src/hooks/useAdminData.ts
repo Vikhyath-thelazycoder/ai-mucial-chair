@@ -29,6 +29,7 @@ export type AdminSpin = {
   number: number;
   phase: SpinPhase;
   scan_opened_at: string | null;
+  revealed_at: string | null;
 };
 export type AdminAlert = {
   id: number;
@@ -122,7 +123,7 @@ export async function loadAdminData(sb: SupabaseClient): Promise<AdminData> {
     const [s, a] = await Promise.all([
       sb
         .from("spins")
-        .select("id, number, phase, scan_opened_at")
+        .select("id, number, phase, scan_opened_at, revealed_at")
         .eq("round_id", roundRow.id)
         .order("number", { ascending: false })
         .limit(1)

@@ -10,6 +10,7 @@ export type AdminAction =
   | "start_round"
   | "open_scan_window"
   | "close_scan_window"
+  | "reveal_results"
   | "next_spin"
   | "end_round"
   | "edit_chairs";
@@ -20,6 +21,8 @@ export type EngineState = {
   activeChairCount: number;
   lockedChairCount: number;
   activePlayerCount: number;
+  /** This spin's results are already shown on the projector (0011). */
+  revealed?: boolean;
 };
 
 export function isRoundComplete(lockedChairCount: number, activeChairCount: number): boolean {
@@ -42,6 +45,7 @@ export function allowedActions(s: EngineState): Set<AdminAction> {
   actions.add("edit_chairs");
   if (s.phase === "music") actions.add("open_scan_window");
   if (s.phase === "judging") {
+    if (!s.revealed) actions.add("reveal_results");
     actions.add(isRoundComplete(s.lockedChairCount, s.activeChairCount) ? "end_round" : "next_spin");
   }
   return actions;

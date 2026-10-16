@@ -1,23 +1,20 @@
-// Projector view-model (F15): everything /screen shows is derived from public_state alone, which never
-// carries answers or right/wrong. A chair's holder only appears once its spin has been judged (0005 SQL).
+// Projector view-model (F15): what /screen shows comes from public_state and the public stage_seats table
+// (0011). Seats show who sat down at once, but right/wrong only after the admin reveals the spin.
 import type { PublicState } from "@/lib/game/types";
 
 export type Stage = "lobby" | "music" | "scan" | "judging" | "between" | "podium";
-
-export type ScreenChair = { number: number; holder: string | null };
+export type SeatState = "empty" | "seated" | "correct" | "wrong";
+export type StageSeat = { number: number; occupant: string | null; state: SeatState };
 
 export type ScreenView = {
   stage: Stage;
-  title: string;
   roundNumber: number | null;
   isFinal: boolean;
-  spinNumber: number | null;
-  chairs: ScreenChair[];
-  locked: number;
-  /** "In play": round 1 counts players who actually scanned, later rounds the players still in (D-016, T-7.1). */
-  inPlay: number;
-  inPlayLabel: string;
-  joined: number;
+  chairCount: number;
+  seats: StageSeat[];
+  revealed: boolean;
+  correct: number;
+  wrong: number;
   winners: { rank: number; name: string }[];
   scanOpenedAt: string | null;
 };
@@ -37,22 +34,26 @@ export function screenStage(s: PublicState): Stage {
   }
 }
 
-export function screenView(s: PublicState): ScreenView {
+/** Seats from public_state alone (before 0011 is deployed): judged holders are green, the rest empty. */
+export function seatsFromPublicState(s: PublicState): StageSeat[] {
+  return s.chairs.map((c) => ({ number: c.number, occupant: c.holder, state: c.holder ? "correct" : "empty" }));
+}
+
+export function screenView(s: PublicState, seats: StageSeat[] | null): ScreenView {
   const stage = screenStage(s);
-  const chairs = [...s.chairs].sort((a, b) => a.number - b.number).map((c) => ({ number: c.number, holder: c.holder }));
-  const roundOne = s.round?.number === 1 && s.round.status === "active";
-  const inPlay = roundOne ? (s.playersInPlay ?? s.playersRemaining) : s.round ? s.playersRemaining : 0;
+  const list = [...(seats ?? seatsFromPublicState(s))].sort((a, b) => a.number - b.number);
+  // Anything not yet revealed is shown as just "seated", whatever the table says (defence in depth).
+  const revealed = stage !== "scan" && (Boolean(s.spin?.revealed) || stage !== "judging");
+  const safe = list.map((x) => (!revealed && x.state === "wrong" ? { ...x, state: "seated" as const } : x));
   return {
     stage,
-    title: s.game.name,
     roundNumber: s.round?.number ?? null,
     isFinal: Boolean(s.round?.isFinal),
-    spinNumber: stage === "lobby" || stage === "podium" ? null : (s.spin?.number ?? null),
-    chairs,
-    locked: chairs.filter((c) => c.holder).length,
-    inPlay,
-    inPlayLabel: roundOne ? "In play" : "Still in",
-    joined: s.playersTotal,
+    chairCount: safe.length,
+    seats: safe,
+    revealed: stage === "judging" && Boolean(s.spin?.revealed),
+    correct: safe.filter((x) => x.state === "correct").length,
+    wrong: safe.filter((x) => x.state === "wrong").length,
     winners: [...s.winners].sort((a, b) => a.rank - b.rank),
     scanOpenedAt: stage === "scan" ? (s.spin?.scanOpenedAt ?? null) : null,
   };

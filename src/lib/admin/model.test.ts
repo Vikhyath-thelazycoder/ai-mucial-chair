@@ -85,7 +85,7 @@ describe("controlState", () => {
       lockedChairIds: new Set(["c1", "c2"]),
       activePlayers: 5,
     });
-    expect(s).toEqual({ status: "in_round", phase: "judging", activeChairCount: 2, lockedChairCount: 2, activePlayerCount: 5 });
+    expect(s).toEqual({ status: "in_round", phase: "judging", activeChairCount: 2, lockedChairCount: 2, activePlayerCount: 5, revealed: false });
   });
 });
 
