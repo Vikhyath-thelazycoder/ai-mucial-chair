@@ -54,6 +54,10 @@ The threat model follows STRIDE over every trust boundary in [ARCHITECTURE.md](A
 ## Secrets
 
 - `GEMINI_API_KEY` is server-only (route handler), stored in Vercel encrypted environment variables.
+- **Vercel environment, audited 2026-10-17:**
+  - The app needs only `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SPOTIFY_CLIENT_ID` and `GEMINI_API_KEY`. All are present and match local.
+  - The `TEST_SUPABASE_*` variables (test project secret key) were removed from Vercel; they belong only in local `.env.local`.
+  - The Vercel–Supabase integration also injects server-only `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_SECRET_KEY`, `SUPABASE_JWT_SECRET` and `POSTGRES_*`. They are never exposed to browsers (no `NEXT_PUBLIC_` prefix) and are **not read by the app**. To reach full least privilege, disconnect the integration in Vercel and keep the five variables above set manually.
 - `TEST_SUPABASE_SERVICE_ROLE_KEY` is used **only** by `scripts/simulate.ts` against the **aimc-test** project, from a git-ignored `.env.local`. It is never set in Vercel.
 - The Spotify access token stays in the admin's browser `sessionStorage` (it is a third-party token, not our session), and it is cleared on logout.
 - No secrets in code, logs or error messages. Errors return codes, not stack traces.
