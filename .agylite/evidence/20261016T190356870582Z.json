@@ -1,0 +1,139 @@
+{
+ "schema_version": 1,
+ "mode": "local-test-first",
+ "task": "T-6.2",
+ "result": "FAILED",
+ "impact": null,
+ "checks": [
+  {
+   "command": [
+    "npm",
+    "run",
+    "test"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 2536,
+   "diagnosis": [],
+   "kind": "test",
+   "name": "test",
+   "reason": "full suite: full suite requested",
+   "tests": [],
+   "at": "2026-10-16T19:00:30Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "test:watch"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 2385,
+   "diagnosis": [],
+   "kind": "test",
+   "name": "test:watch",
+   "reason": "full suite: full suite requested",
+   "tests": [],
+   "at": "2026-10-16T19:00:33Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "test:integration"
+   ],
+   "exit_code": 1,
+   "result": "FAILED",
+   "duration_ms": 101541,
+   "diagnosis": [
+    " ❯ integration/ai-live.test.ts (3 tests | 1 failed) 51672ms",
+    " Test Files  1 failed | 7 passed (8)",
+    "      Tests  1 failed | 64 passed (65)",
+    "gemini request failed: ApiError 503",
+    "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯",
+    " FAIL  integration/ai-live.test.ts > Gemini, live > treats instructions inside an upload as data (prompt injection)",
+    "AssertionError: expected 502 to be 200 // Object.is equality"
+   ],
+   "rerun": {
+    "exit_code": 1,
+    "result": "FAILED"
+   },
+   "flaky": false,
+   "kind": "test",
+   "name": "test:integration",
+   "reason": "full suite: full suite requested",
+   "tests": [],
+   "at": "2026-10-16T19:03:45Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "typecheck"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 1036,
+   "diagnosis": [],
+   "kind": "typecheck",
+   "name": "typecheck",
+   "reason": "typecheck check for the project",
+   "tests": [],
+   "at": "2026-10-16T19:03:46Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "lint"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 1326,
+   "diagnosis": [],
+   "kind": "lint",
+   "name": "lint",
+   "reason": "lint check for the project",
+   "tests": [],
+   "at": "2026-10-16T19:03:47Z"
+  },
+  {
+   "command": [
+    "/Users/vikhyathmgowda007/.agylite/core/bin/python",
+    "-m",
+    "compileall",
+    "-q",
+    "-x",
+    "(^|/)(\\.|node_modules|venv)",
+    "."
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 184,
+   "diagnosis": [],
+   "kind": "build",
+   "name": "compileall",
+   "reason": "build check for the project",
+   "tests": [],
+   "at": "2026-10-16T19:03:48Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "build"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 8791,
+   "diagnosis": [],
+   "kind": "build",
+   "name": "build",
+   "reason": "build check for the project",
+   "tests": [],
+   "at": "2026-10-16T19:03:56Z"
+  }
+ ],
+ "at": "2026-10-16T19:03:56Z"
+}

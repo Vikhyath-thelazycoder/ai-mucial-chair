@@ -79,14 +79,16 @@ Objective: The admin can fill the bank by hand, by CSV, or with Gemini plus a re
 | T-5.1 | Upload any question file (PDF, Word, image, text, CSV) → Gemini extracts questions → review → save | VERIFIED | — | — | — | — | — | Admin-only; files ≤4 MB of allowed types; AI output validated against the question schema; nothing saved without review; duplicates skipped |
 
 ## P6 · Music (Spotify)
-Status: PLANNED · Depends: P4 · Paths: src/lib/spotify/**, src/components/admin/music/** · Flags: testing · Evidence: —
+Status: IN_PROGRESS · Depends: P4 · Paths: src/lib/spotify/**, src/components/admin/music/** · Flags: testing · Evidence: .agylite/evidence/20261016T185521213551Z.json
 Objective: Spotify plays from the admin panel, and pausing can open the scan window.
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
 |---|---|---|---|---|---|---|---|---|
-| T-601 | PKCE login/refresh + callback route | PLANNED | T-401 | engineering/security | Token in sessionStorage, minimal scopes | — | vitest (PKCE verifier/challenge) | Login and refresh work; logout clears token |
-| T-602 | Web Playback SDK device, search, playlists, queue, play/pause/skip/volume | PLANNED | T-601 | engineering/frontend | — | Music panel | vitest (api wrapper) | Plays on the admin laptop |
-| T-603 | "Pause opens scan window" toggle + manual "Music stopped" fallback | PLANNED | T-602, T-404 | engineering/frontend | — | — | vitest | Pause → open_scan_window when on; manual button always works |
+| T-601 | PKCE login/refresh + callback route | VERIFIED | T-401 | engineering/security | Token in sessionStorage, minimal scopes | — | vitest (PKCE verifier/challenge) | Login and refresh work; logout clears token |
+| T-602 | Web Playback SDK device, search, playlists, queue, play/pause/skip/volume | VERIFIED | T-601 | engineering/frontend | — | Music panel | vitest (api wrapper) | Plays on the admin laptop |
+| T-603 | "Pause opens scan window" toggle + manual "Music stopped" fallback | VERIFIED | T-602, T-404 | engineering/frontend | — | — | vitest | Pause → open_scan_window when on; manual button always works |
+| T-6.1 | Live Spotify check on the admin laptop: connect a Premium account (added under Users and access, redirect URI registered), play a playlist, pause opens the scan window, logout clears the token | PLANNED | — | — | — | — | — | On desktop Chrome against the deployed site: music plays on the 'AI Musical Chair' device; pausing during the music phase opens the scan window when the toggle is on and not when off; the manual button works with Spotify disconnected |
+| T-6.2 | Settings: Spotify check (account, in-browser player, all Spotify devices, what's playing, Play test song) + music status in the admin nav on every page | READY_FOR_VERIFICATION | — | — | — | — | — | Check lists each step pass/fail with a fix hint; test song starts on the AI Musical Chair device and is confirmed via the Web API; the test never opens the scan window; nav shows Spotify status on every admin page |
 
 ## P7 · Projector screen & 3D assets
 Status: PLANNED · Depends: P2, P1 · Paths: src/app/screen/**, src/components/three/**, public/models/** · Flags: design, testing · Evidence: —
@@ -237,3 +239,18 @@ Objective: Proof that a full game works under load and attack, then deploy.
 | 2026-10-17 | T-4.4: IN_PROGRESS → READY_FOR_VERIFICATION |
 | 2026-10-17 | T-4.4: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T183015172412Z.json) |
 | 2026-10-17 | P4: IN_PROGRESS → VERIFIED (roll-up from T-4.4) |
+| 2026-10-17 | T-601: PLANNED → IN_PROGRESS |
+| 2026-10-17 | P6: PLANNED → IN_PROGRESS (roll-up from T-601) |
+| 2026-10-17 | T-602: PLANNED → IN_PROGRESS |
+| 2026-10-17 | T-603: PLANNED → IN_PROGRESS |
+| 2026-10-17 | T-601: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-17 | T-601: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T185521213551Z.json) |
+| 2026-10-17 | T-602: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-17 | T-602: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T185521213551Z.json) |
+| 2026-10-17 | T-603: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-17 | T-603: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T185521213551Z.json) |
+| 2026-10-17 | P6: IN_PROGRESS → VERIFIED (roll-up from T-603) |
+| 2026-10-17 | T-6.1 added to P6 Music (Spotify): Live Spotify check on the admin laptop: connect a Premium account (added under Users and access, redirect URI registered), play a playlist, pause opens the scan window, logout clears the token (phase reopened) |
+| 2026-10-17 | T-6.2 added to P6 Music (Spotify): Settings: Spotify check (account, in-browser player, all Spotify devices, what's playing, Play test song) + music status in the admin nav on every page |
+| 2026-10-17 | T-6.2: PLANNED → IN_PROGRESS |
+| 2026-10-17 | T-6.2: IN_PROGRESS → READY_FOR_VERIFICATION |

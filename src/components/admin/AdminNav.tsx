@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { MusicStatus } from "./music/MusicStatus";
+import { clearSpotifyToken } from "@/lib/spotify/auth";
 import { getBrowserSupabase } from "@/lib/supabase/client";
 
 const LINKS = [
@@ -9,6 +11,7 @@ const LINKS = [
   { href: "/admin/chairs", label: "Chairs & QR" },
   { href: "/admin/players", label: "Players" },
   { href: "/admin/questions", label: "Questions" },
+  { href: "/admin/music", label: "Music" },
   { href: "/admin/settings", label: "Settings" },
 ];
 
@@ -16,6 +19,7 @@ export function AdminNav({ email }: { email: string }) {
   const path = usePathname();
   const router = useRouter();
   const logout = async () => {
+    clearSpotifyToken(); // the Spotify token never outlives the admin session (SECURITY.md)
     await getBrowserSupabase().auth.signOut();
     router.replace("/admin/login");
     router.refresh();
@@ -46,6 +50,7 @@ export function AdminNav({ email }: { email: string }) {
           })}
         </nav>
         <div className="flex items-center gap-2 text-sm text-muted">
+          <MusicStatus />
           <span className="hidden max-w-48 truncate md:inline">{email}</span>
           <button type="button" onClick={logout} className="min-h-11 rounded-lg px-3 hover:text-text">
             Log out

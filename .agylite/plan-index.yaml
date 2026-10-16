@@ -1,9 +1,9 @@
 schema_version: 1
 plan_path: docs/IMPLEMENTATION_PLAN.md
-plan_sha256: dbc052a658c542b2033f7a6b1380c767bc9162f0fb9470a315eb4a2828a6ea1c
-plan_size: 24666
-plan_mtime_ns: 1792175419960082927
-built: '2026-10-16T18:30:20+00:00'
+plan_sha256: 60112f3348591e758faa27e63e9d2529557dd4290b77f6c7c927640ffdd82659
+plan_size: 27028
+plan_mtime_ns: 1792177660197484224
+built: '2026-10-16T19:07:40+00:00'
 current_phase: P6
 phases:
 - phase_id: P1
@@ -208,19 +208,28 @@ phases:
     end: 10726
 - phase_id: P6
   phase_name: Music (Spotify)
-  status: PLANNED
+  status: IN_PROGRESS
   objective: Spotify plays from the admin panel, and pausing can open the scan window.
-  active_tasks: []
+  active_tasks:
+  - T-6.2
   tasks:
   - id: T-601
     title: PKCE login/refresh + callback route
-    status: PLANNED
+    status: VERIFIED
   - id: T-602
     title: Web Playback SDK device, search, playlists, queue, play/pause/skip/volume
-    status: PLANNED
+    status: VERIFIED
   - id: T-603
     title: '"Pause opens scan window" toggle + manual "Music stopped" fallback'
+    status: VERIFIED
+  - id: T-6.1
+    title: 'Live Spotify check on the admin laptop: connect a Premium account (added under Users and access, redirect URI
+      registered), play a playlist, pause opens the scan window, logout clears the token'
     status: PLANNED
+  - id: T-6.2
+    title: 'Settings: Spotify check (account, in-browser player, all Spotify devices, what''s playing, Play test song) + music
+      status in the admin nav on every page'
+    status: READY_FOR_VERIFICATION
   dependencies:
   - P4
   affected_paths:
@@ -230,10 +239,10 @@ phases:
   design_flags: true
   testing_flags: true
   last_updated: null
-  evidence_pointer: null
+  evidence_pointer: .agylite/evidence/20261016T185521213551Z.json
   section:
     start: 10726
-    end: 11705
+    end: 12652
 - phase_id: P7
   phase_name: Projector screen & 3D assets
   status: PLANNED
@@ -267,8 +276,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 11705
-    end: 13160
+    start: 12652
+    end: 14107
 - phase_id: P8
   phase_name: Simulation, hardening & release
   status: PLANNED
@@ -302,5 +311,5 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 13160
-    end: 14489
+    start: 14107
+    end: 15436

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { AdminNav } from "@/components/admin/AdminNav";
+import { MusicProvider } from "@/components/admin/music/MusicProvider";
 import { isAdmin } from "@/lib/admin/session";
 import { adminAccess } from "@/lib/admin/model";
 import { getServerSupabase } from "@/lib/supabase/server";
@@ -17,9 +18,11 @@ export default async function ConsoleLayout({ children }: { children: React.Reac
   if (access === "denied") redirect("/admin/login?denied=1");
 
   return (
-    <div className="min-h-dvh">
-      <AdminNav email={data.user!.email ?? ""} />
-      <div className="mx-auto w-full max-w-[1600px] px-4 py-5 sm:px-6">{children}</div>
-    </div>
+    <MusicProvider>
+      <div className="min-h-dvh">
+        <AdminNav email={data.user!.email ?? ""} />
+        <div className="mx-auto w-full max-w-[1600px] px-4 py-5 sm:px-6">{children}</div>
+      </div>
+    </MusicProvider>
   );
 }

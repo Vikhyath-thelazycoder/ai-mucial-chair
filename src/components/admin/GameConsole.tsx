@@ -11,6 +11,8 @@ import { siteUrl } from "@/lib/env";
 import { friendlyError } from "@/lib/errors";
 import { ChairMap } from "./ChairMap";
 import { Modal } from "./Modal";
+import { MusicBar } from "./music/MusicBar";
+import { useMusic } from "./music/MusicProvider";
 import { QrImage } from "./QrImage";
 
 const PHASES = [
@@ -36,6 +38,7 @@ export function GameConsole() {
   const [dialog, setDialog] = useState<Dialog>(null);
   const [actionError, setActionError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const music = useMusic();
 
   const derived = useMemo(() => derive(data), [data]);
   const { allowed } = derived;
@@ -52,6 +55,11 @@ export function GameConsole() {
   const trigger = (action: AdminAction) => {
     if (action === "start_round") return setDialog("start");
     if (action === "end_round") return setDialog("end");
+    // The manual button never depends on Spotify: open first, then stop the music if it's still playing.
+    if (action === "open_scan_window") {
+      void run(action).then((err) => (!err && music.nowPlaying && !music.nowPlaying.paused ? music.pause() : undefined));
+      return;
+    }
     void run(action);
   };
 
@@ -93,6 +101,7 @@ export function GameConsole() {
         </p>
       )}
       {!live && <p className="rounded-xl border border-amber/40 p-2 text-sm text-amber">Reconnecting to live updates…</p>}
+      <MusicBar autoOpen={game.auto_open_on_pause} />
 
       <div className="flex flex-wrap gap-5">
         <main className="min-w-0 flex-[999_1_640px]">

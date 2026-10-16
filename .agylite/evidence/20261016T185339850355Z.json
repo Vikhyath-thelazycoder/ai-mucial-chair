@@ -1,0 +1,200 @@
+{
+ "schema_version": 1,
+ "mode": "local-test-first",
+ "task": null,
+ "result": "FAILED",
+ "impact": {
+  "method": "graph",
+  "changed": [
+   ".gitignore",
+   "docs/IMPLEMENTATION_PLAN.md",
+   "docs/gates/P6.md",
+   "src/app/admin/(console)/layout.tsx",
+   "src/app/admin/(console)/music/page.tsx",
+   "src/app/admin/(console)/spotify/callback/page.tsx",
+   "src/components/admin/AdminNav.tsx",
+   "src/components/admin/GameConsole.tsx",
+   "src/components/admin/music/MusicBar.tsx",
+   "src/components/admin/music/MusicPanel.tsx",
+   "src/components/admin/music/MusicProvider.tsx",
+   "src/components/admin/music/SpotifyCallback.tsx",
+   "src/lib/spotify/api.test.ts",
+   "src/lib/spotify/api.ts",
+   "src/lib/spotify/auth.test.ts",
+   "src/lib/spotify/auth.ts",
+   "src/lib/spotify/autoOpen.test.ts",
+   "src/lib/spotify/autoOpen.ts",
+   "src/lib/spotify/pkce.test.ts",
+   "src/lib/spotify/pkce.ts",
+   "src/lib/spotify/player.ts",
+   "src/lib/spotify/wiring.test.ts"
+  ],
+  "notice": null
+ },
+ "checks": [
+  {
+   "command": [
+    "npm",
+    "run",
+    "test",
+    "--",
+    "src/lib/spotify/api.test.ts",
+    "src/lib/spotify/auth.test.ts",
+    "src/lib/spotify/autoOpen.test.ts",
+    "src/lib/spotify/pkce.test.ts",
+    "src/lib/spotify/wiring.test.ts",
+    "src/app/c/[chairId]/page.test.tsx"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 947,
+   "diagnosis": [],
+   "kind": "test",
+   "name": "test",
+   "reason": "6 tests affected by the change",
+   "tests": [
+    "src/lib/spotify/api.test.ts",
+    "src/lib/spotify/auth.test.ts",
+    "src/lib/spotify/autoOpen.test.ts",
+    "src/lib/spotify/pkce.test.ts",
+    "src/lib/spotify/wiring.test.ts",
+    "src/app/c/[chairId]/page.test.tsx"
+   ],
+   "at": "2026-10-16T18:53:27Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "test:watch",
+    "--",
+    "src/lib/spotify/api.test.ts",
+    "src/lib/spotify/auth.test.ts",
+    "src/lib/spotify/autoOpen.test.ts",
+    "src/lib/spotify/pkce.test.ts",
+    "src/lib/spotify/wiring.test.ts",
+    "src/app/c/[chairId]/page.test.tsx"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 740,
+   "diagnosis": [],
+   "kind": "test",
+   "name": "test:watch",
+   "reason": "6 tests affected by the change",
+   "tests": [
+    "src/lib/spotify/api.test.ts",
+    "src/lib/spotify/auth.test.ts",
+    "src/lib/spotify/autoOpen.test.ts",
+    "src/lib/spotify/pkce.test.ts",
+    "src/lib/spotify/wiring.test.ts",
+    "src/app/c/[chairId]/page.test.tsx"
+   ],
+   "at": "2026-10-16T18:53:28Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "test:integration",
+    "--",
+    "src/lib/spotify/api.test.ts",
+    "src/lib/spotify/auth.test.ts",
+    "src/lib/spotify/autoOpen.test.ts",
+    "src/lib/spotify/pkce.test.ts",
+    "src/lib/spotify/wiring.test.ts",
+    "src/app/c/[chairId]/page.test.tsx"
+   ],
+   "exit_code": 1,
+   "result": "FAILED",
+   "duration_ms": 193,
+   "diagnosis": [],
+   "rerun": {
+    "exit_code": 1,
+    "result": "FAILED"
+   },
+   "flaky": false,
+   "kind": "test",
+   "name": "test:integration",
+   "reason": "6 tests affected by the change",
+   "tests": [
+    "src/lib/spotify/api.test.ts",
+    "src/lib/spotify/auth.test.ts",
+    "src/lib/spotify/autoOpen.test.ts",
+    "src/lib/spotify/pkce.test.ts",
+    "src/lib/spotify/wiring.test.ts",
+    "src/app/c/[chairId]/page.test.tsx"
+   ],
+   "at": "2026-10-16T18:53:28Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "typecheck"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 1124,
+   "diagnosis": [],
+   "kind": "typecheck",
+   "name": "typecheck",
+   "reason": "typecheck check for the project",
+   "tests": [],
+   "at": "2026-10-16T18:53:29Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "lint"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 1396,
+   "diagnosis": [],
+   "kind": "lint",
+   "name": "lint",
+   "reason": "lint check for the project",
+   "tests": [],
+   "at": "2026-10-16T18:53:31Z"
+  },
+  {
+   "command": [
+    "/Users/vikhyathmgowda007/.agylite/core/bin/python",
+    "-m",
+    "compileall",
+    "-q",
+    "-x",
+    "(^|/)(\\.|node_modules|venv)",
+    "."
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 230,
+   "diagnosis": [],
+   "kind": "build",
+   "name": "compileall",
+   "reason": "build check for the project",
+   "tests": [],
+   "at": "2026-10-16T18:53:31Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "build"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 8463,
+   "diagnosis": [],
+   "kind": "build",
+   "name": "build",
+   "reason": "build check for the project",
+   "tests": [],
+   "at": "2026-10-16T18:53:39Z"
+  }
+ ],
+ "at": "2026-10-16T18:53:39Z"
+}

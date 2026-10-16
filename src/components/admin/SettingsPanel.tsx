@@ -6,6 +6,7 @@ import { Panel } from "@/components/ui/Panel";
 import { adminRpc, useAdminData } from "@/hooks/useAdminData";
 import { friendlyError } from "@/lib/errors";
 import { Modal } from "./Modal";
+import { SpotifyCheck } from "./music/SpotifyCheck";
 
 type Form = { name: string; timer: number; finalCount: number; registrationOpen: boolean; autoOpen: boolean };
 
@@ -79,6 +80,10 @@ export function SettingsPanel() {
           </div>
         </form>
       </Panel>
+
+      <div id="spotify" className="scroll-mt-20">
+        <SpotifyCheck />
+      </div>
 
       <Panel className="border-red/40">
         <h2 className="font-bold text-red">Between teams</h2>
