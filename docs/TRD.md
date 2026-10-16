@@ -71,6 +71,7 @@ public/models/{chair,trophy}.glb
 | `end_round(force bool default false, reason text default null)` | Admin | `{eliminated:[…], finished:bool}` |
 | `set_chairs_active(ids uuid[], active bool)` / `create_chairs(n int)` / `delete_chairs(ids uuid[])` / `rotate_chair_secret(id)` / `set_final_chair_count(n int)` / `mark_final_round()` | Admin | chairs |
 | `override_attempt(attempt_id, correct bool, reason)` / `free_chair(chair_id, reason)` / `kick_player(player_id, reason)` / `restore_player(player_id, reason)` | Admin | updated rows |
+| `start_new_game(confirm text, name text default null)` | Admin | Ends the current session (stopping any round), opens a new lobby; `confirm` must equal `'NEW GAME'`. Chairs/QR codes unchanged (D-014) |
 | `reset_game(confirm text)` | Admin | Clears rounds, spins, attempts and alerts, and resets players to active. `confirm` must equal `'RESET'` |
 
 Errors are raised as `RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = '<CODE>'`. The UI maps the codes to friendly text:
@@ -89,7 +90,8 @@ Errors are raised as `RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = '<CODE>
 |---|---|---|
 | `admins` | `user_id` pk → auth.users | Membership defines `is_admin()` |
 | `games` | `id`, `name`, `status`, `registration_open`, `final_chair_count` (3), `timer_seconds` (30), `auto_open_on_pause` | Exactly one row (single active game) |
-| `players` | `id`, `user_id` unique, `name`, `usn` unique, `phone` unique, `branch`, `status`, `eliminated_in_round`, `final_rank`, `created_at` | `status ∈ active, eliminated, winner, spectator, kicked` |
+| `game_sessions` | `id`, `number` unique, `name`, `started_at`, `ended_at` | One per team's game (D-014). `games.current_session_id` points at the live one |
+| `players` | `id`, `session_id`, `user_id` (unique per session), `name`, `usn` and `phone` (unique per session), `branch`, `status`, `eliminated_in_round`, `final_rank`, `created_at` | `status ∈ active, eliminated, winner, spectator, kicked` |
 | `chairs` | `id`, `number` unique, `secret` (24 random bytes, base64url), `is_active` | Players can't read `secret` (no select policy) |
 | `rounds` | `id`, `number`, `chair_count`, `difficulty`, `timer_seconds`, `status`, `started_at`, `ended_at` | |
 | `spins` | `id`, `round_id`, `number`, `phase`, `scan_opened_at`, `closed_at` | |

@@ -156,3 +156,17 @@ decisions:
   supersedes: null
   status: ACTIVE
   tags: []
+- decision_id: D-014
+  date: '2026-10-16'
+  kind: product
+  topic: game-sessions
+  decision: 'Games run as sessions: the admin''s ''New game'' ends the current session (terminating any round in progress)
+    and opens a fresh lobby; players belong to one session and must register again for the next one; chairs and their QR codes
+    are permanent across sessions; past sessions'' results are kept'
+  reason: Several teams play back to back at the fest; reprinting or re-pasting QR codes between teams is impractical and
+    error-prone
+  alternatives: []
+  impact: ''
+  supersedes: null
+  status: ACTIVE
+  tags: []

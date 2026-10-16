@@ -21,6 +21,7 @@ The feature catalogue. Phases refer to [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_P
 | F13 | Gemini question generation | Generate by topic, difficulty and count, then review before saving | P5 | PLANNED |
 | F14 | Spotify music control | Log in, search, playlist, play/pause/skip/volume; pause can open the scan window | P6 | PLANNED |
 | F15 | Projector screen | Live 3D scene, SCAN NOW splash, round-over and elimination animations, 3D podium | P7 | PLANNED |
+| F17 | New game (next team) | Admin ends the current game; the next team registers fresh; chair QR codes never change | P2, P4 | PLANNED |
 | F16 | Bot simulation | A script plays a full game against cloud Supabase with N bots | P8 | PLANNED |
 
 ## Feature details
@@ -155,3 +156,16 @@ The feature catalogue. Phases refer to [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_P
 
 ### F16 · Bot simulation
 - `scripts/simulate.ts` creates N bot players in a test game on cloud Supabase. It drives a full game through the same RPCs with random right or wrong answers, checks the invariants, and deletes the bots.
+
+### F17 · New game (next team)
+- **Behaviour:**
+  - The admin's **New game** button asks for typed confirmation ("NEW GAME"), then calls `start_new_game`.
+  - Anything still running is stopped: unanswered attempts count as timed out and the round is closed.
+  - The current game is archived as a session, and a fresh lobby opens with registration on.
+  - The previous team's phones show "A new game has started" with an option to register again.
+- **Acceptance:**
+  - The previous team can't scan (`NOT_REGISTERED`).
+  - The same printed chair QR codes work for the next team.
+  - The same USN can register again in a later game.
+  - Old results are kept.
+  - Only admins can start a new game.

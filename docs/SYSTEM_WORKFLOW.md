@@ -34,6 +34,7 @@ How the system behaves from each actor's action down to the data. Rules come fro
 | Admin | Next spin | `next_spin()` | Admin; phase `judging`; round not complete | Closes the current spin and creates spin n+1 in `music` |
 | Admin | End round | `end_round(force bool)` | Admin; all X chairs locked (or `force` with a reason) | Unlocked active players become `eliminated` (`eliminated_in_round`). Round `complete`. If X is the final count, winners and ranks are set and status becomes `finished` |
 | Admin | Add / delete / toggle chairs (any number) | `create_chairs(n)` / `delete_chairs(ids[])` / `set_chairs_active(ids[], bool)` | Admin; not during an open spin (no claims are pending) | Chairs toggled |
+| Admin | New game (next team) | `start_new_game(confirm 'NEW GAME', name?)` | Admin; typed confirmation | Stops any running round (pending attempts become `timed_out`), ends the session, opens a new one in `lobby` with registration on. Chairs and QR codes untouched. Previous players get `NOT_REGISTERED` and `my_status.playedBefore = true` |
 | Admin | Overrides | `override_attempt`, `free_chair`, `kick_player`, `restore_player` | Admin; reason required | Change applied and written to `admin_audit` |
 
 ## Data flow

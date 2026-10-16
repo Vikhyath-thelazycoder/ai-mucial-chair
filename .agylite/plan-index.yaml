@@ -1,9 +1,9 @@
 schema_version: 1
 plan_path: docs/IMPLEMENTATION_PLAN.md
-plan_sha256: 6babcf8686dc0ac57a283a4194b9433bf82d81cb43f9fb3090f694b6f1604d19
-plan_size: 14938
-plan_mtime_ns: 1792165117906090947
-built: '2026-10-16T15:38:38+00:00'
+plan_sha256: 9b54a4a92c62b1c8a818686150a3e4ada07febba2cc477892dc8a48fdcb154d9
+plan_size: 15792
+plan_mtime_ns: 1792165714596532357
+built: '2026-10-16T15:48:34+00:00'
 current_phase: P3
 phases:
 - phase_id: P1
@@ -69,6 +69,9 @@ phases:
   - id: T-207
     title: Seed questions (≥ 150, difficulty 1–5)
     status: VERIFIED
+  - id: T-2.1
+    title: 'Game sessions: admin ''New game'' terminates the current game, keeps chair QR codes, next team registers fresh'
+    status: VERIFIED
   dependencies:
   - P1
   affected_paths:
@@ -78,10 +81,10 @@ phases:
   design_flags: false
   testing_flags: true
   last_updated: null
-  evidence_pointer: .agylite/evidence/20261016T153800100203Z.json
+  evidence_pointer: .agylite/evidence/20261016T154828692422Z.json
   section:
     start: 2215
-    end: 4217
+    end: 4580
 - phase_id: P3
   phase_name: Player site
   status: PLANNED
@@ -115,8 +118,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 4217
-    end: 5842
+    start: 4580
+    end: 6205
 - phase_id: P4
   phase_name: Admin console
   status: PLANNED
@@ -152,8 +155,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 5842
-    end: 7400
+    start: 6205
+    end: 7763
 - phase_id: P5
   phase_name: Question bank & Gemini
   status: PLANNED
@@ -181,8 +184,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 7400
-    end: 8428
+    start: 7763
+    end: 8791
 - phase_id: P6
   phase_name: Music (Spotify)
   status: PLANNED
@@ -209,8 +212,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 8428
-    end: 9407
+    start: 8791
+    end: 9770
 - phase_id: P7
   phase_name: Projector screen & 3D assets
   status: PLANNED
@@ -240,8 +243,8 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 9407
-    end: 10564
+    start: 9770
+    end: 10927
 - phase_id: P8
   phase_name: Simulation, hardening & release
   status: PLANNED
@@ -272,5 +275,5 @@ phases:
   last_updated: null
   evidence_pointer: null
   section:
-    start: 10564
-    end: 11654
+    start: 10927
+    end: 12017

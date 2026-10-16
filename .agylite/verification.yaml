@@ -68,3 +68,11 @@ results:
   result: VERIFIED
   evidence: .agylite/evidence/20261016T153800100203Z.json
   at: '2026-10-16T15:38:37+00:00'
+- task: T-2.1
+  result: PASSED
+  evidence: .agylite/evidence/20261016T154828692422Z.json
+  at: '2026-10-16T15:48:28+00:00'
+- task: T-2.1
+  result: VERIFIED
+  evidence: .agylite/evidence/20261016T154828692422Z.json
+  at: '2026-10-16T15:48:34+00:00'

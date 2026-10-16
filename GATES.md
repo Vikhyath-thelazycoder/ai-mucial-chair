@@ -7,8 +7,8 @@
 
 - [x] G2: Every local migration is applied to the aimc-test cloud project
   CHECK: supabase migration list --linked
-  EXPECT: 0004
-  EVIDENCE: automatic-evidence=v1; definition-sha256=487c5fa3712c40fc57c32f2b2a991cb87ed5f2eea2d1e613cecd4c714b425c9a; exit=0; EXPECT=matched; output-sha256=bed62a565b7ebfbd98718b993c07e9cd275075b3bbafb79a0e7737159f69c623; output-bytes=523; shell=/bin/sh; cwd=/Users/vikhyathmgowda007/Developer/ai musical chair; path=41f1bee6fce0/30 entries
+  EXPECT: 0005
+  EVIDENCE: automatic-evidence=v1; definition-sha256=16a586b3856578fcea2760f186aefdabf2a732a22dc7049a7aecf89305189293; exit=0; EXPECT=matched; output-sha256=5f0d079fa71421e6b6719dfb08cda7d4a9a4127b3ac2697d6a4ebd374bcd1d2e; output-bytes=570; shell=/bin/sh; cwd=/Users/vikhyathmgowda007/Developer/ai musical chair; path=41f1bee6fce0/30 entries
 
 - [x] G3: Security integration tests (RLS, grants, RPC guards, answer secrecy) pass against aimc-test
   CHECK: npm run test:integration -- security && echo GATE_GREEN

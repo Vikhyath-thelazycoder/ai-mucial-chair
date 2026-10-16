@@ -23,7 +23,7 @@ Objective: Next.js 15 skeleton with design tokens, Supabase clients and the 3D b
 | T-105 | Security headers + CSP in next.config | VERIFIED | T-101 | engineering/security | T15 | — | unit (headers config) | All headers from SECURITY.md present |
 
 ## P2 · Game engine & database
-Status: VERIFIED · Depends: P1 · Paths: supabase/**, src/lib/engine.ts · Flags: testing, security · Evidence: .agylite/evidence/20261016T153800100203Z.json
+Status: VERIFIED · Depends: P1 · Paths: supabase/**, src/lib/engine.ts · Flags: testing, security · Evidence: .agylite/evidence/20261016T154828692422Z.json
 Objective: The whole game runs on the server: schema, RLS, RPCs and realtime, proven by engine unit tests and integration tests against aimc-test (D-013).
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
@@ -35,6 +35,7 @@ Objective: The whole game runs on the server: schema, RLS, RPCs and realtime, pr
 | T-205 | Admin RPCs: start_round, open/close_scan_window, next_spin, end_round, chair mgmt, overrides, reset_game, audit | VERIFIED | T-204 | engineering/backend | T8, T11 | — | integration | Invalid transitions rejected; end_round eliminates the right set; podium order correct |
 | T-206 | `public_state` writer + realtime publication (0004) | VERIFIED | T-205 | engineering/backend | No PII beyond names | — | integration | Each RPC updates public_state and event_seq in the same transaction |
 | T-207 | Seed questions (≥ 150, difficulty 1–5) | VERIFIED | T-202 | — | — | — | CSV validator | ≥ 2× expected players per difficulty |
+| T-2.1 | Game sessions: admin 'New game' terminates the current game, keeps chair QR codes, next team registers fresh | VERIFIED | — | — | — | — | — | start_new_game ends the session and any active round; old players get NOT_REGISTERED; same chair QR works for new players; same USN can register again in the new session; old results kept; non-admins rejected |
 
 ## P3 · Player site
 Status: PLANNED · Depends: P2 · Paths: src/app/play/**, src/components/player/**, src/hooks/** · Flags: testing, security, design · Evidence: —
@@ -147,3 +148,8 @@ Objective: Proof that a full game works under load and attack, then deploy.
 | 2026-10-16 | T-207: IN_PROGRESS → READY_FOR_VERIFICATION |
 | 2026-10-16 | T-207: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T153800100203Z.json) |
 | 2026-10-16 | P2: IN_PROGRESS → VERIFIED (roll-up from T-207) |
+| 2026-10-16 | T-2.1 added to P2 Game engine & database: Game sessions: admin 'New game' terminates the current game, keeps chair QR codes, next team registers fresh (phase reopened) |
+| 2026-10-16 | T-2.1: PLANNED → IN_PROGRESS |
+| 2026-10-16 | T-2.1: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-2.1: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T154828692422Z.json) |
+| 2026-10-16 | P2: IN_PROGRESS → VERIFIED (roll-up from T-2.1) |
