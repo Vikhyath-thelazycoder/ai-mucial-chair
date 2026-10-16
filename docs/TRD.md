@@ -107,7 +107,15 @@ Errors are raised as `RAISE EXCEPTION USING ERRCODE = 'P0001', MESSAGE = '<CODE>
 - Rate limit: `log_ai_request` RPC, 10 requests per admin per minute (429). Returns 503 when `GEMINI_API_KEY` is missing, 502 on unusable model output, 504 after 50 s.
 - Model output is untrusted: `validateDrafts` repairs common slips (option letter as the answer, case, difficulty range), validates with the CSV schema, removes duplicates and caps at 100.
 - Drafts are saved only after admin review, via `import_questions(questions jsonb, source)`. Duplicates (case-insensitive unique index) and invalid rows are counted, not fatal.
-- Model: `GEMINI_MODEL` env, default alias `gemini-flash-latest`.
+- Models: `GEMINI_MODEL` (optional) is tried first, then the chain `gemini-flash-latest` → `gemini-3-flash-preview` → `gemini-flash-lite-latest`.
+  - The next model is tried on 404 (retired), 429 (free-tier quota) or 5xx (overloaded). The whole request times out at 55 s.
+  - Quota exhaustion shows the admin "AI_QUOTA".
+- **Live eval (2026-10-16, `integration/ai-live.test.ts`):**
+  - Generate 10 mixed questions: 10/10 valid, 8.5 s.
+  - Extract from a 5-question text paper: 4/4 correct answers, with the ambiguous question skipped, 8.6 s.
+  - Prompt-injection paper: only the 2 real questions returned, the injected instruction ignored.
+  - In these runs the primary model was over quota (429) and the fallback served the requests.
+  - Cost: free tier; a request is roughly 1–3k tokens.
 - Handler logic lives in `src/lib/ai/handlers.ts` with injected dependencies (unit-tested); the route files only wire in Supabase and Gemini.
 
 ### HTTP route

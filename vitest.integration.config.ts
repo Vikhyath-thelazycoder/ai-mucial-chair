@@ -10,7 +10,7 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["integration/**/*.test.ts"],
-    env: loadEnv("", process.cwd(), ["TEST_", "NEXT_PUBLIC_"]),
+    env: loadEnv("", process.cwd(), ["TEST_", "NEXT_PUBLIC_", "GEMINI_"]),
     fileParallelism: false,
     // One module context for all files, so harness.ts can reuse signed-in accounts (Auth sign-in rate limits).
     isolate: false,

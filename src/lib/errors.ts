@@ -32,6 +32,7 @@ const messages: Record<string, string> = {
   AI_BAD_OUTPUT: "The AI's reply didn't make sense. Try again.",
   AI_TIMEOUT: "The AI took too long. Try a smaller file or fewer questions.",
   AI_FAILED: "The AI request failed. Check the API key and try again.",
+  AI_QUOTA: "The Gemini key has used up its free quota for now. Wait a few minutes or enable billing on the key.",
   UNSUPPORTED_FILE: "Use a PDF, Word (.docx), image, text or CSV file.",
   FILE_TOO_LARGE: "That file is over 4 MB. Split it or use a smaller one.",
   EMPTY_FILE: "That file is empty.",

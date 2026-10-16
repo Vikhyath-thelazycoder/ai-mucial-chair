@@ -67,15 +67,15 @@ Objective: The host can run a whole game from the laptop.
 | T-4.3 | Live roster: registered list plus 'in play' view built from scans (name, USN, chair number, scan time, answer state), chair tile shows BLOCKED for the spin once scanned | VERIFIED | — | — | — | — | — | A scan appears on the admin chair map within 1 s with name, USN and chair number; players list separates registered, in play (scanned this game), locked, eliminated; works for any number of registrations |
 
 ## P5 · Question bank & Gemini
-Status: IN_PROGRESS · Depends: P4 · Paths: src/app/admin/questions/**, src/app/api/questions/**, src/lib/ai/** · Flags: testing, security · Evidence: —
+Status: VERIFIED · Depends: P4 · Paths: src/app/admin/questions/**, src/app/api/questions/**, src/lib/ai/** · Flags: testing, security · Evidence: .agylite/evidence/20261016T182025407389Z.json
 Objective: The admin can fill the bank by hand, by CSV, or with Gemini plus a review step.
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
 |---|---|---|---|---|---|---|---|---|
 | T-501 | Questions CRUD + filters | VERIFIED | T-401 | engineering/frontend | Admin RLS | Empty state | vitest | Create/edit/disable works |
 | T-502 | CSV import with per-row validation report | VERIFIED | T-501 | engineering/implementation | Input validation | — | vitest (bad rows) | Invalid rows listed with numbers, valid rows imported |
-| T-503 | `/api/questions/generate` (admin check, zod, Gemini JSON schema, dedupe, rate limit) + review UI | READY_FOR_VERIFICATION | T-501 | engineering/ai-systems, engineering/security | T13, T15 | Review table | vitest (401/403/422/502) | Nothing saved without review; key never in client bundle |
-| T-5.1 | Upload any question file (PDF, Word, image, text, CSV) → Gemini extracts questions → review → save | READY_FOR_VERIFICATION | — | — | — | — | — | Admin-only; files ≤4 MB of allowed types; AI output validated against the question schema; nothing saved without review; duplicates skipped |
+| T-503 | `/api/questions/generate` (admin check, zod, Gemini JSON schema, dedupe, rate limit) + review UI | VERIFIED | T-501 | engineering/ai-systems, engineering/security | T13, T15 | Review table | vitest (401/403/422/502) | Nothing saved without review; key never in client bundle |
+| T-5.1 | Upload any question file (PDF, Word, image, text, CSV) → Gemini extracts questions → review → save | VERIFIED | — | — | — | — | — | Admin-only; files ≤4 MB of allowed types; AI output validated against the question schema; nothing saved without review; duplicates skipped |
 
 ## P6 · Music (Spotify)
 Status: PLANNED · Depends: P4 · Paths: src/lib/spotify/**, src/components/admin/music/** · Flags: testing · Evidence: —
@@ -228,3 +228,6 @@ Objective: Proof that a full game works under load and attack, then deploy.
 | 2026-10-16 | T-503: IN_PROGRESS → READY_FOR_VERIFICATION |
 | 2026-10-16 | T-5.1: PLANNED → IN_PROGRESS |
 | 2026-10-16 | T-5.1: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-16 | T-503: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T182025407389Z.json) |
+| 2026-10-16 | T-5.1: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T182025407389Z.json) |
+| 2026-10-16 | P5: IN_PROGRESS → VERIFIED (roll-up from T-5.1) |

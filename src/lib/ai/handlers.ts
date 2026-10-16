@@ -39,6 +39,7 @@ async function ask(deps: AiDeps, parts: GeminiPart[]): Promise<Result> {
     const msg = e instanceof Error ? e.message : "";
     if (msg === "AI_BAD_OUTPUT") return fail(502, "AI_BAD_OUTPUT");
     if (msg === "AI_TIMEOUT") return fail(504, "AI_TIMEOUT");
+    if (msg === "AI_QUOTA") return fail(503, "AI_QUOTA");
     return fail(502, "AI_FAILED");
   }
 }
