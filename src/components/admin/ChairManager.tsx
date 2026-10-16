@@ -5,13 +5,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Panel } from "@/components/ui/Panel";
 import { adminRpc, useAdminData } from "@/hooks/useAdminData";
+import { siteUrl } from "@/lib/env";
 import { friendlyError } from "@/lib/errors";
 import { chairUrl } from "@/lib/qr";
 import { Modal } from "./Modal";
 import { QrImage } from "./QrImage";
 
 export function siteBase() {
-  return (process.env.NEXT_PUBLIC_SITE_URL ?? (typeof window !== "undefined" ? window.location.origin : "")).replace(/\/$/, "");
+  return siteUrl();
 }
 
 export function isLocalSite(url: string) {

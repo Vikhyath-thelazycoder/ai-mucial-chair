@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { StateWord } from "@/components/ui/StateWord";
+import { siteUrl } from "@/lib/env";
 import { friendlyError } from "@/lib/errors";
 import { parseChairQr } from "@/lib/qr";
 import { getBrowserSupabase } from "@/lib/supabase/client";
@@ -17,10 +18,11 @@ const problems: Record<ScannerProblem, string> = {
   unavailable: "Couldn't start the camera. Close other apps using it and tap Try again.",
 };
 
+/** Chair QRs are accepted when they point at this site (the page's own host or the configured site URL). */
 function allowedHosts(): string[] {
   const hosts = [window.location.host];
   try {
-    hosts.push(new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "").host);
+    hosts.push(new URL(siteUrl()).host);
   } catch {}
   return hosts;
 }

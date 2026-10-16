@@ -7,6 +7,7 @@ import { Panel } from "@/components/ui/Panel";
 import { adminRpc, useAdminData, type AdminData } from "@/hooks/useAdminData";
 import { buildRoster, chairTiles, controlState, shortcutAction } from "@/lib/admin/model";
 import { allowedActions, nextDifficulty, type AdminAction } from "@/lib/engine";
+import { siteUrl } from "@/lib/env";
 import { friendlyError } from "@/lib/errors";
 import { ChairMap } from "./ChairMap";
 import { Modal } from "./Modal";
@@ -17,10 +18,6 @@ const PHASES = [
   { key: "scan_open", label: "Scan window" },
   { key: "judging", label: "Judging" },
 ] as const;
-
-function siteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL ?? (typeof window !== "undefined" ? window.location.origin : "")).replace(/\/$/, "");
-}
 
 function useElapsed(since: string | null) {
   const [now, setNow] = useState(() => Date.now());
