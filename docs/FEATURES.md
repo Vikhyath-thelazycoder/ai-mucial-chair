@@ -6,24 +6,24 @@ The feature catalogue. Phases refer to [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_P
 
 | ID | Feature | Description | Phase | Status |
 |---|---|---|---|---|
-| F1 | Player registration and login | Join by QR code, register with name/USN/phone/branch/PIN, session saved in the browser | P3 | PLANNED |
-| F2 | Live player status | Waiting / Music / SCAN NOW / Locked in / Standing / Eliminated, updated in real time | P3 | PLANNED |
-| F3 | In-site chair scanner | Camera QR scanner inside `/play`, the only way to claim a chair | P3 | PLANNED |
-| F4 | Randomized questions | A random unseen question per scan at the round's difficulty, MCQ or one word | P2–P3 | PLANNED |
-| F5 | Answer timer | Countdown set by the admin per round; the server enforces the deadline | P2–P3 | PLANNED |
-| F6 | Anti-cheat | Fullscreen, no copy/select, watermark, alerts when the player leaves the site | P3 | PLANNED |
-| F7 | Chair QR generator | Create chairs, toggle active/inactive, print a QR sheet with big chair numbers | P4 | PLANNED |
-| F8 | Live chair map | Each chair tile shows the player's name, USN, phone, question, answer, ✅/❌ and time | P4 | PLANNED |
-| F9 | Game console | Start round → music → scan window → judging → next spin / end round → set chairs | P4 | PLANNED |
-| F10 | Admin dashboard and alerts | Counts, answered this spin, fastest times, live anti-cheat alert feed | P4 | PLANNED |
-| F11 | Player management | List, search, status, kick, manual overrides | P4 | PLANNED |
-| F12 | Question bank | Manual add/edit, CSV import, difficulty 1–5, topics | P5 | PLANNED |
-| F13a | Upload any question file | PDF, Word, photo, text or CSV → Gemini extracts questions and answers → review → save | P5 | PLANNED |
-| F13 | Gemini question generation | Generate by topic, difficulty and count, then review before saving | P5 | PLANNED |
-| F14 | Spotify music control | Log in, search, playlist, play/pause/skip/volume; pause can open the scan window | P6 | PLANNED |
-| F15 | Projector screen | Live 3D scene, SCAN NOW splash, round-over and elimination animations, 3D podium | P7 | PLANNED |
-| F17 | New game (next team) | Admin ends the current game; the next team registers fresh; chair QR codes never change | P2, P4 | PLANNED |
-| F16 | Bot simulation | A script plays a full game against cloud Supabase with N bots | P8 | PLANNED |
+| F1 | Player registration and login | Join by QR code, register with name/USN/phone/branch/PIN, session saved in the browser | P3 | DONE |
+| F2 | Live player status | Waiting / Music / SCAN NOW / Locked in / Standing / Eliminated, updated in real time | P3 | DONE |
+| F3 | In-site chair scanner | Camera QR scanner inside `/play`, the only way to claim a chair | P3 | DONE |
+| F4 | Randomized questions | A random unseen question per scan at the round's difficulty, MCQ or one word | P2–P3 | DONE |
+| F5 | Answer timer | Countdown set by the admin per round; the server enforces the deadline | P2–P3 | DONE |
+| F6 | Anti-cheat | Fullscreen, no copy/select, watermark, alerts when the player leaves the site | P3 | DONE |
+| F7 | Chair QR generator | Create chairs, toggle active/inactive, print a QR sheet with big chair numbers | P4 | DONE |
+| F8 | Live chair map | Each chair tile shows the player's name, USN, phone, question, answer, ✅/❌ and time | P4 | DONE |
+| F9 | Game console | Start round → music → scan window → judging → next spin / end round → set chairs | P4 | DONE |
+| F10 | Admin dashboard and alerts | Counts, answered this spin, fastest times, live anti-cheat alert feed | P4 | DONE |
+| F11 | Player management | List, search, status, kick, manual overrides | P4 | DONE |
+| F12 | Question bank | Manual add/edit, CSV import, difficulty 1–5, topics | P5 | DONE |
+| F13a | Upload any question file | PDF, Word, photo, text or CSV → Gemini extracts questions and answers → review → save | P5 | DONE |
+| F13 | Gemini question generation | Generate by topic, difficulty and count, then review before saving | P5 | DONE |
+| F14 | Spotify music control | Log in, search, playlist, play/pause/skip/volume; pause can open the scan window | P6 | DONE (live Spotify check pending) |
+| F15 | Projector screen | Live 3D scene, SCAN NOW splash, round-over and elimination animations, 3D podium | P7 | DONE |
+| F17 | New game (next team) | Admin ends the current game; the next team registers fresh; chair QR codes never change | P2, P4 | DONE |
+| F16 | Bot simulation | A script plays a full game against cloud Supabase with N bots | P8 | DONE |
 
 ## Feature details
 
