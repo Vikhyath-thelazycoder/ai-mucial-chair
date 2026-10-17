@@ -9,3 +9,7 @@ out/
 next-env.d.ts
 .DS_Store
 .vercel
+
+# Phase 8 demo recording (scripts/record-demo.ts)
+demo/
+.next-demo/

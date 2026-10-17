@@ -15,7 +15,7 @@ export function Hud({ view }: { view: ScreenView }) {
     { label: "Chairs", value: view.chairCount },
   ];
   return (
-    <header className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-[2vw] bg-gradient-to-b from-bg/90 to-transparent p-[2vw] pb-[4vw]">
+    <header className="pointer-events-none relative z-10 flex shrink-0 items-start justify-between gap-[2vw] border-b border-line/60 px-[2vw] py-[1.2vw]">
       <div>
         <p className="font-display text-[1.3vw] font-extrabold tracking-[0.35em] text-gold">TECHVIDYA</p>
         <p className="mt-[0.3vw] font-display text-[2.6vw] leading-none font-black tracking-[0.06em]">
@@ -42,7 +42,7 @@ export function Hud({ view }: { view: ScreenView }) {
 function Visualizer({ playing, reducedMotion }: { playing: boolean; reducedMotion: boolean }) {
   const bars = 24;
   return (
-    <div className="flex h-[6vw] items-end justify-center gap-[0.4vw]" aria-hidden="true">
+    <div className="flex h-[4.5vw] items-end justify-center gap-[0.4vw]" aria-hidden="true">
       {Array.from({ length: bars }, (_, i) => (
         <motion.span
           key={i}
@@ -74,7 +74,7 @@ function useSince(iso: string | null) {
 export function StageWord({ view, reducedMotion }: { view: ScreenView; reducedMotion: boolean }) {
   const since = useSince(view.scanOpenedAt);
   return (
-    <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-col items-center gap-[1vw] p-[2.5vw] text-center">
+    <div data-stage-band className="pointer-events-none relative z-10 flex h-[19vh] shrink-0 items-center justify-center border-t border-line/60 px-[2.5vw] text-center">
       <AnimatePresence mode="wait">
         {view.stage === "lobby" && (
           <motion.div key="lobby" {...fade}>
@@ -83,21 +83,21 @@ export function StageWord({ view, reducedMotion }: { view: ScreenView; reducedMo
           </motion.div>
         )}
         {view.stage === "music" && (
-          <motion.div key="music" {...fade} className="flex flex-col items-center gap-[1vw]">
+          <motion.div key="music" {...fade} className="flex items-center gap-[2.5vw]">
             <Visualizer playing reducedMotion={reducedMotion} />
             <p className="font-display text-[5vw] leading-none font-black tracking-[0.1em] text-cyan drop-shadow-[0_0_30px_rgb(34_228_255/0.5)]">WALK!</p>
           </motion.div>
         )}
         {view.stage === "scan" && (
-          <motion.div key="scan" {...fade} className="flex flex-col items-center">
+          <motion.div key="scan" {...fade} className="flex items-baseline gap-[2.5vw]">
             <motion.p
-              className="font-display text-[9vw] leading-none font-black text-amber drop-shadow-[0_0_50px_rgb(255_176_32/0.7)]"
+              className="font-display text-[7.5vw] leading-none font-black text-amber drop-shadow-[0_0_50px_rgb(255_176_32/0.7)]"
               animate={reducedMotion ? { opacity: 1 } : { scale: [1, 1.12, 1, 1.12, 1] }}
               transition={{ duration: 1.2, times: [0, 0.25, 0.5, 0.75, 1] }}
             >
               SCAN NOW
             </motion.p>
-            <p className="mt-[0.6vw] font-mono text-[2.4vw] text-amber tabular-nums">
+            <p className="font-mono text-[3vw] text-amber tabular-nums">
               {String(Math.floor(since / 60)).padStart(2, "0")}:{String(since % 60).padStart(2, "0")}
             </p>
           </motion.div>

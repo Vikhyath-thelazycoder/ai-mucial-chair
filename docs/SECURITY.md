@@ -24,14 +24,15 @@ The threat model follows STRIDE over every trust boundary in [ARCHITECTURE.md](A
 | T7 | Tampering | Answering twice, or changing an answer | `ALREADY_ANSWERED` once an answer is recorded | SQL |
 | T8 | Elevation of privilege | A player calls admin RPCs or writes to `chairs` or `questions` | `is_admin()` check in every admin RPC. Admin-only RLS on writes. `public_state` is RPC-write only | SQL: as a player, each admin RPC → `NOT_ADMIN`; direct insert → RLS denied |
 | T9 | Information disclosure | A player reads other players' phone numbers or USNs | Players see only their own `players` row. `public_state` has names only | SQL: player A can't select player B |
-| T10 | Spoofing | Brute-forcing a 6-digit PIN | Supabase Auth sign-in rate limits. The USN is needed too. Accepted risk for a one-day event (low value) | Manual check of Auth rate-limit settings |
+| T10 | Spoofing | Brute-forcing a 6-digit PIN | Supabase Auth sign-in rate limits. The USN is needed too. Accepted risk for a one-day event (low value) | `scripts/signin-burst.ts` measures the per-IP sign-in limit (default 30 per 5 min). For the fest it must be **raised** so 30+ phones on one campus WiFi can join (docs/reports/wifi-signin.md); hosts can reset a PIN |
 | T11 | Repudiation | The admin changes an outcome and it's disputed | Every override needs a reason and is written to `admin_audit` (insert-only) | SQL: an override creates an audit row |
 | T12 | Denial of service | Spamming `report_focus_event` or `claim_chair` | Focus events capped at 50 per attempt. Claims limited to one per spin. Gemini route rate-limited | SQL: the 51st focus event is ignored |
 | T13 | Injection (LLM) | A topic like "ignore instructions…", or Gemini returning malicious or off-format content | Topic passed as JSON data, with length and charset caps. zod validation of output. Admin review before saving. Rendered as text (no `dangerouslySetInnerHTML`) | Unit: invalid AI JSON is rejected (502) |
 | T14 | XSS | A player name like `<script>` shown on the admin panel or projector | React escaping everywhere. Name validated (letters, spaces, `.-'`, 2–40). CSP header | Unit: validator rejects it. No `innerHTML` in the code (lint rule) |
-| T15 | Information disclosure | Secrets leaking into the client bundle or the repo | Only `NEXT_PUBLIC_*` reach the client. `server-only` imports. `.env*` git-ignored. Service role never in Vercel | Build check: `grep` the `.next/static` output for key prefixes → none |
+| T15 | Information disclosure | Secrets leaking into the client bundle or the repo | Only `NEXT_PUBLIC_*` reach the client. `server-only` imports. `.env*` git-ignored. Service role never in Vercel | `scripts/check-bundle-secrets.mjs` after a build: the real secret values and secret-shaped tokens must appear in no client file and no tracked file |
 | T17 | Spoofing / DoS | Someone registers another student's USN first ("squatting"), so the real student can't join | USN is unique per game. The admin can remove a registration to free the USN and reset a player's PIN (P4, T-4.1 / T-4.2). Physical check by hosts at sign-up | Integration: duplicate USN → `DUPLICATE_USN`; admin removal frees it (P4) |
 | T16 | Cheating (out of band) | Looking up an answer on a second phone or another app | Fullscreen, copy/select blocked, watermark, alerts for leaving the site (`visibilitychange`/`blur`/`pagehide`), timer. **A second device cannot be detected.** The physical game hosts watch for it | Unit: the focus guard fires on visibility change |
+| T18 | Information disclosure | The projector shows who answered right or wrong before the host decides | `stage_seats` holds only `seated` until the admin calls `reveal_results` (admin-only RPC); the table is public read-only (names and seat states, no answers) and written only by security-definer SQL | Integration (`stage.test.ts`): seated on scan, still hidden at judging, green/red only after an admin reveal; players and anonymous visitors can't write seats; simulation checks it every spin |
 
 ## Authentication and authorization
 
@@ -102,3 +103,10 @@ All tests run before release (`agylite verify`). They are negative-first, and ea
 2. **Vitest:** input validators (names, USN, phone, CSV rows, AI output schema), QR parsing (rejects foreign URLs), focus guard behaviour, Gemini route auth (401/403/422).
 3. **Simulation:** concurrent claim races (T4), deadline enforcement (T6).
 4. **Build check:** no secret values in `.next/static`. `npm audit --omit=dev` shows no high or critical issues.
+
+## Dependency audit (T-802)
+
+- `npm audit --omit=dev --audit-level=high` must pass: no high or critical issue in anything that ships.
+- Accepted, with no fixed version published (checked 2026-10-17):
+  - `braces` ≤ 3.0.3 (high, GHSA-vfj7-8cjw-p6xm), through `eslint-config-next`: lint tooling only, never runs in the app or the browser.
+  - `sprintf-js` ≤ 1.1.3 (moderate, GHSA-hp3w-g68c-fv3c), through `mammoth` → `argparse`: `argparse` is mammoth's command-line parser; the app only calls mammoth's library API on the server, so the vulnerable formatting path is unreachable.

@@ -264,3 +264,26 @@ results:
   result: VERIFIED
   evidence: .agylite/evidence/20261016T203618324002Z.json
   at: '2026-10-16T20:36:22+00:00'
+- task: null
+  result: PASSED
+  evidence: .agylite/evidence/20261016T221825187467Z.json
+  at: '2026-10-16T22:18:25+00:00'
+- task: T-801
+  result: VERIFIED
+  evidence: .agylite/evidence/20261016T221825187467Z.json
+  at: '2026-10-16T22:18:31+00:00'
+- task: T-802
+  result: VERIFIED
+  evidence: .agylite/evidence/20261016T221825187467Z.json
+  at: '2026-10-16T22:18:31+00:00'
+browser_exceptions:
+- reason: 'User-approved Phase 8 demo video: record admin console, projector and a bot player''s phone in headless Chromium
+    (Playwright) against a local dev server on the aimc-test database; not used as verification evidence'
+  requested_by: user
+  at: '2026-10-16T21:05:50+00:00'
+  screenshots_in_context: false
+- reason: 'Projector layout regression check: headless Chromium against a local build on aimc-test; measures name-tag DOM
+    rectangles for overlaps and band intrusion; no screenshots'
+  requested_by: user
+  at: '2026-10-17T01:50:28+00:00'
+  screenshots_in_context: false

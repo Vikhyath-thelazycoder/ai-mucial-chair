@@ -31,9 +31,35 @@ export async function signedInUser(label: string): Promise<Actor> {
   if (error || !data.user) throw error ?? new Error("createUser failed");
   createdUsers.push(data.user.id);
   const client = anon();
-  const signIn = await client.auth.signInWithPassword({ email, password });
-  if (signIn.error) throw signIn.error;
+  await withAuthRetry(() => startSession(client, email, password));
   return { client, userId: data.user.id, email };
+}
+
+/** Auth rate limits are per IP per 5 minutes: wait them out (up to 8 min) instead of failing a whole run. */
+async function withAuthRetry(fn: () => Promise<void>) {
+  const until = Date.now() + 8 * 60_000;
+  for (;;) {
+    try {
+      return await fn();
+    } catch (e) {
+      if (!(e instanceof Error && /rate limit/i.test(e.message)) || Date.now() > until) throw e;
+      await sleep(20_000);
+    }
+  }
+}
+
+async function startSession(client: SupabaseClient, email: string, password: string) {
+  if (process.env.HARNESS_LOGIN === "otp") {
+    // Bots (scripts/sim): a one-time link verified by the client draws on Auth's verify bucket instead of the
+    // sign-in bucket (30 per 5 minutes per IP), leaving sign-ins for the real login screens in the demo.
+    const link = await service.auth.admin.generateLink({ type: "magiclink", email });
+    if (link.error) throw link.error;
+    const verify = await client.auth.verifyOtp({ token_hash: link.data.properties.hashed_token, type: "magiclink" });
+    if (verify.error) throw verify.error;
+  } else {
+    const signIn = await client.auth.signInWithPassword({ email, password });
+    if (signIn.error) throw signIn.error;
+  }
 }
 
 // Supabase Auth rate-limits sign-ins per IP, so players and the admin are pooled: each pooled account signs in

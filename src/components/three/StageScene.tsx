@@ -1,11 +1,12 @@
 "use client";
 
-import { Billboard, Environment, Html, Lightformer, MeshReflectorMaterial, PerformanceMonitor, useGLTF } from "@react-three/drei";
+import { Billboard, Environment, Html, Lightformer, MeshReflectorMaterial, OrbitControls, PerformanceMonitor, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { createContext, Suspense, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { AdditiveBlending, CanvasTexture, Color, Group, InstancedMesh, Matrix4, MeshBasicMaterial, MeshStandardMaterial, Object3D, SRGBColorSpace, Vector3, type Mesh } from "three";
 import { tokens } from "@/lib/design/tokens";
+import { placeLabels, type Shift } from "@/lib/screen/labels";
 import { fitCamera, SEAT_LIGHT, shirtColor } from "@/lib/screen/stage";
 import type { SeatState } from "@/lib/screen/view";
 import { ringLayout, stageRadius } from "./ringLayout";
@@ -23,6 +24,8 @@ type Props = {
   reducedMotion: boolean;
   /** Show chair number plates and seated people (projector). Off for the small decorative ring. */
   showPeople?: boolean;
+  /** Drag to rotate around the ring (projector only). Zoom stays automatic so every chair fits. */
+  interactive?: boolean;
   /** "low" drops the mirrored floor and bloom (phones). A slow frame rate also switches to it, never to 2D. */
   quality?: "high" | "low";
   maxDpr?: number;
@@ -150,6 +153,60 @@ function SeatLight({ state }: { state: SeatState }) {
   );
 }
 
+type Tag = { anchor: Object3D; el: HTMLDivElement; line: HTMLDivElement; now: Shift; target: Shift };
+const Tags = createContext<Map<string, Tag> | null>(null);
+
+/** A callback ref for a name tag (Html mounts its children in a separate root, so plain refs can lag). */
+function useTagRef(id: string, anchor: React.RefObject<Object3D | null>) {
+  const tags = useContext(Tags);
+  return useCallback(
+    (node: HTMLDivElement | null) => {
+      if (!tags) return;
+      if (node && anchor.current) {
+        const prev = tags.get(id);
+        tags.set(id, { anchor: anchor.current, el: node, line: node.lastElementChild as HTMLDivElement, now: prev?.now ?? { dx: 0, dy: 0 }, target: prev?.target ?? { dx: 0, dy: 0 } });
+      } else if (!tags.get(id)?.el.isConnected) {
+        // Only forget the tag if it really left the page: a re-render can attach the new tag before
+        // detaching the old one, and deleting then would leave the new tag unmanaged (overlapping).
+        tags.delete(id);
+      }
+    },
+    [tags, id, anchor],
+  );
+}
+
+/** Every frame: measure the tags where they are, move any that overlap a nearer tag, ease them there. */
+function TagLayout() {
+  const tags = useContext(Tags);
+  const v = useMemo(() => new Vector3(), []);
+  useFrame(({ camera, gl }) => {
+    if (!tags || tags.size === 0) return;
+    const stage = gl.domElement.getBoundingClientRect();
+    const boxes = [...tags.entries()].map(([id, t]) => {
+      const r = t.el.getBoundingClientRect();
+      // Natural position = where it is now, minus the move we applied last frame.
+      return { id, left: r.left - t.now.dx, right: r.right - t.now.dx, top: r.top + t.now.dy, bottom: r.bottom + t.now.dy, depth: t.anchor.getWorldPosition(v).distanceTo(camera.position), scale: r.width / Math.max(1, t.el.offsetWidth) };
+    });
+    const previous = new Map([...tags].map(([id, t]) => [id, t.target]));
+    const shifts = placeLabels(boxes, { top: stage.top + 6, bottom: stage.bottom - 6, left: stage.left + 6, right: stage.right - 6 }, 320, previous);
+    for (const b of boxes) {
+      const t = tags.get(b.id)!;
+      t.target = shifts.get(b.id) ?? { dx: 0, dy: 0 };
+      t.now = { dx: t.now.dx + (t.target.dx - t.now.dx) * 0.45, dy: t.now.dy + (t.target.dy - t.now.dy) * 0.45 };
+      const k = b.scale || 1; // the tag sits inside a scaled Html wrapper
+      const dx = t.now.dx / k;
+      const dy = t.now.dy / k;
+      t.el.style.transform = `translate(${dx}px, ${-dy}px)`;
+      t.el.dataset.managed = "1";
+      // Line from the tag's centre back to its seat (drawn behind the tag): length and angle of (-dx, +dy).
+      const len = Math.hypot(dx, dy);
+      t.line.style.height = `${len}px`;
+      t.line.style.transform = `rotate(${Math.atan2(dx, dy)}rad)`;
+    }
+  });
+  return null;
+}
+
 const TAG: Record<SeatState, string> = {
   empty: "",
   seated: "border-text/50 text-text",
@@ -170,6 +227,7 @@ function Chair({
   const { scene } = useGLTF(CHAIR_URL);
   const model = useMemo(() => withShadows(scene.clone(true)), [scene]);
   const group = useRef<Group>(null);
+  const tagRef = useTagRef(`chair-${number}`, group);
 
   // Keep a person who just lost their seat on stage long enough to stand up and leave.
   const [ghost, setGhost] = useState<string | null>(null);
@@ -206,11 +264,16 @@ function Chair({
       {showPeople && occupant && <Person key={occupant} name={occupant} leaving={false} reducedMotion={reducedMotion} />}
       {showPeople && ghost && !occupant && <Person key={`ghost-${ghost}`} name={ghost} leaving reducedMotion={reducedMotion} />}
       {showPeople && occupant && !leaving && (
-        <Html position={[0, 1.68, 0.05]} center distanceFactor={7} zIndexRange={[20, 0]}>
-          <div
-            className={`pointer-events-none max-w-[16ch] truncate rounded-full border-2 bg-bg/85 px-4 py-1.5 font-display text-2xl font-extrabold whitespace-nowrap transition-colors duration-300 ${TAG[shownState]}`}
-          >
-            {occupant}
+        <Html position={[0, 1.62, 0.05]} center distanceFactor={7} zIndexRange={[20, 0]}>
+          {/* Full name, up to two lines; TagLayout lifts it clear of nearer tags and draws a line to the seat. */}
+          <div ref={tagRef} className="pointer-events-none relative flex flex-col items-center will-change-transform">
+            <div
+              data-name-tag
+              className={`max-w-[12ch] rounded-[0.8em] border-2 bg-bg/90 px-[0.6em] py-[0.2em] text-center font-display text-[clamp(11px,0.95vw,22px)] leading-tight font-extrabold break-words transition-colors duration-300 ${TAG[shownState]}`}
+            >
+              {occupant}
+            </div>
+            <div className={`absolute top-1/2 left-1/2 -z-10 w-0.5 origin-top rounded-full opacity-70 ${shownState === "correct" ? "bg-[#2BE36F]" : shownState === "wrong" ? "bg-red" : "bg-text/60"}`} style={{ height: 0 }} />
           </div>
         </Html>
       )}
@@ -345,16 +408,29 @@ function Confetti({ burstKey }: { burstKey: number | null }) {
   );
 }
 
-/** Frames the whole ring to fill the viewport at any aspect ratio; eases to the podium close-up. */
-function CameraRig({ radius, podium, fov }: { radius: number; podium: boolean; fov: number }) {
+/**
+ * Frames the whole ring to fill the viewport at any aspect ratio; eases to the podium close-up. With drag
+ * controls (projector) the viewer chooses the angle and this only keeps the distance and target right.
+ */
+function CameraRig({ radius, podium, fov, interactive }: { radius: number; podium: boolean; fov: number; interactive: boolean }) {
   const { camera, size } = useThree();
+  const controls = useThree((s) => s.controls) as unknown as { target: Vector3; update: () => void } | null;
   const look = useRef(new Vector3(0, 0.8, 0));
   useFrame((_, dt) => {
+    const k = 1 - Math.exp(-1.6 * dt);
     const fit = fitCamera(radius, size.width / Math.max(size.height, 1), fov);
-    const target = podium ? new Vector3(0, 1.25, 3.6) : new Vector3(...fit.position);
-    const lookAt = podium ? new Vector3(0, 0.75, 0) : new Vector3(...fit.target);
-    camera.position.lerp(target, 1 - Math.exp(-1.6 * dt));
-    look.current.lerp(lookAt, 1 - Math.exp(-1.6 * dt));
+    const target = podium ? new Vector3(0, 0.75, 0) : new Vector3(...fit.target);
+    if (interactive && controls) {
+      controls.target.lerp(target, k);
+      const want = podium ? 3.9 : new Vector3(...fit.position).distanceTo(new Vector3(...fit.target));
+      const dir = camera.position.clone().sub(controls.target);
+      const dist = dir.length();
+      camera.position.copy(controls.target).add(dir.normalize().multiplyScalar(dist + (want - dist) * k));
+      return;
+    }
+    const pos = podium ? new Vector3(0, 1.25, 3.6) : new Vector3(...fit.position);
+    camera.position.lerp(pos, k);
+    look.current.lerp(target, k);
     camera.lookAt(look.current);
   });
   return null;
@@ -363,7 +439,8 @@ function CameraRig({ radius, podium, fov }: { radius: number; podium: boolean; f
 const FOV = 38;
 
 /** The live 3D stage: realistic chairs (and seated players on the projector) on a glossy floor under studio light. */
-export default function StageScene({ chairs, spinning, podium, confettiKey, reducedMotion, showPeople = false, quality: initialQuality = "high", maxDpr = 2 }: Props) {
+export default function StageScene({ chairs, spinning, podium, confettiKey, reducedMotion, showPeople = false, interactive = false, quality: initialQuality = "high", maxDpr = 2 }: Props) {
+  const tags = useMemo(() => new Map<string, Tag>(), []);
   const [quality, setQuality] = useState(initialQuality);
   const high = quality === "high";
   const present = chairs.filter((c) => !c.leaving).length;
@@ -402,11 +479,14 @@ export default function StageScene({ chairs, spinning, podium, confettiKey, redu
       />
       <spotLight position={[-radius - 3, 4, -radius - 3]} angle={0.8} penumbra={1} intensity={40} color={tokens.cyan} />
 
+      <Tags.Provider value={tags}>
       <Suspense fallback={null}>
         <Ring chairs={chairs} spinning={spinning} hidden={showPodium} showPeople={showPeople} reducedMotion={reducedMotion} />
         {showPeople && <Podium winners={podium ?? []} visible={showPodium} reducedMotion={reducedMotion} />}
         {showPeople && !reducedMotion && <Confetti burstKey={confettiKey} />}
       </Suspense>
+      {showPeople && <TagLayout />}
+      </Tags.Provider>
 
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <circleGeometry args={[radius + 10, 96]} />
@@ -429,7 +509,10 @@ export default function StageScene({ chairs, spinning, podium, confettiKey, redu
         )}
       </mesh>
 
-      <CameraRig radius={radius} podium={showPodium} fov={FOV} />
+      {interactive && (
+        <OrbitControls makeDefault enableZoom={false} enablePan={false} enableDamping dampingFactor={0.08} rotateSpeed={0.55} minPolarAngle={0.25} maxPolarAngle={1.42} target={start.target} />
+      )}
+      <CameraRig radius={radius} podium={showPodium} fov={FOV} interactive={interactive} />
       {high && (
         <EffectComposer>
           <Bloom intensity={0.5} luminanceThreshold={0.8} mipmapBlur />

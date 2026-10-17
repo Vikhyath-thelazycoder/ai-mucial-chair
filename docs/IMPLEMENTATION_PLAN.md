@@ -103,15 +103,15 @@ Objective: The live 3D show for the audience, with round and podium sequences.
 | T-7.2 | Live 3D stage: numbered chairs per admin count, realistic seated man + floating name the moment a player scans, admin 'Show results on projector' turns seats green/red, wrong players stand up and leave on next spin; Techvidya/college/AI Musical Chair header with round + chairs only; no join QR on projector; main link goes to admin login | VERIFIED | — | — | — | — | — | stage_seats shows seated on scan and no correctness until reveal_results (admin only); revealed spin shows correct/wrong; next spin empties wrong seats; projector fills the screen at any aspect; / redirects to /admin |
 
 ## P8 · Simulation, hardening & release
-Status: PLANNED · Depends: P3, P4, P5, P6, P7 · Paths: scripts/**, integration/** · Flags: testing, security, release · Evidence: —
+Status: IN_PROGRESS · Depends: P3, P4, P5, P6, P7 · Paths: scripts/**, integration/** · Flags: testing, security, release · Evidence: —
 Objective: Proof that a full game works under load and attack, then deploy.
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
 |---|---|---|---|---|---|---|---|---|
-| T-801 | `scripts/simulate.ts`: N bots on aimc-test, concurrent claims, invariants, cleanup | PLANNED | P2 | testing/strategy | T4, T6 | — | simulation | Random Y bots and admin-style random chair add/delete schedules: correct eliminations and podium, 5 runs green |
-| T-802 | Full security test pass (SECURITY.md list) + bundle secret grep + npm audit | PLANNED | T-801 | testing/security | All | — | integration, vitest, audit | All negative tests pass; no high or critical issues |
-| T-803 | Deploy to Vercel prod + Supabase prod; admin accounts; rehearsal with real phones | PLANNED | T-802 | engineering/release | Env per SECURITY.md | — | release checklist | Rehearsal checklist signed off by the user |
-| T-8.1 | Rehearsal: confirm sign-in rate limits on shared campus WiFi | PLANNED | — | — | — | — | — | 30+ phones on one WiFi register and log in within 5 minutes without rate-limit errors, or limits are raised in Supabase Auth settings |
+| T-801 | `scripts/simulate.ts`: N bots on aimc-test, concurrent claims, invariants, cleanup | VERIFIED | P2 | testing/strategy | T4, T6 | — | simulation | Random Y bots and admin-style random chair add/delete schedules: correct eliminations and podium, 5 runs green |
+| T-802 | Full security test pass (SECURITY.md list) + bundle secret grep + npm audit | VERIFIED | T-801 | testing/security | All | — | integration, vitest, audit | All negative tests pass; no high or critical issues |
+| T-803 | Deploy to Vercel prod + Supabase prod; admin accounts; rehearsal with real phones | READY_FOR_VERIFICATION | T-802 | engineering/release | Env per SECURITY.md | — | release checklist | Rehearsal checklist signed off by the user |
+| T-8.1 | Rehearsal: confirm sign-in rate limits on shared campus WiFi | READY_FOR_VERIFICATION | — | — | — | — | — | 30+ phones on one WiFi register and log in within 5 minutes without rate-limit errors, or limits are raised in Supabase Auth settings |
 
 ## Change history
 
@@ -275,3 +275,14 @@ Objective: Proof that a full game works under load and attack, then deploy.
 | 2026-10-17 | T-7.2: IN_PROGRESS → READY_FOR_VERIFICATION |
 | 2026-10-17 | T-7.2: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T203618324002Z.json) |
 | 2026-10-17 | P7: IN_PROGRESS → VERIFIED (roll-up from T-7.2) |
+| 2026-10-17 | T-801: PLANNED → IN_PROGRESS |
+| 2026-10-17 | P8: PLANNED → IN_PROGRESS (roll-up from T-801) |
+| 2026-10-17 | T-802: PLANNED → IN_PROGRESS |
+| 2026-10-17 | T-803: PLANNED → IN_PROGRESS |
+| 2026-10-17 | T-8.1: PLANNED → IN_PROGRESS |
+| 2026-10-17 | T-801: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-17 | T-801: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T221825187467Z.json) |
+| 2026-10-17 | T-802: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-17 | T-802: READY_FOR_VERIFICATION → VERIFIED (evidence: .agylite/evidence/20261016T221825187467Z.json) |
+| 2026-10-17 | T-803: IN_PROGRESS → READY_FOR_VERIFICATION |
+| 2026-10-17 | T-8.1: IN_PROGRESS → READY_FOR_VERIFICATION |

@@ -1,9 +1,9 @@
 schema_version: 1
 plan_path: docs/IMPLEMENTATION_PLAN.md
-plan_sha256: b3c7dae2d1601e0718376a70bb756b26676b850d77eab0491d86fc623608e857
-plan_size: 29556
-plan_mtime_ns: 1792182982498724516
-built: '2026-10-16T20:36:22+00:00'
+plan_sha256: b4ebfafff6f6fafc258497ce2d6b9affbbcec8d58db143069cb384ab153c4df3
+plan_size: 30338
+plan_mtime_ns: 1792189111986498419
+built: '2026-10-16T22:18:31+00:00'
 current_phase: P6
 phases:
 - phase_id: P1
@@ -284,22 +284,24 @@ phases:
     end: 14743
 - phase_id: P8
   phase_name: Simulation, hardening & release
-  status: PLANNED
+  status: IN_PROGRESS
   objective: Proof that a full game works under load and attack, then deploy.
-  active_tasks: []
+  active_tasks:
+  - T-803
+  - T-8.1
   tasks:
   - id: T-801
     title: '`scripts/simulate.ts`: N bots on aimc-test, concurrent claims, invariants, cleanup'
-    status: PLANNED
+    status: VERIFIED
   - id: T-802
     title: Full security test pass (SECURITY.md list) + bundle secret grep + npm audit
-    status: PLANNED
+    status: VERIFIED
   - id: T-803
     title: Deploy to Vercel prod + Supabase prod; admin accounts; rehearsal with real phones
-    status: PLANNED
+    status: READY_FOR_VERIFICATION
   - id: T-8.1
     title: 'Rehearsal: confirm sign-in rate limits on shared campus WiFi'
-    status: PLANNED
+    status: READY_FOR_VERIFICATION
   dependencies:
   - P3
   - P4
@@ -316,4 +318,4 @@ phases:
   evidence_pointer: null
   section:
     start: 14743
-    end: 16072
+    end: 16108

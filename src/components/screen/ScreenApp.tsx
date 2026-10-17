@@ -83,11 +83,13 @@ export function ScreenApp() {
   const podium = view.stage === "podium" ? view.winners : null;
 
   return (
-    <main className="relative h-dvh w-full cursor-none overflow-hidden bg-bg text-text select-none">
-      <div className="absolute inset-0">
-        <StageScene chairs={chairs} spinning={view.stage === "music"} podium={podium} confettiKey={confettiKey} reducedMotion={reducedMotion} showPeople maxDpr={2} />
-      </div>
+    // Three bands: header, the 3D stage, and the state words. Name tags are clipped to the stage band, so
+    // SCAN NOW / WALK! / results never sit on top of a player's name. Drag the stage to look around.
+    <main className="relative flex h-dvh w-full flex-col overflow-hidden bg-bg text-text select-none">
       <Hud view={view} />
+      <div className="relative min-h-0 flex-1 cursor-grab overflow-hidden active:cursor-grabbing">
+        <StageScene chairs={chairs} spinning={view.stage === "music"} podium={podium} confettiKey={confettiKey} reducedMotion={reducedMotion} showPeople interactive maxDpr={2} />
+      </div>
       <StageWord view={view} reducedMotion={reducedMotion} />
       <SequenceOverlay sequence={sequence} reducedMotion={reducedMotion} />
       {connection === "offline" && (
