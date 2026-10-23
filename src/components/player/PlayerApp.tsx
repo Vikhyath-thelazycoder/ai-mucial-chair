@@ -88,11 +88,11 @@ export function PlayerApp() {
       />
     );
   } else {
-    body = <StatusPanel view={view!} pub={pub.state} />;
+    body = <StatusPanel view={view!} pub={pub.state} version={pub.version} />;
   }
 
   return (
-    <main className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col items-center gap-8 px-4 pt-5 pb-10">
+    <main className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col items-center gap-5 px-4 pt-5 pb-10 sm:gap-8">
       <Header
         round={pub.state?.round?.status === "active" ? pub.state.round.number : undefined}
         name={me?.player.name}

@@ -34,9 +34,34 @@ describe("projector layout (names never hidden)", () => {
     expect(stage).toMatch(/placeLabels\(/);
   });
 
-  it("drag-to-rotate is on the projector only, with automatic zoom", () => {
+  it("drag-to-rotate on the projector and phones, with automatic zoom", () => {
     expect(app).toMatch(/<StageScene [^>]*\binteractive\b/);
-    expect(src("components/three/ChairRing.tsx")).not.toMatch(/\binteractive\b/);
     expect(stage).toMatch(/<OrbitControls[^>]*enableZoom=\{false\}[^>]*enablePan=\{false\}/);
+  });
+});
+
+describe("player screen live stage (mobile)", () => {
+  const phone = src("components/player/PlayerStage.tsx");
+  const status = src("components/player/StatusPanel.tsx");
+  const stage = src("components/three/StageScene.tsx");
+
+  it("the status screen shows the same live stage as the projector: seats, people, reveal and podium", () => {
+    expect(status).toMatch(/<PlayerStage /);
+    expect(phone).toMatch(/useStageSeats\(version\)/);
+    expect(phone).toMatch(/screenView\(pub, seats\)/);
+    expect(phone).toMatch(/<StageScene[^>]*\bshowPeople\b[^>]*\binteractive\b[^>]*\bcompact\b/);
+    expect(phone).toMatch(/podium=\{podium\}/);
+  });
+
+  it("is phone-sized and light: bounded height, clipped tags, low quality, capped pixel ratio", () => {
+    expect(phone).toMatch(/h-\[clamp\(260px,48dvh,460px\)\] w-full overflow-hidden/);
+    expect(phone).toMatch(/quality="low"/);
+    expect(phone).toMatch(/maxDpr=\{1\.5\}/);
+  });
+
+  it("compact mode keeps tags a readable fixed size and only turns the ring", () => {
+    expect(stage).toMatch(/distanceFactor=\{compact \? undefined : 7\}/);
+    expect(stage).toMatch(/minPolarAngle=\{compact \? FIT_POLAR/);
+    expect(stage).toMatch(/maxPolarAngle=\{compact \? FIT_POLAR/);
   });
 });

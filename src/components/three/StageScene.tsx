@@ -29,6 +29,8 @@ type Props = {
   /** "low" drops the mirrored floor and bloom (phones). A slow frame rate also switches to it, never to 2D. */
   quality?: "high" | "low";
   maxDpr?: number;
+  /** Phone layout: fixed-size name tags and winner labels that stay readable on a small canvas, drag turns only. */
+  compact?: boolean;
 };
 
 const CHAIR_URL = "/models/chair.glb";
@@ -176,7 +178,7 @@ function useTagRef(id: string, anchor: React.RefObject<Object3D | null>) {
 }
 
 /** Every frame: measure the tags where they are, move any that overlap a nearer tag, ease them there. */
-function TagLayout() {
+function TagLayout({ compact }: { compact: boolean }) {
   const tags = useContext(Tags);
   const v = useMemo(() => new Vector3(), []);
   useFrame(({ camera, gl }) => {
@@ -188,7 +190,7 @@ function TagLayout() {
       return { id, left: r.left - t.now.dx, right: r.right - t.now.dx, top: r.top + t.now.dy, bottom: r.bottom + t.now.dy, depth: t.anchor.getWorldPosition(v).distanceTo(camera.position), scale: r.width / Math.max(1, t.el.offsetWidth) };
     });
     const previous = new Map([...tags].map(([id, t]) => [id, t.target]));
-    const shifts = placeLabels(boxes, { top: stage.top + 6, bottom: stage.bottom - 6, left: stage.left + 6, right: stage.right - 6 }, 320, previous);
+    const shifts = placeLabels(boxes, { top: stage.top + 6, bottom: stage.bottom - 6, left: stage.left + 6, right: stage.right - 6 }, compact ? stage.height * 0.4 : 320, previous);
     for (const b of boxes) {
       const t = tags.get(b.id)!;
       t.target = shifts.get(b.id) ?? { dx: 0, dy: 0 };
@@ -223,7 +225,8 @@ function Chair({
   rotationY,
   showPeople,
   reducedMotion,
-}: StageChair & { position: [number, number, number]; rotationY: number; showPeople: boolean; reducedMotion: boolean }) {
+  compact,
+}: StageChair & { position: [number, number, number]; rotationY: number; showPeople: boolean; reducedMotion: boolean; compact: boolean }) {
   const { scene } = useGLTF(CHAIR_URL);
   const model = useMemo(() => withShadows(scene.clone(true)), [scene]);
   const group = useRef<Group>(null);
@@ -264,12 +267,13 @@ function Chair({
       {showPeople && occupant && <Person key={occupant} name={occupant} leaving={false} reducedMotion={reducedMotion} />}
       {showPeople && ghost && !occupant && <Person key={`ghost-${ghost}`} name={ghost} leaving reducedMotion={reducedMotion} />}
       {showPeople && occupant && !leaving && (
-        <Html position={[0, 1.62, 0.05]} center distanceFactor={7} zIndexRange={[20, 0]}>
+        // On a phone the tags keep one readable size instead of scaling with distance (they would cover the ring).
+        <Html position={[0, 1.62, 0.05]} center distanceFactor={compact ? undefined : 7} zIndexRange={[20, 0]}>
           {/* Full name, up to two lines; TagLayout lifts it clear of nearer tags and draws a line to the seat. */}
           <div ref={tagRef} className="pointer-events-none relative flex flex-col items-center will-change-transform">
             <div
               data-name-tag
-              className={`max-w-[12ch] rounded-[0.8em] border-2 bg-bg/90 px-[0.6em] py-[0.2em] text-center font-display text-[clamp(11px,0.95vw,22px)] leading-tight font-extrabold break-words transition-colors duration-300 ${TAG[shownState]}`}
+              className={`max-w-[12ch] rounded-[0.8em] border-2 bg-bg/90 px-[0.6em] py-[0.2em] text-center font-display ${compact ? "text-[11px]" : "text-[clamp(11px,0.95vw,22px)]"} leading-tight font-extrabold break-words transition-colors duration-300 ${TAG[shownState]}`}
             >
               {occupant}
             </div>
@@ -281,7 +285,7 @@ function Chair({
   );
 }
 
-function Ring({ chairs, spinning, hidden, showPeople, reducedMotion }: { chairs: StageChair[]; spinning: boolean; hidden: boolean; showPeople: boolean; reducedMotion: boolean }) {
+function Ring({ chairs, spinning, hidden, showPeople, reducedMotion, compact }: { chairs: StageChair[]; spinning: boolean; hidden: boolean; showPeople: boolean; reducedMotion: boolean; compact: boolean }) {
   const group = useRef<Group>(null);
   const speed = useRef(0);
   const present = chairs.filter((c) => !c.leaving).length;
@@ -309,13 +313,13 @@ function Ring({ chairs, spinning, hidden, showPeople, reducedMotion }: { chairs:
       {chairs.map((c) => {
         const seat = seats.get(c.number) ?? lastSeat.current.get(c.number) ?? { position: [0, 0, 0] as [number, number, number], rotationY: 0 };
         if (!c.leaving) lastSeat.current.set(c.number, seat);
-        return <Chair key={c.number} {...c} position={seat.position} rotationY={seat.rotationY} showPeople={showPeople} reducedMotion={reducedMotion} />;
+        return <Chair key={c.number} {...c} position={seat.position} rotationY={seat.rotationY} showPeople={showPeople} reducedMotion={reducedMotion} compact={compact} />;
       })}
     </group>
   );
 }
 
-function Podium({ winners, visible, reducedMotion }: { winners: { rank: number; name: string }[]; visible: boolean; reducedMotion: boolean }) {
+function Podium({ winners, visible, reducedMotion, compact }: { winners: { rank: number; name: string }[]; visible: boolean; reducedMotion: boolean; compact: boolean }) {
   const { nodes } = useGLTF(PODIUM_URL);
   const podium = useMemo(() => withShadows((nodes.Podium ?? new Object3D()).clone(true)), [nodes]);
   const trophy = useMemo(() => withShadows((nodes.Trophy ?? new Object3D()).clone(true)), [nodes]);
@@ -343,9 +347,11 @@ function Podium({ winners, visible, reducedMotion }: { winners: { rank: number; 
           .map((w) => {
             const [x, h] = steps[w.rank];
             return (
-              <Html key={w.rank} position={[x, h + (w.rank === 1 ? 1.05 : 0.45), 0.1]} center distanceFactor={5} zIndexRange={[20, 0]}>
-                <div className={`pointer-events-none text-center font-display font-extrabold whitespace-nowrap ${w.rank === 1 ? "text-5xl text-gold" : "text-3xl text-text"} drop-shadow-[0_0_18px_rgb(0_0_0/0.9)]`}>
-                  <div className="text-base tracking-[0.2em] text-muted">{w.rank === 1 ? "WINNER" : `#${w.rank}`}</div>
+              <Html key={w.rank} position={[x, h + (w.rank === 1 ? 1.05 : 0.45), 0.1]} center distanceFactor={compact ? undefined : 5} zIndexRange={[20, 0]}>
+                <div
+                  className={`pointer-events-none text-center font-display font-extrabold ${compact ? "max-w-[10ch] leading-tight break-words" : "whitespace-nowrap"} ${w.rank === 1 ? (compact ? "text-xl" : "text-5xl") + " text-gold" : (compact ? "text-sm" : "text-3xl") + " text-text"} drop-shadow-[0_0_18px_rgb(0_0_0/0.9)]`}
+                >
+                  <div className={`${compact ? "text-[10px]" : "text-base"} tracking-[0.2em] text-muted`}>{w.rank === 1 ? "WINNER" : `#${w.rank}`}</div>
                   {w.name}
                 </div>
               </Html>
@@ -437,9 +443,11 @@ function CameraRig({ radius, podium, fov, interactive }: { radius: number; podiu
 }
 
 const FOV = 38;
+/** The polar angle fitCamera looks down from (26° above the horizon). */
+const FIT_POLAR = Math.PI / 2 - (26 * Math.PI) / 180;
 
 /** The live 3D stage: realistic chairs (and seated players on the projector) on a glossy floor under studio light. */
-export default function StageScene({ chairs, spinning, podium, confettiKey, reducedMotion, showPeople = false, interactive = false, quality: initialQuality = "high", maxDpr = 2 }: Props) {
+export default function StageScene({ chairs, spinning, podium, confettiKey, reducedMotion, showPeople = false, interactive = false, quality: initialQuality = "high", maxDpr = 2, compact = false }: Props) {
   const tags = useMemo(() => new Map<string, Tag>(), []);
   const [quality, setQuality] = useState(initialQuality);
   const high = quality === "high";
@@ -481,11 +489,11 @@ export default function StageScene({ chairs, spinning, podium, confettiKey, redu
 
       <Tags.Provider value={tags}>
       <Suspense fallback={null}>
-        <Ring chairs={chairs} spinning={spinning} hidden={showPodium} showPeople={showPeople} reducedMotion={reducedMotion} />
-        {showPeople && <Podium winners={podium ?? []} visible={showPodium} reducedMotion={reducedMotion} />}
+        <Ring chairs={chairs} spinning={spinning} hidden={showPodium} showPeople={showPeople} reducedMotion={reducedMotion} compact={compact} />
+        {showPeople && <Podium winners={podium ?? []} visible={showPodium} reducedMotion={reducedMotion} compact={compact} />}
         {showPeople && !reducedMotion && <Confetti burstKey={confettiKey} />}
       </Suspense>
-      {showPeople && <TagLayout />}
+      {showPeople && <TagLayout compact={compact} />}
       </Tags.Provider>
 
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
@@ -510,7 +518,18 @@ export default function StageScene({ chairs, spinning, podium, confettiKey, redu
       </mesh>
 
       {interactive && (
-        <OrbitControls makeDefault enableZoom={false} enablePan={false} enableDamping dampingFactor={0.08} rotateSpeed={0.55} minPolarAngle={0.25} maxPolarAngle={1.42} target={start.target} />
+        // Phones turn the ring only (tilt is locked at the framing angle), so a vertical swipe never fights the page.
+        <OrbitControls
+          makeDefault
+          enableZoom={false}
+          enablePan={false}
+          enableDamping
+          dampingFactor={0.08}
+          rotateSpeed={compact ? 0.8 : 0.55}
+          minPolarAngle={compact ? FIT_POLAR : 0.25}
+          maxPolarAngle={compact ? FIT_POLAR : 1.42}
+          target={start.target}
+        />
       )}
       <CameraRig radius={radius} podium={showPodium} fov={FOV} interactive={interactive} />
       {high && (

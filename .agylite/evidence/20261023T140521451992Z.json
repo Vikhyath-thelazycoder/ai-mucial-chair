@@ -1,0 +1,170 @@
+{
+ "schema_version": 1,
+ "mode": "local-test-first",
+ "task": null,
+ "result": "FAILED",
+ "impact": {
+  "method": "graph",
+  "changed": [
+   "src/components/player/PlayerApp.tsx",
+   "src/components/player/PlayerStage.tsx",
+   "src/components/player/StatusPanel.tsx",
+   "src/components/screen/ScreenApp.tsx",
+   "src/components/screen/layout.test.ts",
+   "src/components/three/ChairRing.tsx",
+   "src/components/three/StageScene.tsx",
+   "src/components/three/noFallback.test.ts",
+   "src/hooks/useStageChairs.ts",
+   "src/hooks/useStageSeats.ts"
+  ],
+  "notice": null
+ },
+ "checks": [
+  {
+   "command": [
+    "npm",
+    "run",
+    "test",
+    "--",
+    "src/components/screen/layout.test.ts",
+    "src/components/three/noFallback.test.ts",
+    "src/app/c/[chairId]/page.test.tsx"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 713,
+   "diagnosis": [],
+   "kind": "test",
+   "name": "test",
+   "reason": "3 tests affected by the change",
+   "tests": [
+    "src/components/screen/layout.test.ts",
+    "src/components/three/noFallback.test.ts",
+    "src/app/c/[chairId]/page.test.tsx"
+   ],
+   "at": "2026-10-23T14:05:07Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "test:watch",
+    "--",
+    "src/components/screen/layout.test.ts",
+    "src/components/three/noFallback.test.ts",
+    "src/app/c/[chairId]/page.test.tsx"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 731,
+   "diagnosis": [],
+   "kind": "test",
+   "name": "test:watch",
+   "reason": "3 tests affected by the change",
+   "tests": [
+    "src/components/screen/layout.test.ts",
+    "src/components/three/noFallback.test.ts",
+    "src/app/c/[chairId]/page.test.tsx"
+   ],
+   "at": "2026-10-23T14:05:07Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "test:integration",
+    "--",
+    "src/components/screen/layout.test.ts",
+    "src/components/three/noFallback.test.ts",
+    "src/app/c/[chairId]/page.test.tsx"
+   ],
+   "exit_code": 1,
+   "result": "FAILED",
+   "duration_ms": 191,
+   "diagnosis": [],
+   "rerun": {
+    "exit_code": 1,
+    "result": "FAILED"
+   },
+   "flaky": false,
+   "kind": "test",
+   "name": "test:integration",
+   "reason": "3 tests affected by the change",
+   "tests": [
+    "src/components/screen/layout.test.ts",
+    "src/components/three/noFallback.test.ts",
+    "src/app/c/[chairId]/page.test.tsx"
+   ],
+   "at": "2026-10-23T14:05:08Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "typecheck"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 950,
+   "diagnosis": [],
+   "kind": "typecheck",
+   "name": "typecheck",
+   "reason": "typecheck check for the project",
+   "tests": [],
+   "at": "2026-10-23T14:05:09Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "lint"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 1145,
+   "diagnosis": [],
+   "kind": "lint",
+   "name": "lint",
+   "reason": "lint check for the project",
+   "tests": [],
+   "at": "2026-10-23T14:05:10Z"
+  },
+  {
+   "command": [
+    "/Users/vikhyathmgowda007/.agylite/core/bin/python",
+    "-m",
+    "compileall",
+    "-q",
+    "-x",
+    "(^|/)(\\.|node_modules|venv)",
+    "."
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 464,
+   "diagnosis": [],
+   "kind": "build",
+   "name": "compileall",
+   "reason": "build check for the project",
+   "tests": [],
+   "at": "2026-10-23T14:05:10Z"
+  },
+  {
+   "command": [
+    "npm",
+    "run",
+    "build"
+   ],
+   "exit_code": 0,
+   "result": "PASSED",
+   "duration_ms": 10751,
+   "diagnosis": [],
+   "kind": "build",
+   "name": "build",
+   "reason": "build check for the project",
+   "tests": [],
+   "at": "2026-10-23T14:05:21Z"
+  }
+ ],
+ "at": "2026-10-23T14:05:21Z"
+}

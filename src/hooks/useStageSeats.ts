@@ -5,8 +5,8 @@ import type { StageSeat } from "@/lib/screen/view";
 import { getBrowserSupabase } from "@/lib/supabase/client";
 
 /**
- * The projector's live seats (stage_seats, 0011): updates the moment someone scans. Only /screen uses this,
- * so phones aren't woken by every scan. Null until loaded, or if the table isn't deployed yet (callers fall
+ * The live seats (stage_seats, 0011) for the 3D stage on /screen and on the player status screen: updates
+ * the moment someone scans (phones subscribe only while that screen shows, not during scan/question). Null until loaded, or if the table isn't deployed yet (callers fall
  * back to public_state). `version` (public_state) triggers a resync too, in case a realtime event was missed.
  */
 export function useStageSeats(version: number): StageSeat[] | null {

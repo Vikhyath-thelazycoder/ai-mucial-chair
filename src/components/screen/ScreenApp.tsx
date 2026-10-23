@@ -4,28 +4,13 @@ import { useReducedMotion } from "motion/react";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { usePublicState } from "@/hooks/usePublicState";
+import { useStageChairs } from "@/hooks/useStageChairs";
 import { useStageSeats } from "@/hooks/useStageSeats";
-import { mergePresence, nextSequence, type PresentChair, type Sequence } from "@/lib/screen/sequence";
+import { nextSequence, type Sequence } from "@/lib/screen/sequence";
 import { screenView, type ScreenView } from "@/lib/screen/view";
 import { Hud, SequenceOverlay, StageWord } from "./Overlays";
 
 const StageScene = dynamic(() => import("@/components/three/StageScene"), { ssr: false });
-
-/** Removed chairs sink for this long before they leave the stage. */
-const SINK_MS = 1800;
-
-function useChairPresence(numbers: number[]): PresentChair[] {
-  const key = numbers.join(",");
-  const [presence, setPresence] = useState<PresentChair[]>([]);
-  useEffect(() => {
-    setPresence((prev) => mergePresence(prev, numbers));
-    const t = setTimeout(() => setPresence((prev) => prev.filter((c) => !c.leaving)), SINK_MS);
-    return () => clearTimeout(t);
-    // `key` captures the chair list.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key]);
-  return presence;
-}
 
 function useSequences(event: ReturnType<typeof usePublicState>["state"]) {
   const lastSeen = useRef<number | null>(null);
@@ -52,7 +37,7 @@ export function ScreenApp() {
   const { state, connection, version } = usePublicState();
   const seats = useStageSeats(version);
   const view: ScreenView | null = state ? screenView(state, seats) : null;
-  const presence = useChairPresence(view?.seats.map((c) => c.number) ?? []);
+  const chairs = useStageChairs(view?.seats ?? []);
   const { sequence, confettiKey } = useSequences(state);
   const reducedMotion = Boolean(useReducedMotion());
 
@@ -74,12 +59,6 @@ export function ScreenApp() {
     );
   }
 
-  const byNumber = new Map(view.seats.map((c) => [c.number, c]));
-  const chairs = presence.map((c) => ({
-    ...c,
-    occupant: byNumber.get(c.number)?.occupant ?? null,
-    state: byNumber.get(c.number)?.state ?? ("empty" as const),
-  }));
   const podium = view.stage === "podium" ? view.winners : null;
 
   return (

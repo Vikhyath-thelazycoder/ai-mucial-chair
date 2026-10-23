@@ -1,7 +1,7 @@
-import { ChairRing } from "@/components/three/ChairRing";
 import { StateWord } from "@/components/ui/StateWord";
 import type { PublicState } from "@/lib/game/types";
 import type { PlayerView } from "@/lib/player/view";
+import { PlayerStage } from "./PlayerStage";
 
 type Tone = "cyan" | "amber" | "lime" | "red" | "gold";
 
@@ -38,15 +38,13 @@ function copy(view: PlayerView, pub: PublicState | null): { tone: Tone; word: st
   }
 }
 
-export function StatusPanel({ view, pub }: { view: PlayerView; pub: PublicState | null }) {
+export function StatusPanel({ view, pub, version }: { view: PlayerView; pub: PublicState | null; version: number }) {
   const { tone, word, text } = copy(view, pub);
   return (
-    <section className="flex w-full flex-col items-center gap-4 text-center">
+    <section className="flex w-full flex-col items-center gap-3 text-center sm:gap-4">
       <StateWord tone={tone}>{word}</StateWord>
-      <p className="max-w-sm text-lg text-text/80">{text}</p>
-      {view.kind === "lobby" && (
-        <ChairRing count={Math.max(3, pub?.chairs.length ?? 0)} className="mt-2 h-64 w-full max-w-md" maxDpr={1.25} quality="low" />
-      )}
+      <p className="max-w-sm text-base text-text/80 sm:text-lg">{text}</p>
+      {pub && pub.chairs.length > 0 && <PlayerStage pub={pub} version={version} />}
     </section>
   );
 }

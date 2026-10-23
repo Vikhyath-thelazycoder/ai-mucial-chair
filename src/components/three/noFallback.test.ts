@@ -12,7 +12,7 @@ describe("realistic 3D everywhere (D-020)", () => {
   });
 
   it("the player status ring and projector render the realistic stage", () => {
-    expect(src("components/three/ChairRing.tsx")).toMatch(/import\("\.\/StageScene"\)/);
+    expect(src("components/player/PlayerStage.tsx")).toMatch(/import\("@\/components\/three\/StageScene"\)/);
     expect(src("components/screen/ScreenApp.tsx")).toMatch(/<StageScene /);
     expect(src("components/screen/ScreenApp.tsx")).not.toMatch(/lowPower|ChairRing2D/);
   });
@@ -29,6 +29,6 @@ describe("realistic 3D everywhere (D-020)", () => {
 
   it("slow devices drop to low quality instead of 2D", () => {
     expect(src("components/three/StageScene.tsx")).toMatch(/onDecline=\{\(\) => setQuality\("low"\)\}/);
-    expect(src("components/player/StatusPanel.tsx")).toMatch(/quality="low"/);
+    expect(src("components/player/PlayerStage.tsx")).toMatch(/quality="low"/);
   });
 });
