@@ -7,7 +7,7 @@ Live site: `https://ai-mucial-chair.vercel.app` (the main link opens the admin l
 ## 1. Before the fest (once)
 
 ### Database and site
-- [ ] Live database has every migration, 0001 to 0011: `supabase link --project-ref <live ref>` then `supabase migration list --linked` shows no missing remote entries. (0010 and 0011 were applied on 2026-10-17.)
+- [ ] Live database has every migration, 0001 to 0012: `supabase link --project-ref <live ref>` then `supabase migration list --linked` shows no missing remote entries. (0010 and 0011 were applied on 2026-10-17.)
 - [ ] Vercel Production has `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_SPOTIFY_CLIENT_ID` and `GEMINI_API_KEY`, and **no** service-role key (SECURITY.md › Secrets). Optional: `NEXT_PUBLIC_SITE_URL` = the live address.
 - [ ] Latest `main` is deployed: the main link redirects to `/admin/login`, and `/screen` shows the TECHVIDYA header.
 
@@ -42,11 +42,11 @@ Live site: `https://ai-mucial-chair.vercel.app` (the main link opens the admin l
 - [ ] Projector shows a seated person with the name the moment each volunteer scans, green/red only after R, and red players stand up on N.
 - [ ] Test a reload of the projector tab mid-round: it comes back to the same state without replaying animations.
 - [ ] Test a wrong PIN and an admin PIN reset (Players page) for one volunteer.
-- [ ] Settings → **New game** to clear the rehearsal (chair QR codes stay the same).
+- [ ] Settings → **New game** to clear the rehearsal (this also clears the chairs: add the real chairs and print their QR sheet afterwards).
 
 ## 3. Event day runbook
 
-1. Settings → **New game** for each new team (keeps chairs and QR codes; registrations start fresh).
+1. Settings → **New game** for each new team (clears chairs and registrations), then Chairs & QR → add this game's chairs and print the QR sheet.
 2. Show the join QR (Game page → Join the game → Show big); wait until everyone is registered.
 3. For each round: set the chair count (Chairs & QR or the Start round dialog) → **Start round**.
 4. Each spin: play music → stop it (Space, or pause if auto-open is on) → players scan and answer → **J** → check the chair map, override any disputed result (reason required) → **R** to show results → **N** next spin, until every chair is green → **E** end round.

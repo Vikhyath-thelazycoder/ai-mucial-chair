@@ -22,7 +22,7 @@ The feature catalogue. Phases refer to [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_P
 | F13 | Gemini question generation | Generate by topic, difficulty and count, then review before saving | P5 | DONE |
 | F14 | Spotify music control | Log in, search, playlist, play/pause/skip/volume; pause can open the scan window | P6 | DONE (live Spotify check pending) |
 | F15 | Projector screen | Live 3D scene, SCAN NOW splash, round-over and elimination animations, 3D podium | P7 | DONE |
-| F17 | New game (next team) | Admin ends the current game; the next team registers fresh; chair QR codes never change | P2, P4 | DONE |
+| F17 | New game (next team) | Admin ends the current game; the next team registers fresh; all chairs are removed so the host sets new ones (numbered from 1, new QR codes) | P2, P4 | DONE |
 | F16 | Bot simulation | A script plays a full game against cloud Supabase with N bots | P8 | DONE |
 
 ## Feature details
@@ -163,10 +163,12 @@ The feature catalogue. Phases refer to [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_P
   - The admin's **New game** button asks for typed confirmation ("NEW GAME"), then calls `start_new_game`.
   - Anything still running is stopped: unanswered attempts count as timed out and the round is closed.
   - The current game is archived as a session, and a fresh lobby opens with registration on.
+  - Every chair is removed (soft delete, so past results keep their chair). The new game starts with zero chairs; chairs added next are numbered from 1 and get new QR codes (D-022).
   - The previous team's phones show "A new game has started" with an option to register again.
 - **Acceptance:**
   - The previous team can't scan (`NOT_REGISTERED`).
-  - The same printed chair QR codes work for the next team.
+  - After New game there are no chairs; the old printed chair QR codes stop working (`BAD_QR`).
+  - Chairs added in the new game start again at number 1.
   - The same USN can register again in a later game.
   - Old results are kept.
   - Only admins can start a new game.

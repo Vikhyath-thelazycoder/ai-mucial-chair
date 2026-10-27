@@ -33,7 +33,7 @@ Tick each one; write anything odd in the issue log at the bottom.
 | 16 | Host | Reload the projector tab mid-round | Comes back to the same state without replaying animations |
 | 17 | Host | Set fewer chairs, play rounds until the final | Final round sting; podium with the winners' names and confetti |
 | 18 | Host | Settings → **Spotify check** → Play test song; play a spin with "Pause opens scan window" on | Music plays on the laptop; pausing opens the scan window |
-| 19 | Host | Settings → **New game** | Fresh lobby; chair QR codes still work |
+| 19 | Host | Settings → **New game** | Fresh lobby; zero chairs; old chair QR codes no longer work |
 
 ## What to watch for (and note in the log)
 

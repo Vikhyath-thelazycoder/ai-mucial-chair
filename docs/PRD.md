@@ -67,7 +67,7 @@ See [FEATURES.md](FEATURES.md). Summary:
 - **Spins repeat until all X chairs are locked** by correct answers.
 - **End of round:** every player still standing is **eliminated**. The admin chooses the chair count for the next round, and the difficulty goes up.
 - **The admin controls all the numbers. Nothing is fixed.** Between spins the admin can add, delete, activate or deactivate any number of chairs. Any number of players can register. The admin sets the final-round chair count (default 3) and can mark any round as the final. Numbers like "10 chairs, 15 players" in these docs are only examples.
-- **New game (next team):** the admin taps **New game** to end the current game, even mid-round. That team is logged out of the game and must register again to play later. The next team registers on the same join QR, and **the printed chair QR codes stay the same for every game**. Past games' results are kept.
+- **New game (next team):** the admin taps **New game** to end the current game, even mid-round. That team is logged out of the game and must register again to play later. The next team registers on the same join QR, and **every chair is cleared, so the host adds this game's chairs (numbered from 1) and prints their new QR codes**. Past games' results are kept.
 - **Finale:** when the final round (3 chairs) is complete, those 3 players are the winners. **The podium orders them by their correct-answer time in that final round.** Luck decides, and there are no points.
 
 ## Workflows

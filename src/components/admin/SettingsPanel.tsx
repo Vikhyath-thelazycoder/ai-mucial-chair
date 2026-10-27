@@ -10,7 +10,7 @@ import { SpotifyCheck } from "./music/SpotifyCheck";
 
 type Form = { name: string; timer: number; finalCount: number; registrationOpen: boolean; autoOpen: boolean };
 
-/** Game settings, plus "Restart this game" and "New game" for the next team (F17, D-014). */
+/** Game settings, plus "Restart this game" and "New game" for the next team (F17, D-022). */
 export function SettingsPanel() {
   const { data, loading } = useAdminData();
   const [form, setForm] = useState<Form | null>(null);
@@ -112,7 +112,7 @@ export function SettingsPanel() {
       {dialog === "new" && (
         <Modal
           title="Start a new game?"
-          description="The current team's phones will need to register again to play. Type NEW GAME to confirm."
+          description="The current team's phones will need to register again to play, and all chairs are removed: add new chairs and print their QR codes afterwards. Type NEW GAME to confirm."
           input={{ label: "Type NEW GAME", mustEqual: "NEW GAME" }}
           confirmLabel="Start new game"
           danger
@@ -120,7 +120,7 @@ export function SettingsPanel() {
           onConfirm={async (value) => {
             const err = await adminRpc("start_new_game", { p_confirm: value });
             if (err) return friendlyError(err);
-            setMessage({ ok: true, text: "New game started. The lobby is open." });
+            setMessage({ ok: true, text: "New game started. The lobby is open. Add this game's chairs under Chairs & QR." });
           }}
         />
       )}

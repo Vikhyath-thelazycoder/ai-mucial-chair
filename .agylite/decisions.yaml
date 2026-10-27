@@ -168,7 +168,7 @@ decisions:
   alternatives: []
   impact: ''
   supersedes: null
-  status: ACTIVE
+  status: SUPERSEDED
   tags: []
 - decision_id: D-015
   date: '2026-10-16'
@@ -268,5 +268,21 @@ decisions:
   impact: Migration 0011 (stage_seats + spins.revealed_at + reveal_results); only /screen subscribes to stage_seats so scans
     don't wake phones
   supersedes: null
+  status: ACTIVE
+  tags: []
+- decision_id: D-022
+  date: '2026-10-27'
+  kind: product
+  topic: game-sessions
+  decision: 'Games run as sessions: the admin''s ''New game'' ends the current session (terminating any round in progress)
+    and opens a fresh lobby; players belong to one session and must register again for the next one; New game also removes
+    every chair (soft delete, so past results keep their chair), so each game starts with zero chairs and new chairs are numbered
+    from 1 with new QR codes; past sessions'' results are kept'
+  reason: 'User: a new game should start with zero chair QR codes so the host sets the chairs for that game, instead of the
+    previous game''s chairs carrying over and Add stacking on top'
+  alternatives:
+  - Keep chairs permanent and add a 'set total chairs to N' control (no reprinting)
+  impact: Chair QR codes must be printed again for every new game; old printed codes stop working
+  supersedes: D-014
   status: ACTIVE
   tags: []

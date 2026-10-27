@@ -16,7 +16,7 @@ A live game for **Techvidya** at **Sai Vidya Institute of Technology**: musical 
 6. Next spin (**N**): red players stand up and play again for the free chairs; green players stay seated. Repeat until every chair is green.
 7. End the round (**E**): everyone without a chair is out. Remove chairs and play the next round.
 8. The **final round** crowns the chair holders; fastest correct answer wins. Podium with trophy and confetti on the projector.
-9. **New game** for the next team: chair QR codes stay the same.
+9. **New game** for the next team: chairs reset to zero; add this game's chairs (numbered from 1) and print their new QR codes.
 
 ## The three screens
 

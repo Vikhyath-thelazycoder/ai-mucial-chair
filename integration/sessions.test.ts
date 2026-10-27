@@ -1,4 +1,4 @@
-// "New game" (D-014): the admin ends one team's game and the next team plays with the same chair QR codes.
+// "New game" (D-022): the admin ends one team's game; chairs are cleared and the next team gets new ones from 1.
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import {
   deleteCreatedUsers,
@@ -75,15 +75,26 @@ describe("start_new_game", () => {
     );
   });
 
-  it("the next team plays with the same printed chair QR codes", async () => {
+  it("clears every chair: zero chairs and the old printed QR codes stop working", async () => {
+    const { count } = await service.from("chairs").select("*", { count: "exact", head: true }).is("deleted_at", null);
+    expect(count).toBe(0);
+    const { data: seats } = await service.from("stage_seats").select("chair_id");
+    expect(seats).toEqual([]);
+  });
+
+  it("the next team gets new chairs numbered from 1, and the old QR codes are refused", async () => {
     const teamB = await Promise.all([makePlayer("b1"), makePlayer("b2")]);
+    const added = await rpcOk<{ id: string; number: number }[]>(admin.client, "create_chairs", { p_count: 2 });
+    expect(added.map((c) => c.number)).toEqual([1, 2]);
+    const { data: fresh } = await service.from("chairs").select("id, number, secret").is("deleted_at", null).order("number");
     await rpcOk(admin.client, "start_round");
     await rpcOk(admin.client, "open_scan_window");
+    expect(await rpcErr(teamB[1].client, "claim_chair", { p_chair_id: chairs[0].id, p_secret: chairs[0].secret })).toBe("BAD_QR");
     const claim = await rpcOk<{ chairNumber: number }>(teamB[0].client, "claim_chair", {
-      p_chair_id: chairs[0].id,
-      p_secret: chairs[0].secret,
+      p_chair_id: fresh![0].id,
+      p_secret: fresh![0].secret,
     });
-    expect(claim.chairNumber).toBe(chairs[0].number);
+    expect(claim.chairNumber).toBe(1);
     await rpcOk(admin.client, "close_scan_window");
   });
 

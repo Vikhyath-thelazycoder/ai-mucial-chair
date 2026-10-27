@@ -25,7 +25,7 @@ export function isLocalSite(url: string) {
 
 type Pending = null | { kind: "delete" | "rotate"; id: string; number: number };
 
-/** Chairs & QR (FEATURES F7): any number of chairs; QR codes are permanent across games (D-014). */
+/** Chairs & QR (FEATURES F7): any number of chairs; New game clears them, so each game prints its own QR codes (D-022). */
 export function ChairManager() {
   const { data, loading } = useAdminData();
   const [add, setAdd] = useState(10);
@@ -63,7 +63,7 @@ export function ChairManager() {
         <div>
           <h1 className="text-2xl font-bold">Chairs &amp; QR codes</h1>
           <p className="text-sm text-muted">
-            {chairs.length} chair(s) · {active.length} switched on. Print once: the codes stay the same for every game.
+            {chairs.length} chair(s) · {active.length} switched on. New game clears all chairs: add this game&apos;s chairs, then print their QR sheet.
           </p>
         </div>
         <Link href="/admin/chairs/print" target="_blank" className="rounded-xl bg-cyan px-4 py-3 text-sm font-bold text-bg">
