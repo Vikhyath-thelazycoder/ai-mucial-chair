@@ -74,7 +74,7 @@ describe("handleExtract", () => {
 
   it("a CSV in our own format is imported without calling the AI", async () => {
     const d = deps();
-    const csv = "text,type,options,answer,alternatives,difficulty,topic\nWhat is 2 plus 2?,one_word,,4,four,1,math\n";
+    const csv = "text,type,options,answer,alternatives,difficulty,topic\nWhat is 2 plus 2?,mcq,3|4|5|22,4,,1,math\n";
     const r = await handleExtract({ name: "bank.csv", type: "text/csv", bytes: new TextEncoder().encode(csv) }, {}, d);
     expect(r.status).toBe(200);
     expect(r.body).toMatchObject({ drafts: [{ answer: "4" }], source: "csv" });

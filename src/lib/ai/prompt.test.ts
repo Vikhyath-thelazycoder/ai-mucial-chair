@@ -25,7 +25,7 @@ describe("prompts", () => {
 
 describe("generateInputSchema", () => {
   it("validates the generate request", () => {
-    expect(generateInputSchema.safeParse({ topic: "Networks", difficulty: 2, count: 10, type: "mixed" }).success).toBe(true);
+    expect(generateInputSchema.safeParse({ topic: "Networks", difficulty: 2, count: 10, type: "mcq" }).success).toBe(true);
     expect(generateInputSchema.safeParse({ topic: "x", difficulty: 2, count: 10, type: "mcq" }).success).toBe(false);
     expect(generateInputSchema.safeParse({ topic: "Networks", difficulty: 6, count: 10, type: "mcq" }).success).toBe(false);
     expect(generateInputSchema.safeParse({ topic: "Networks", difficulty: 2, count: 51, type: "mcq" }).success).toBe(false);

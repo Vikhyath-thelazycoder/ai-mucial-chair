@@ -9,7 +9,7 @@ The feature catalogue. Phases refer to [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_P
 | F1 | Player registration and login | Join by QR code, register with name/USN/phone/branch/PIN, session saved in the browser | P3 | DONE |
 | F2 | Live player status | Waiting / Music / SCAN NOW / Locked in / Standing / Eliminated, updated in real time | P3 | DONE |
 | F3 | In-site chair scanner | Camera QR scanner inside `/play`, the only way to claim a chair | P3 | DONE |
-| F4 | Randomized questions | A random unseen question per scan at the round's difficulty, MCQ or one word | P2–P3 | DONE |
+| F4 | Randomized questions | A random unseen question per scan at the round's difficulty, always multiple choice (D-023) | P2–P3 | DONE |
 | F5 | Answer timer | Countdown set by the admin per round; the server enforces the deadline | P2–P3 | DONE |
 | F6 | Anti-cheat | Fullscreen, no copy/select, watermark, alerts when the player leaves the site | P3 | DONE |
 | F7 | Chair QR generator | Create chairs, toggle active/inactive, print a QR sheet with big chair numbers | P4 | DONE |
@@ -120,7 +120,7 @@ The feature catalogue. Phases refer to [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_P
 - Every override is written to `admin_audit`.
 
 ### F12 · Question bank
-- **Fields:** text, type (`mcq` | `one_word`), options (MCQ, 2–6), answer, accepted alternative answers (one word), difficulty 1–5, topic.
+- **Fields:** text, type (`mcq`; `one_word` is legacy, D-023), options (2–6), answer, difficulty 1–5, topic.
 - **CSV columns:** `text,type,options(pipe-separated),answer,alternatives(pipe-separated),difficulty,topic`. Invalid rows are reported with row numbers and are not imported.
 
 ### F13 · Gemini question generation

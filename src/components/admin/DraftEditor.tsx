@@ -77,20 +77,6 @@ export function DraftEditor({
                   Question
                   <textarea value={d.text} rows={2} maxLength={300} onChange={(e) => update(d.key, { text: e.target.value })} className={`${input} py-1.5 text-text`} />
                 </label>
-                <label className="w-36 text-xs text-muted">
-                  Type
-                  <select
-                    value={d.type}
-                    onChange={(e) => {
-                      const type = e.target.value as Draft["type"];
-                      update(d.key, { type, options: type === "mcq" ? (options.length ? options : ["", "", "", ""]) : null, alternatives: type === "mcq" ? [] : d.alternatives });
-                    }}
-                    className={`${input} text-text`}
-                  >
-                    <option value="mcq">Multiple choice</option>
-                    <option value="one_word">One word</option>
-                  </select>
-                </label>
                 <label className="w-24 text-xs text-muted">
                   Difficulty
                   <select value={d.difficulty} onChange={(e) => update(d.key, { difficulty: Number(e.target.value) })} className={`${input} text-text`}>
@@ -105,48 +91,31 @@ export function DraftEditor({
                 </label>
               </div>
 
-              {d.type === "mcq" ? (
-                <fieldset className="mt-3 grid gap-2 sm:grid-cols-2">
-                  <legend className="mb-1 text-xs text-muted">Options: pick the correct one</legend>
-                  {options.map((opt, oi) => (
-                    <div key={oi} className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name={`answer-${d.key}`}
-                        aria-label={`Option ${String.fromCharCode(65 + oi)} is correct`}
-                        checked={opt !== "" && d.answer === opt}
-                        onChange={() => update(d.key, { answer: opt })}
-                      />
-                      <input
-                        value={opt}
-                        maxLength={60}
-                        aria-label={`Option ${String.fromCharCode(65 + oi)}`}
-                        onChange={(e) => {
-                          const next = [...options];
-                          next[oi] = e.target.value;
-                          update(d.key, { options: next, answer: d.answer === opt ? e.target.value : d.answer });
-                        }}
-                        className={`${input} text-text`}
-                      />
-                    </div>
-                  ))}
-                </fieldset>
-              ) : (
-                <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                  <label className="text-xs text-muted">
-                    Answer
-                    <input value={d.answer} maxLength={80} onChange={(e) => update(d.key, { answer: e.target.value })} className={`${input} text-text`} />
-                  </label>
-                  <label className="text-xs text-muted">
-                    Also accept (separate with |)
+              <fieldset className="mt-3 grid gap-2 sm:grid-cols-2">
+                <legend className="mb-1 text-xs text-muted">Options: pick the correct one</legend>
+                {options.map((opt, oi) => (
+                  <div key={oi} className="flex items-center gap-2">
                     <input
-                      value={d.alternatives.join(" | ")}
-                      onChange={(e) => update(d.key, { alternatives: e.target.value.split("|").map((s) => s.trim()).filter(Boolean) })}
+                      type="radio"
+                      name={`answer-${d.key}`}
+                      aria-label={`Option ${String.fromCharCode(65 + oi)} is correct`}
+                      checked={opt !== "" && d.answer === opt}
+                      onChange={() => update(d.key, { answer: opt })}
+                    />
+                    <input
+                      value={opt}
+                      maxLength={60}
+                      aria-label={`Option ${String.fromCharCode(65 + oi)}`}
+                      onChange={(e) => {
+                        const next = [...options];
+                        next[oi] = e.target.value;
+                        update(d.key, { options: next, answer: d.answer === opt ? e.target.value : d.answer });
+                      }}
                       className={`${input} text-text`}
                     />
-                  </label>
-                </div>
-              )}
+                  </div>
+                ))}
+              </fieldset>
               {d.include && problem && <p className="mt-2 text-xs text-red">{problem}</p>}
             </li>
           );

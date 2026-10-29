@@ -2,6 +2,7 @@ import Papa from "papaparse";
 import { z } from "zod";
 
 // One validated question row, matching the questions table (TRD › Database) and its CHECK constraints.
+// New questions are multiple choice only (D-023); the table still holds the one_word type for old rows.
 export const questionSchema = z
   .object({
     text: z.string().trim().min(5).max(300),
@@ -21,8 +22,8 @@ export const questionSchema = z
       } else if (new Set(q.options).size !== q.options.length) {
         ctx.addIssue({ code: "custom", path: ["options"], message: "MCQ options must be unique" });
       }
-    } else if (q.options) {
-      ctx.addIssue({ code: "custom", path: ["options"], message: "One-word questions have no options" });
+    } else {
+      ctx.addIssue({ code: "custom", path: ["type"], message: "Only multiple-choice questions are allowed (D-023)" });
     }
   });
 
@@ -50,7 +51,6 @@ export function parseQuestionsCsv(csv: string): { questions: QuestionInput[]; er
     const candidate = {
       text: raw.text ?? "",
       type,
-      // Keep stray options on one-word rows so validation reports them instead of silently dropping them.
       options: type === "mcq" || options.length ? options : null,
       answer: raw.answer ?? "",
       alternatives: list(raw.alternatives),

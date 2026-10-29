@@ -1,175 +1,175 @@
 text,type,options,answer,alternatives,difficulty,topic
 What does CPU stand for?,mcq,Central Processing Unit|Central Program Utility|Computer Personal Unit|Core Processing Utility,Central Processing Unit,,1,computers
-Which company makes the iPhone?,one_word,,Apple,,1,tech
+Which company makes the iPhone?,mcq,Nokia|Samsung|Apple|Google,Apple,,1,tech
 Binary numbers use which two digits?,mcq,0 and 1|1 and 2|0 and 9|A and B,0 and 1,,1,computers
 What does WWW stand for?,mcq,World Wide Web|World Web Wide|Wide World Web|Web World Wide,World Wide Web,,1,internet
 Which shortcut copies selected text on Windows?,mcq,Ctrl+C|Ctrl+V|Ctrl+X|Ctrl+Z,Ctrl+C,,1,computers
-What is the chemical formula of water?,one_word,,H2O,,1,science
-How many bits are in one byte?,one_word,,8,eight,1,computers
-Which planet is known as the Red Planet?,one_word,,Mars,,1,science
+What is the chemical formula of water?,mcq,H2O|CO2|O2|H2O2,H2O,,1,science
+How many bits are in one byte?,mcq,4|8|16|10,8,,1,computers
+Which planet is known as the Red Planet?,mcq,Venus|Jupiter|Mars|Mercury,Mars,,1,science
 What does RAM stand for?,mcq,Random Access Memory|Read Access Memory|Rapid Action Memory|Run Access Module,Random Access Memory,,1,computers
-Which hand-held device is used to point and click on a computer?,one_word,,Mouse,,1,computers
-What is the unit of electrical resistance?,one_word,,Ohm,ohms,1,electronics
+Which hand-held device is used to point and click on a computer?,mcq,Keyboard|Monitor|Mouse|Printer,Mouse,,1,computers
+What is the unit of electrical resistance?,mcq,Watt|Volt|Ampere|Ohm,Ohm,,1,electronics
 Which language gives structure to web pages?,mcq,HTML|Python|SQL|C++,HTML,,1,web
 What does USB stand for?,mcq,Universal Serial Bus|United System Bus|Universal Signal Board|Unified Serial Bridge,Universal Serial Bus,,1,computers
 Who co-founded Microsoft with Paul Allen?,mcq,Bill Gates|Steve Jobs|Larry Page|Mark Zuckerberg,Bill Gates,,1,tech
-What is 2 to the power of 10?,one_word,,1024,,1,math
+What is 2 to the power of 10?,mcq,1024|1000|512|2048,1024,,1,math
 Which gas do plants absorb for photosynthesis?,mcq,Carbon dioxide|Oxygen|Nitrogen|Hydrogen,Carbon dioxide,,1,science
 Which company develops the Android operating system?,mcq,Google|Apple|Microsoft|Nokia,Google,,1,tech
-What is the SI unit of electric current?,one_word,,Ampere,amperes|amp|amps,1,electronics
+What is the SI unit of electric current?,mcq,Ohm|Coulomb|Volt|Ampere,Ampere,,1,electronics
 Which symbol starts a single-line comment in Python?,mcq,#|//|<!--|%,#,,1,programming
 What does PDF stand for?,mcq,Portable Document Format|Printed Document File|Public Data Format|Portable Data File,Portable Document Format,,1,computers
 Which part of a computer stores data permanently?,mcq,Hard disk|RAM|Cache|Register,Hard disk,,1,computers
 Roughly how fast does light travel in km per second?,mcq,300000|30000|3000|3000000,300000,,1,science
 Which shortcut undoes the last action on Windows?,mcq,Ctrl+Z|Ctrl+Y|Ctrl+U|Ctrl+A,Ctrl+Z,,1,computers
-Which number system has base 16?,one_word,,Hexadecimal,hex,1,math
-What is the capital city of Karnataka?,one_word,,Bengaluru,bangalore,1,general
-Which Indian space agency launched Chandrayaan-3?,one_word,,ISRO,,1,general
+Which number system has base 16?,mcq,Binary|Decimal|Octal|Hexadecimal,Hexadecimal,,1,math
+What is the capital city of Karnataka?,mcq,Mysuru|Mangaluru|Bengaluru|Hubballi,Bengaluru,,1,general
+Which Indian space agency launched Chandrayaan-3?,mcq,ISRO|NASA|ESA|DRDO,ISRO,,1,general
 What does AI stand for?,mcq,Artificial Intelligence|Automated Interface|Advanced Internet|Analog Integration,Artificial Intelligence,,1,ai
 Which of these is an input device?,mcq,Keyboard|Monitor|Printer|Speaker,Keyboard,,1,computers
 What does LAN stand for?,mcq,Local Area Network|Large Access Network|Linked Area Node|Local Access Node,Local Area Network,,1,networking
-Which component is called the brain of the computer?,one_word,,CPU,processor,1,computers
+Which component is called the brain of the computer?,mcq,CPU|RAM|GPU|SSD,CPU,,1,computers
 Which data structure works on the LIFO principle?,mcq,Stack|Queue|Tree|Graph,Stack,,2,dsa
-Which data structure works on the FIFO principle?,one_word,,Queue,,2,dsa
+Which data structure works on the FIFO principle?,mcq,Tree|Heap|Stack|Queue,Queue,,2,dsa
 What does SQL stand for?,mcq,Structured Query Language|Simple Query Language|Sequential Query Logic|Standard Question Language,Structured Query Language,,2,databases
-Which protocol loads web pages over an encrypted connection?,one_word,,HTTPS,,2,networking
-What is the decimal value of binary 1010?,one_word,,10,ten,2,math
-Which logic gate outputs 1 only when both inputs are 1?,one_word,,AND,,2,electronics
+Which protocol loads web pages over an encrypted connection?,mcq,SMTP|HTTPS|FTP|HTTP,HTTPS,,2,networking
+What is the decimal value of binary 1010?,mcq,12|8|10|5,10,,2,math
+Which logic gate outputs 1 only when both inputs are 1?,mcq,OR|NOT|AND|XOR,AND,,2,electronics
 Who is known as the father of the computer?,mcq,Charles Babbage|Alan Turing|John von Neumann|Tim Berners-Lee,Charles Babbage,,2,tech
 Who invented the World Wide Web?,mcq,Tim Berners-Lee|Vint Cerf|Bill Gates|Linus Torvalds,Tim Berners-Lee,,2,internet
 Who created the Linux kernel?,mcq,Linus Torvalds|Dennis Ritchie|Richard Stallman|Ken Thompson,Linus Torvalds,,2,tech
-Which programming language did Dennis Ritchie create?,one_word,,C,,2,programming
-What is the default port number for HTTP?,one_word,,80,,2,networking
+Which programming language did Dennis Ritchie create?,mcq,Pascal|C|Java|Python,C,,2,programming
+What is the default port number for HTTP?,mcq,21|80|443|8080,80,,2,networking
 What does DNS stand for?,mcq,Domain Name System|Digital Network Service|Data Name Server|Domain Network Server,Domain Name System,,2,networking
 What does IP stand for in IP address?,mcq,Internet Protocol|Internal Port|Internet Provider|Interface Protocol,Internet Protocol,,2,networking
-Which keyword defines a function in Python?,one_word,,def,,2,programming
+Which keyword defines a function in Python?,mcq,lambda|def|func|function,def,,2,programming
 Which of these is NOT a programming language?,mcq,HTTP|Java|Rust|Kotlin,HTTP,,2,programming
 What does GPU stand for?,mcq,Graphics Processing Unit|General Processing Unit|Graphical Program Utility|Global Processing Unit,Graphics Processing Unit,,2,computers
 By Ohm's law voltage V equals?,mcq,I x R|I / R|R / I|I + R,I x R,,2,electronics
-Which version control system did Linus Torvalds create?,one_word,,Git,,2,tools
+Which version control system did Linus Torvalds create?,mcq,SVN|CVS|Git|Mercurial,Git,,2,tools
 What is the time complexity of binary search?,mcq,O(log n)|O(n)|O(n log n)|O(1),O(log n),,2,dsa
 Which HTML tag creates a hyperlink?,mcq,<a>|<link>|<href>|<p>,<a>,,2,web
 What does CSS stand for?,mcq,Cascading Style Sheets|Computer Style System|Creative Style Sheets|Colorful Style Syntax,Cascading Style Sheets,,2,web
 Which company originally created Java?,mcq,Sun Microsystems|Microsoft|Oracle|IBM,Sun Microsystems,,2,programming
-In the binary convention how many bytes make one kilobyte?,one_word,,1024,,2,computers
+In the binary convention how many bytes make one kilobyte?,mcq,2048|1024|1000|512,1024,,2,computers
 What does IoT stand for?,mcq,Internet of Things|Input of Technology|Integration of Tools|Internet of Telecom,Internet of Things,,2,tech
-Which is the largest planet in our solar system?,one_word,,Jupiter,,2,science
-Which semiconductor material are most computer chips made from?,one_word,,Silicon,,2,electronics
+Which is the largest planet in our solar system?,mcq,Neptune|Jupiter|Earth|Saturn,Jupiter,,2,science
+Which semiconductor material are most computer chips made from?,mcq,Copper|Germanium|Silicon|Carbon,Silicon,,2,electronics
 What does OS stand for?,mcq,Operating System|Open Software|Output Signal|Online Service,Operating System,,2,computers
 Which sorting algorithm repeatedly swaps adjacent out-of-order elements?,mcq,Bubble sort|Merge sort|Quick sort|Heap sort,Bubble sort,,2,dsa
 What does Wi-Fi use to carry data?,mcq,Radio waves|Infrared light|Copper cables|Fiber optics,Radio waves,,2,networking
 Which company makes the Snapdragon mobile processors?,mcq,Qualcomm|Intel|AMD|MediaTek,Qualcomm,,2,tech
 Which OSI layer is responsible for routing?,mcq,Network|Transport|Data link|Session,Network,,3,networking
-How many layers does the OSI model have?,one_word,,7,seven,3,networking
-What is the default port number for HTTPS?,one_word,,443,,3,networking
-What is the default port number for SSH?,one_word,,22,,3,networking
+How many layers does the OSI model have?,mcq,7|4|5|8,7,,3,networking
+What is the default port number for HTTPS?,mcq,80|22|443|8443,443,,3,networking
+What is the default port number for SSH?,mcq,22|23|25|21,22,,3,networking
 What is the worst-case time complexity of quicksort?,mcq,O(n^2)|O(n log n)|O(n)|O(log n),O(n^2),,3,dsa
-Which data structure does breadth-first search use?,one_word,,Queue,,3,dsa
-Which data structure manages function calls during recursion?,one_word,,Stack,call stack,3,dsa
+Which data structure does breadth-first search use?,mcq,Heap|Stack|Linked list|Queue,Queue,,3,dsa
+Which data structure manages function calls during recursion?,mcq,Heap|Queue|Graph|Stack,Stack,,3,dsa
 What does ACID stand for in databases?,mcq,Atomicity Consistency Isolation Durability|Accuracy Consistency Integrity Durability|Atomicity Concurrency Isolation Data|Availability Consistency Isolation Durability,Atomicity Consistency Isolation Durability,,3,databases
 Which normal form removes partial dependencies?,mcq,2NF|1NF|3NF|BCNF,2NF,,3,databases
-Which Git command copies a remote repository to your machine?,one_word,,clone,git clone,3,tools
-Which HTTP status code means Not Found?,one_word,,404,,3,web
-Which HTTP status code means Internal Server Error?,one_word,,500,,3,web
-What is the 4-bit two's complement of 0001?,one_word,,1111,,3,math
-How many bits are in an IPv4 address?,one_word,,32,,3,networking
-How many bits are in an IPv6 address?,one_word,,128,,3,networking
+Which Git command copies a remote repository to your machine?,mcq,fetch|clone|pull|init,clone,,3,tools
+Which HTTP status code means Not Found?,mcq,400|500|404|403,404,,3,web
+Which HTTP status code means Internal Server Error?,mcq,502|404|500|503,500,,3,web
+What is the 4-bit two's complement of 0001?,mcq,1000|1110|0001|1111,1111,,3,math
+How many bits are in an IPv4 address?,mcq,16|128|32|64,32,,3,networking
+How many bits are in an IPv6 address?,mcq,32|256|128|64,128,,3,networking
 Which flip-flop toggles its output when both inputs are 1?,mcq,JK|SR|D|T,JK,,3,electronics
-Which Java keyword stops a class from being inherited?,one_word,,final,,3,programming
+Which Java keyword stops a class from being inherited?,mcq,sealed|final|static|const,final,,3,programming
 What does the sizeof operator return in C?,mcq,Size in bytes|Number of elements|Memory address|Bit count,Size in bytes,,3,programming
 Which CPU scheduling algorithm can starve long jobs?,mcq,Shortest Job First|Round Robin|First Come First Served,Shortest Job First,,3,os
-Which protocol maps an IP address to a MAC address?,one_word,,ARP,,3,networking
-Which transport protocol is connectionless?,one_word,,UDP,,3,networking
+Which protocol maps an IP address to a MAC address?,mcq,DHCP|ICMP|ARP|DNS,ARP,,3,networking
+Which transport protocol is connectionless?,mcq,UDP|HTTP|FTP|TCP,UDP,,3,networking
 Which of these is a NoSQL database?,mcq,MongoDB|MySQL|PostgreSQL|Oracle,MongoDB,,3,databases
 What does JSON stand for?,mcq,JavaScript Object Notation|Java Standard Object Notation|JavaScript Online Network|Joint Syntax Object Notation,JavaScript Object Notation,,3,web
-Whose law predicts that transistor counts double about every two years?,one_word,,Moore,moore's law|moores law|moore law,3,tech
-What is Euler's number e rounded to two decimal places?,one_word,,2.72,,3,math
-Which JavaScript keyword declares a constant?,one_word,,const,,3,programming
+Whose law predicts that transistor counts double about every two years?,mcq,Moore|Newton|Ohm|Metcalfe,Moore,,3,tech
+What is Euler's number e rounded to two decimal places?,mcq,2.27|1.62|2.72|3.14,2.72,,3,math
+Which JavaScript keyword declares a constant?,mcq,const|static|var|let,const,,3,programming
 Which Python data type is immutable?,mcq,tuple|list|dict|set,tuple,,3,programming
-Which circuit converts AC to DC?,one_word,,Rectifier,,3,electronics
+Which circuit converts AC to DC?,mcq,Rectifier|Inverter|Amplifier|Oscillator,Rectifier,,3,electronics
 Which of these is a universal logic gate?,mcq,NAND|XOR|OR|NOT,NAND,,3,electronics
 Which company's researchers wrote the paper Attention Is All You Need?,mcq,Google|OpenAI|Meta|Microsoft,Google,,3,ai
 What is the time complexity of building a binary heap from n elements?,mcq,O(n)|O(n log n)|O(log n)|O(n^2),O(n),,4,dsa
-Which algorithm finds shortest paths in a graph with non-negative edge weights?,one_word,,Dijkstra,dijkstra's|dijkstras,4,dsa
+Which algorithm finds shortest paths in a graph with non-negative edge weights?,mcq,Dijkstra|Prim|Kruskal|Bellman-Ford,Dijkstra,,4,dsa
 Which shortest-path algorithm works with negative edge weights?,mcq,Bellman-Ford|Dijkstra|Prim|Kruskal,Bellman-Ford,,4,dsa
-Which minimum spanning tree algorithm sorts all edges by weight first?,one_word,,Kruskal,kruskal's|kruskals,4,dsa
-How many steps are in the TCP connection handshake?,one_word,,3,three,4,networking
-Which idempotent HTTP method replaces a resource?,one_word,,PUT,,4,web
+Which minimum spanning tree algorithm sorts all edges by weight first?,mcq,Dijkstra|Kruskal|Prim|Floyd-Warshall,Kruskal,,4,dsa
+How many steps are in the TCP connection handshake?,mcq,3|2|5|4,3,,4,networking
+Which idempotent HTTP method replaces a resource?,mcq,POST|PATCH|GET|PUT,PUT,,4,web
 What is the subnet mask of a /24 network?,mcq,255.255.255.0|255.255.0.0|255.0.0.0|255.255.255.255,255.255.255.0,,4,networking
-How many usable host addresses does a /24 subnet have?,one_word,,254,,4,networking
-Which page replacement algorithm suffers from Belady's anomaly?,one_word,,FIFO,first in first out,4,os
+How many usable host addresses does a /24 subnet have?,mcq,255|256|252|254,254,,4,networking
+Which page replacement algorithm suffers from Belady's anomaly?,mcq,Optimal|LRU|FIFO|LFU,FIFO,,4,os
 In the CAP theorem what does C stand for?,mcq,Consistency|Concurrency|Capacity|Correctness,Consistency,,4,systems
 Which of these sorting algorithms is stable?,mcq,Merge sort|Quick sort|Heap sort|Selection sort,Merge sort,,4,dsa
 Which data structure gives O(1) average-time lookup?,mcq,Hash table|Binary search tree|Linked list|Heap,Hash table,,4,dsa
 What is the time complexity of merge sort?,mcq,O(n log n)|O(n^2)|O(n)|O(log n),O(n log n),,4,dsa
-Which Linux command changes file permissions?,one_word,,chmod,,4,os
+Which Linux command changes file permissions?,mcq,chgrp|ls|chmod|chown,chmod,,4,os
 Which register holds the address of the next instruction?,mcq,Program Counter|Accumulator|Stack Pointer|Instruction Register,Program Counter,,4,computers
 Which addressing scheme allows variable-length subnet masks?,mcq,CIDR|Classful addressing|NAT|DHCP,CIDR,,4,networking
 What does DHCP assign to devices automatically?,mcq,IP addresses|MAC addresses|Domain names|Port numbers,IP addresses,,4,networking
-Which SQL clause filters groups after aggregation?,one_word,,HAVING,,4,databases
+Which SQL clause filters groups after aggregation?,mcq,HAVING|WHERE|ORDER BY|GROUP BY,HAVING,,4,databases
 Which SQL join returns only rows that match in both tables?,mcq,INNER JOIN|LEFT JOIN|FULL JOIN|CROSS JOIN,INNER JOIN,,4,databases
-What is hexadecimal 0xFF in decimal?,one_word,,255,,4,math
+What is hexadecimal 0xFF in decimal?,mcq,256|127|240|255,255,,4,math
 In SOLID principles what does the S stand for?,mcq,Single responsibility|Separation of concerns|Simple design|Static typing,Single responsibility,,4,programming
-Which design pattern ensures a class has only one instance?,one_word,,Singleton,,4,programming
-Which machine learning task predicts a continuous value?,one_word,,Regression,,4,ai
-Which activation function outputs max(0 and x)?,one_word,,ReLU,,4,ai
+Which design pattern ensures a class has only one instance?,mcq,Observer|Singleton|Factory|Adapter,Singleton,,4,programming
+Which machine learning task predicts a continuous value?,mcq,Ranking|Classification|Regression|Clustering,Regression,,4,ai
+Which activation function outputs max(0 and x)?,mcq,Tanh|Softmax|ReLU|Sigmoid,ReLU,,4,ai
 Which metric is the harmonic mean of precision and recall?,mcq,F1 score|Accuracy|AUC|Log loss,F1 score,,4,ai
 What is the Nyquist sampling rate for a signal whose highest frequency is f?,mcq,2f|f|f/2|4f,2f,,4,electronics
 Which BJT configuration is also called an emitter follower?,mcq,Common collector|Common emitter|Common base,Common collector,,4,electronics
 Which of these encryption algorithms is asymmetric?,mcq,RSA|AES|DES|Blowfish,RSA,,4,security
-Which hash function does Bitcoin mining use?,one_word,,SHA-256,sha256|sha 256,4,security
-What is the default port number for DNS?,one_word,,53,,4,networking
-Which complexity class contains problems whose solutions can be verified in polynomial time?,one_word,,NP,,5,theory
+Which hash function does Bitcoin mining use?,mcq,SHA-256|SHA-1|Scrypt|MD5,SHA-256,,4,security
+What is the default port number for DNS?,mcq,110|53|67|25,53,,4,networking
+Which complexity class contains problems whose solutions can be verified in polynomial time?,mcq,EXP|NP|P|PSPACE,NP,,5,theory
 Who proposed the imitation game now called the Turing test?,mcq,Alan Turing|John McCarthy|Marvin Minsky|Claude Shannon,Alan Turing,,5,ai
 Who coined the term artificial intelligence?,mcq,John McCarthy|Alan Turing|Geoffrey Hinton|Herbert Simon,John McCarthy,,5,ai
 Who is known as the father of information theory?,mcq,Claude Shannon|Norbert Wiener|Alan Turing|John von Neumann,Claude Shannon,,5,theory
-Which consensus algorithm used by etcd was designed to be easy to understand?,one_word,,Raft,,5,systems
+Which consensus algorithm used by etcd was designed to be easy to understand?,mcq,Raft|Paxos|Gossip|PBFT,Raft,,5,systems
 What is the amortized time to append to a dynamic array?,mcq,O(1)|O(n)|O(log n)|O(n log n),O(1),,5,dsa
 Which self-balancing tree uses node colours and rotations?,mcq,Red-black tree|AVL tree|B-tree|Trie,Red-black tree,,5,dsa
-Which tree data structure is best suited to prefix autocomplete?,one_word,,Trie,prefix tree,5,dsa
+Which tree data structure is best suited to prefix autocomplete?,mcq,Heap|B-tree|AVL tree|Trie,Trie,,5,dsa
 Which attack injects malicious scripts into pages viewed by other users?,mcq,Cross-site scripting|SQL injection|Phishing|Man-in-the-middle,Cross-site scripting,,5,security
-Which CSP directive controls which sites may embed a page in a frame?,one_word,,frame-ancestors,frame ancestors,5,security
-Which algorithm computes the gradients used to train neural networks?,one_word,,Backpropagation,backprop|back propagation,5,ai
-Which mechanism in transformers lets each token weigh every other token?,one_word,,Attention,self-attention|self attention,5,ai
+Which CSP directive controls which sites may embed a page in a frame?,mcq,frame-ancestors|frame-src|default-src|script-src,frame-ancestors,,5,security
+Which algorithm computes the gradients used to train neural networks?,mcq,Gradient clipping|Pooling|Dropout|Backpropagation,Backpropagation,,5,ai
+Which mechanism in transformers lets each token weigh every other token?,mcq,Convolution|Recurrence|Pooling|Attention,Attention,,5,ai
 Which ensemble method trains many decision trees on bootstrap samples?,mcq,Random forest|Gradient boosting|Support vector machine|K-nearest neighbours,Random forest,,5,ai
 What does GAN stand for in machine learning?,mcq,Generative Adversarial Network|General Artificial Network|Gradient Activation Network|Graph Attention Network,Generative Adversarial Network,,5,ai
-SAT was the first problem proven complete for which complexity class?,one_word,,NP,np-complete|np complete,5,theory
+SAT was the first problem proven complete for which complexity class?,mcq,NP|P|PSPACE|BPP,NP,,5,theory
 Which theorem proved that SAT is NP-complete?,mcq,Cook-Levin theorem|Church-Turing thesis|Rice's theorem|Godel's incompleteness theorem,Cook-Levin theorem,,5,theory
 What is the time complexity of the Floyd-Warshall algorithm?,mcq,O(V^3)|O(V^2)|O(E log V)|O(VE),O(V^3),,5,dsa
 Which algorithm computes the RSA private exponent from the public one?,mcq,Extended Euclidean algorithm|Sieve of Eratosthenes|Dijkstra's algorithm|Fast Fourier Transform,Extended Euclidean algorithm,,5,security
-Which protocol provides the encryption in modern HTTPS?,one_word,,TLS,transport layer security,5,security
+Which protocol provides the encryption in modern HTTPS?,mcq,WPA2|IPsec|SSH|TLS,TLS,,5,security
 Which cache mapping places each memory block in exactly one cache line?,mcq,Direct mapped|Fully associative|Set associative|Write back,Direct mapped,,5,computers
-Which Unix system call creates a new process by duplicating the caller?,one_word,,fork,fork(),5,os
-Which IEEE standard defines floating-point arithmetic?,one_word,,754,ieee 754|ieee754,5,computers
-How many fraction bits does IEEE 754 single precision store?,one_word,,23,,5,computers
-Which modulation scheme varies the carrier's frequency?,one_word,,FM,frequency modulation,5,electronics
+Which Unix system call creates a new process by duplicating the caller?,mcq,clone|spawn|fork|exec,fork,,5,os
+Which IEEE standard defines floating-point arithmetic?,mcq,488|1394|802|754,754,,5,computers
+How many fraction bits does IEEE 754 single precision store?,mcq,52|23|32|24,23,,5,computers
+Which modulation scheme varies the carrier's frequency?,mcq,PM|AM|FM|QAM,FM,,5,electronics
 Which theorem gives the maximum data rate of a noisy channel?,mcq,Shannon-Hartley theorem|Nyquist theorem|Fourier theorem|Bayes' theorem,Shannon-Hartley theorem,,5,electronics
-What is the smallest deployable unit in Kubernetes?,one_word,,Pod,pods,5,systems
+What is the smallest deployable unit in Kubernetes?,mcq,Node|Container|Cluster|Pod,Pod,,5,systems
 Which garbage collection technique cannot reclaim reference cycles on its own?,mcq,Reference counting|Mark and sweep|Copying collection|Generational collection,Reference counting,,5,programming
 Which pipeline hazard occurs when an instruction needs the result of a previous one?,mcq,Data hazard|Control hazard|Structural hazard|Memory hazard,Data hazard,,5,computers
-Which index structure do relational databases like PostgreSQL use by default?,one_word,,B-tree,btree|b tree|b+ tree|b+tree,5,databases
-Which quantum gate puts a qubit into an equal superposition?,one_word,,Hadamard,h gate|hadamard gate,5,theory
+Which index structure do relational databases like PostgreSQL use by default?,mcq,B-tree|Linked list|Hash table|Trie,B-tree,,5,databases
+Which quantum gate puts a qubit into an equal superposition?,mcq,Pauli-X|CNOT|Toffoli|Hadamard,Hadamard,,5,theory
 "What does this print?
 print(2 + 3)",mcq,5|23|2 + 3|Error,5,,1,coding
 "What does this print?
 print(""ha"" * 3)",mcq,Error|hahaha|ha3|ha ha ha,hahaha,,1,coding
 "What does this print?
-print(len(""cat""))",one_word,,3,,1,coding
+print(len(""cat""))",mcq,4|Error|2|3,3,,1,coding
 "What does this print?
-print(10 - 4)",one_word,,6,,1,coding
+print(10 - 4)",mcq,14|4|6|Error,6,,1,coding
 "What does this print?
-print(""Hello""[0])",one_word,,H,,1,coding
+print(""Hello""[0])",mcq,e|Hello|Error|H,H,,1,coding
 Which symbol starts a comment in Python?,mcq,/*|#|//|--,#,,1,coding
 "What does this print?
 x = 4
 x = x + 1
-print(x)",one_word,,5,,1,coding
+print(x)",mcq,5|4|Error|6,5,,1,coding
 "What does this print?
-print(""cat"" + ""dog"")",one_word,,catdog,,1,coding
+print(""cat"" + ""dog"")",mcq,cat dog|Error|catdog|dogcat,catdog,,1,coding
 "What does this print?
 print(type(5).__name__)",mcq,int|float|str|bool,int,,1,coding
 "What does this print?
-print(len([4, 8, 15]))",one_word,,3,,1,coding
+print(len([4, 8, 15]))",mcq,15|3|2|4,3,,1,coding
 Which of these is a Python list?,mcq,"{1, 2, 3}|<1, 2, 3>|[1, 2, 3]|(1, 2, 3)","[1, 2, 3]",,1,coding
 "What does this print?
 print(""5"" + ""5"")",mcq,10|5 + 5|Error|55,55,,1,coding
@@ -177,142 +177,142 @@ print(""5"" + ""5"")",mcq,10|5 + 5|Error|55,55,,1,coding
 print(1 + 1 == 2)",mcq,True|False|2|Error,True,,1,coding
 "What does ""www"" stand for in a web address?",mcq,Wide World Web|World Wide Web|World Wide Wire|Web Wide World,World Wide Web,,1,tech
 Which keyboard shortcut copies on Windows?,mcq,Ctrl + X|Ctrl + Z|Ctrl + C|Ctrl + V,Ctrl + C,,1,tech
-What do programmers call a mistake in their code?,one_word,,bug,a bug|bugs,1,tech
+What do programmers call a mistake in their code?,mcq,Typo|Glitch|Crash|Bug,Bug,,1,tech
 Which of these is a web browser?,mcq,Windows|Chrome|Excel|Photoshop,Chrome,,1,tech
 "What does ""AI"" stand for?",mcq,Automatic Internet|Advanced Input|Actual Information|Artificial Intelligence,Artificial Intelligence,,1,tech
 Which shortcut undoes your last action on most computers?,mcq,Ctrl + Z|Ctrl + U|Ctrl + Y|Ctrl + D,Ctrl + Z,,1,tech
-Which part of a computer do you move around to point at the screen?,one_word,,mouse,a mouse|computer mouse,1,tech
+Which part of a computer do you move around to point at the screen?,mcq,Keyboard|Joystick|Speaker|Mouse,Mouse,,1,tech
 Which device do you use to type letters into a computer?,mcq,Speaker|Printer|Keyboard|Monitor,Keyboard,,1,tech
 Which of these is a video-calling app?,mcq,Paint|Notepad|Calculator|Zoom,Zoom,,1,tech
-What is the largest planet in our solar system?,one_word,,Jupiter,,1,science
+What is the largest planet in our solar system?,mcq,Earth|Saturn|Neptune|Jupiter,Jupiter,,1,science
 Which animal is known as the King of the Jungle?,mcq,Bear|Lion|Tiger|Elephant,Lion,,1,gk
-How many continents are there on Earth?,one_word,,7,,1,geography
-What colour do you get when you mix blue and yellow?,one_word,,green,,1,gk
+How many continents are there on Earth?,mcq,7|5|8|6,7,,1,geography
+What colour do you get when you mix blue and yellow?,mcq,Orange|Green|Purple|Brown,Green,,1,gk
 What is the national animal of India?,mcq,Tiger|Lion|Elephant|Peacock,Tiger,,1,gk
-What is the capital of India?,one_word,,New Delhi,delhi|newdelhi,1,geography
-How many legs does a spider have?,one_word,,8,,1,science
+What is the capital of India?,mcq,New Delhi|Chennai|Mumbai|Kolkata,New Delhi,,1,geography
+How many legs does a spider have?,mcq,8|6|10|4,8,,1,science
 Which festival is known as the festival of lights?,mcq,Holi|Eid|Christmas|Diwali,Diwali,,1,culture
-What is frozen water called?,one_word,,ice,,1,science
-How many hours are in a day?,one_word,,24,,1,gk
+What is frozen water called?,mcq,Steam|Ice|Dew|Snow,Ice,,1,science
+How many hours are in a day?,mcq,24|48|12|20,24,,1,gk
 Which shape has three sides?,mcq,Circle|Pentagon|Triangle|Square,Triangle,,1,math
-What is 12 × 12?,one_word,,144,,1,math
+What is 12 × 12?,mcq,144|124|132|154,144,,1,math
 In which direction does the sun rise?,mcq,East|West|North|South,East,,1,science
-"What is the opposite of ""hot""?",one_word,,cold,,1,gk
-Which organ pumps blood around your body?,one_word,,heart,the heart,1,science
-How many players does a cricket team have on the field?,one_word,,11,,1,sports
+"What is the opposite of ""hot""?",mcq,Dry|Warm|Cold|Wet,Cold,,1,gk
+Which organ pumps blood around your body?,mcq,Brain|Liver|Lungs|Heart,Heart,,1,science
+How many players does a cricket team have on the field?,mcq,10|9|11|12,11,,1,sports
 What is the national bird of India?,mcq,Peacock|Parrot|Eagle|Sparrow,Peacock,,1,gk
-What do bees make?,one_word,,honey,,1,science
-How many days are in a leap year?,one_word,,366,,1,gk
+What do bees make?,mcq,Milk|Wax only|Honey|Jam,Honey,,1,science
+How many days are in a leap year?,mcq,364|360|365|366,366,,1,gk
 What do caterpillars turn into?,mcq,Bees|Spiders|Worms|Butterflies,Butterflies,,1,science
-What colour is a ripe banana?,one_word,,yellow,,1,gk
+What colour is a ripe banana?,mcq,Blue|Red|Yellow|Green,Yellow,,1,gk
 Which planet do we live on?,mcq,Jupiter|Earth|Mars|Venus,Earth,,1,science
-How many sides does a square have?,one_word,,4,,1,math
-Which sport is played at Wimbledon?,one_word,,tennis,lawn tennis,1,sports
-How many colours are in a rainbow?,one_word,,7,,1,science
+How many sides does a square have?,mcq,4|3|5|6,4,,1,math
+Which sport is played at Wimbledon?,mcq,Tennis|Badminton|Football|Cricket,Tennis,,1,sports
+How many colours are in a rainbow?,mcq,8|6|7|5,7,,1,science
 Which of these is a fruit?,mcq,Onion|Mango|Potato|Carrot,Mango,,1,gk
-What is the capital of Karnataka?,one_word,,Bengaluru,bangalore,1,geography
-How many wheels does a bicycle have?,one_word,,2,,1,gk
-What is the capital of Maharashtra?,one_word,,Mumbai,bombay,1,geography
+What is the capital of Karnataka?,mcq,Mysuru|Mangaluru|Bengaluru|Hubballi,Bengaluru,,1,geography
+How many wheels does a bicycle have?,mcq,3|1|4|2,2,,1,gk
+What is the capital of Maharashtra?,mcq,Mumbai|Nagpur|Nashik|Pune,Mumbai,,1,geography
 Which of these animals can fly?,mcq,Snake|Bat|Elephant|Dolphin,Bat,,1,science
-What do you call a house made of ice blocks?,one_word,,igloo,an igloo,1,gk
+What do you call a house made of ice blocks?,mcq,Igloo|Cabin|Hut|Tent,Igloo,,1,gk
 What is the main ingredient of guacamole?,mcq,Tomato|Potato|Cucumber|Avocado,Avocado,,1,gk
 Which colour is at the top of the Indian flag?,mcq,Saffron|Green|White|Blue,Saffron,,1,gk
-Which animal is known as the ship of the desert?,one_word,,camel,a camel,1,gk
-You have 5 chocolates and eat 2. How many are left?,one_word,,3,,1,math
-What has keys but can't open locks?,one_word,,keyboard,piano|a piano|a keyboard,1,riddle
-What gets wetter the more it dries?,one_word,,towel,a towel,1,riddle
+Which animal is known as the ship of the desert?,mcq,Camel|Horse|Elephant|Donkey,Camel,,1,gk
+You have 5 chocolates and eat 2. How many are left?,mcq,2|4|3|7,3,,1,math
+What has keys but can't open locks?,mcq,Keyboard|Safe|Car|Door,Keyboard,,1,riddle
+What gets wetter the more it dries?,mcq,Soap|Sponge|Rain|Towel,Towel,,1,riddle
 Why did the developer go broke?,mcq,He deleted the internet|He used up all his cache|He forgot his password|His laptop ran out of charge,He used up all his cache,,1,meme
-I'm tall when I'm young and short when I'm old. What am I?,one_word,,candle,a candle,1,riddle
+I'm tall when I'm young and short when I'm old. What am I?,mcq,Candle|Tree|Pencil|Person,Candle,,1,riddle
 """It works on my machine!"" is a famous excuse from…",mcq,Doctors|Pilots|Chefs|Programmers,Programmers,,1,meme
-What has a head and a tail but no body?,one_word,,coin,a coin,1,riddle
+What has a head and a tail but no body?,mcq,Kite|Comet|Coin|Snake,Coin,,1,riddle
 "Which emoji is called ""face with tears of joy""?",mcq,😡|😂|😭|😅,😂,,1,meme
-What has hands but can't clap?,one_word,,clock,a clock|watch|a watch,1,riddle
+What has hands but can't clap?,mcq,Doll|Clock|Glove|Robot,Clock,,1,riddle
 "Which animal says ""moo""?",mcq,Dog|Cat|Duck|Cow,Cow,,1,funny
-What goes up but never comes down?,one_word,,age,your age|my age,1,riddle
+What goes up but never comes down?,mcq,Balloon|Smoke|Age|Rocket,Age,,1,riddle
 "What does this print?
 print(3 ** 2)",mcq,32|9|6|8,9,,2,coding
 "How many lines does this print?
 for i in range(3):
-    print(i)",one_word,,3,,2,coding
+    print(i)",mcq,1|2|4|3,3,,2,coding
 "What does this print?
 total = 0
 for n in [1, 2, 3, 4]:
     total += n
-print(total)",one_word,,10,,2,coding
+print(total)",mcq,9|24|4|10,10,,2,coding
 "What does this print?
-print(""python""[-1])",one_word,,n,,2,coding
+print(""python""[-1])",mcq,p|n|o|python,n,,2,coding
 "What does this print?
 print(5 == 5.0)",mcq,None|True|False|Error,True,,2,coding
 "Fix the bug: which word should replace prnt?
-prnt(""Hello"")",one_word,,print,,2,coding
+prnt(""Hello"")",mcq,echo|print()|say|print,print,,2,coding
 "What does this print?
 x = [10, 20, 30]
-print(x[1])",one_word,,20,,2,coding
+print(x[1])",mcq,20|30|Error|10,20,,2,coding
 "What does this print?
 print(bool(0))",mcq,False|True|0|None,False,,2,coding
 "What does this print?
-print(""Hi"".replace(""i"", ""o""))",one_word,,Ho,,2,coding
+print(""Hi"".replace(""i"", ""o""))",mcq,Error|Hi|Hoo|Ho,Ho,,2,coding
 "What does this print?
 print(int(""7"") + 3)",mcq,Error|7 + 3|10|73,10,,2,coding
 "What does this print?
-print(len(""hello world""))",one_word,,11,,2,coding
+print(len(""hello world""))",mcq,11|12|10|2,11,,2,coding
 "In JavaScript, what does this print?
 console.log(typeof ""5"")",mcq,string|number|char|text,string,,2,coding
 "What does this print?
-print(max(4, 9, 2))",one_word,,9,,2,coding
+print(max(4, 9, 2))",mcq,9|4|15|2,9,,2,coding
 What does HTML stand for?,mcq,Hyperlink and Text Markup Language|Home Tool Markup Language|HyperText Markup Language|High Text Machine Language,HyperText Markup Language,,2,tech
 Which of these keeps your files when the power goes off?,mcq,RAM|CPU cache|Registers|SSD,SSD,,2,tech
-"What does the ""S"" in HTTPS stand for?",one_word,,secure,,2,tech
+"What does the ""S"" in HTTPS stand for?",mcq,Secure|Server|System|Safe,Secure,,2,tech
 Which company owns Android today?,mcq,Samsung|Google|Apple|Microsoft,Google,,2,tech
-What is the binary number 101 in decimal?,one_word,,5,,2,tech
+What is the binary number 101 in decimal?,mcq,101|3|7|5,5,,2,tech
 Which of these is NOT an operating system?,mcq,Linux|Windows|macOS|Excel,Excel,,2,tech
-What is the main circuit board inside a computer called?,one_word,,motherboard,mainboard|mother board,2,tech
+What is the main circuit board inside a computer called?,mcq,Motherboard|Hard disk|Keyboard|Power supply,Motherboard,,2,tech
 Which language is mainly used to style web pages?,mcq,Java|CSS|SQL|C,CSS,,2,tech
 Which keyboard shortcut pastes on Windows?,mcq,Ctrl + C|Ctrl + B|Ctrl + V|Ctrl + P,Ctrl + V,,2,tech
-What is the name of Apple's voice assistant?,one_word,,Siri,,2,tech
-What is the capital of Japan?,one_word,,Tokyo,,2,geography
-How many states does India have?,one_word,,28,,2,geography
+What is the name of Apple's voice assistant?,mcq,Cortana|Bixby|Alexa|Siri,Siri,,2,tech
+What is the capital of Japan?,mcq,Osaka|Tokyo|Kyoto|Seoul,Tokyo,,2,geography
+How many states does India have?,mcq,25|28|29|30,28,,2,geography
 Who was the first Prime Minister of India?,mcq,Indira Gandhi|Rajendra Prasad|Jawaharlal Nehru|Sardar Patel,Jawaharlal Nehru,,2,history
-Which planet is closest to the Sun?,one_word,,Mercury,,2,science
+Which planet is closest to the Sun?,mcq,Venus|Mars|Mercury|Earth,Mercury,,2,science
 What is the hardest natural substance?,mcq,Diamond|Iron|Gold|Granite,Diamond,,2,science
-How many sides does a hexagon have?,one_word,,6,,2,math
-In which year did India become independent?,one_word,,1947,,2,history
+How many sides does a hexagon have?,mcq,6|7|8|5,6,,2,math
+In which year did India become independent?,mcq,1857|1942|1950|1947,1947,,2,history
 Which instrument has 88 keys?,mcq,Piano|Guitar|Violin|Flute,Piano,,2,culture
-What is the currency of Japan?,one_word,,yen,,2,geography
+What is the currency of Japan?,mcq,Yuan|Ringgit|Yen|Won,Yen,,2,geography
 Mount Everest lies on the border of Nepal and…,mcq,Bhutan|Pakistan|China|India,China,,2,geography
-How many minutes are in 2 hours?,one_word,,120,,2,math
-Who painted the Mona Lisa?,one_word,,Leonardo da Vinci,da vinci|leonardo|davinci|leonardo davinci,2,history
+How many minutes are in 2 hours?,mcq,200|60|120|100,120,,2,math
+Who painted the Mona Lisa?,mcq,Vincent van Gogh|Pablo Picasso|Leonardo da Vinci|Michelangelo,Leonardo da Vinci,,2,history
 Which blood cells fight infections?,mcq,Plasma|White blood cells|Red blood cells|Platelets,White blood cells,,2,science
-Which ocean is the largest?,one_word,,Pacific,pacific ocean|the pacific,2,geography
+Which ocean is the largest?,mcq,Pacific|Indian|Atlantic|Arctic,Pacific,,2,geography
 Which gas do we breathe in to stay alive?,mcq,Carbon dioxide|Nitrogen|Helium|Oxygen,Oxygen,,2,science
-How many weeks are in a year?,one_word,,52,,2,gk
-Which country is famous for the pyramids of Giza?,one_word,,Egypt,,2,geography
+How many weeks are in a year?,mcq,48|52|50|56,52,,2,gk
+Which country is famous for the pyramids of Giza?,mcq,Mexico|India|Egypt|Greece,Egypt,,2,geography
 Who is known as the Father of the Nation in India?,mcq,Subhas Chandra Bose|B. R. Ambedkar|Mahatma Gandhi|Jawaharlal Nehru,Mahatma Gandhi,,2,history
-How many players from one team are on the mat in kabaddi?,one_word,,7,,2,sports
-What do you call a baby dog?,one_word,,puppy,pup,2,gk
+How many players from one team are on the mat in kabaddi?,mcq,6|7|11|5,7,,2,sports
+What do you call a baby dog?,mcq,Cub|Calf|Kitten|Puppy,Puppy,,2,gk
 Which is the largest mammal?,mcq,Hippopotamus|Blue whale|Elephant|Giraffe,Blue whale,,2,science
-Which gas do plants take in from the air?,one_word,,carbon dioxide,co2|carbon-dioxide,2,science
+Which gas do plants take in from the air?,mcq,Carbon dioxide|Nitrogen|Oxygen|Helium,Carbon dioxide,,2,science
 Which sport uses a shuttlecock?,mcq,Tennis|Squash|Table tennis|Badminton,Badminton,,2,sports
-What is 15 + 27?,one_word,,42,,2,math
-How many years are in a century?,one_word,,100,,2,gk
-What is the national flower of India?,one_word,,lotus,,2,gk
-How many months have 28 days?,one_word,,12,,2,riddle
-What can you catch but not throw?,one_word,,cold,a cold,2,riddle
-What has to be broken before you can use it?,one_word,,egg,an egg,2,riddle
+What is 15 + 27?,mcq,43|52|32|42,42,,2,math
+How many years are in a century?,mcq,1000|10|50|100,100,,2,gk
+What is the national flower of India?,mcq,Jasmine|Sunflower|Rose|Lotus,Lotus,,2,gk
+How many months have 28 days?,mcq,6|12|1|2,12,,2,riddle
+What can you catch but not throw?,mcq,Ball|Fish|Bus|Cold,Cold,,2,riddle
+What has to be broken before you can use it?,mcq,Mirror|Glass|Bottle|Egg,Egg,,2,riddle
 "Finish the line: ""Keep calm and…""",mcq,shout loudly|go to sleep|carry on|run away,carry on,,2,meme
-What has one eye but cannot see?,one_word,,needle,a needle,2,riddle
+What has one eye but cannot see?,mcq,Storm|Camera|Potato|Needle,Needle,,2,riddle
 "What is a ""meme"", usually?",mcq,A funny picture or video shared online|A type of computer virus|A music instrument|A cooking recipe,A funny picture or video shared online,,2,meme
-"What runs but never walks, and has a mouth but never talks?",one_word,,river,a river,2,riddle
+"What runs but never walks, and has a mouth but never talks?",mcq,Clock|Road|River|Wind,River,,2,riddle
 "In the classic arcade game, what does Pac-Man eat?",mcq,Bananas|Stars|Dots|Coins,Dots,,2,meme
-Which building has the most stories?,one_word,,library,a library|the library,2,riddle
+Which building has the most stories?,mcq,Hospital|Skyscraper|Hotel|Library,Library,,2,riddle
 Twitter's old logo (before it became X) was a…,mcq,Bird|Fish|Cat|Star,Bird,,2,meme
-A cat has 4 legs. How many legs do 3 cats have?,one_word,,12,,2,math
+A cat has 4 legs. How many legs do 3 cats have?,mcq,16|4|7|12,12,,2,math
 "Which superhero calls himself your ""friendly neighbourhood"" hero?",mcq,Superman|Iron Man|Spider-Man|Batman,Spider-Man,,2,meme
 "What does this print?
 x = 5
 y = x
 x = 10
-print(y)",one_word,,5,,3,coding
+print(y)",mcq,15|10|Error|5,5,,3,coding
 "What does this print?
 print([1, 2, 3][::-1])",mcq,"[3, 2, 1]|[1, 2, 3]|[3]|Error","[3, 2, 1]",,3,coding
 "What does this print?
@@ -320,184 +320,184 @@ count = 0
 for i in range(1, 11):
     if i % 2 == 0:
         count += 1
-print(count)",one_word,,5,,3,coding
+print(count)",mcq,5|4|3|10,5,,3,coding
 "What does this print?
-print(""banana"".count(""a""))",one_word,,3,,3,coding
+print(""banana"".count(""a""))",mcq,3|1|6|2,3,,3,coding
 "Fix the bug: what is missing?
 if x > 5
     print(""big"")",mcq,A bracket after if|A semicolon after 5|Quotes around x|A colon after 5,A colon after 5,,3,coding
 "What does this print?
 def double(n):
     return n * 2
-print(double(double(3)))",one_word,,12,,3,coding
+print(double(double(3)))",mcq,12|3|6|9,12,,3,coding
 "What does this print?
 print(10 / 4)",mcq,3|2.5|2|2.0,2.5,,3,coding
 "What does this print?
 words = [""sun"", ""moon"", ""star""]
-print(words[-1])",one_word,,star,,3,coding
+print(words[-1])",mcq,Error|moon|sun|star,star,,3,coding
 "In JavaScript, what does this print?
 console.log(1 + ""1"")",mcq,2|NaN|Error|11,11,,3,coding
 "What does this print?
 nums = [3, 7, 1, 9]
-print(max(nums) - min(nums))",one_word,,8,,3,coding
+print(max(nums) - min(nums))",mcq,9|6|8|1,8,,3,coding
 "What does this print?
 print(""a"" in ""cat"")",mcq,a|True|False|Error,True,,3,coding
 "What does this print?
 i = 0
 while i < 5:
     i += 2
-print(i)",one_word,,6,,3,coding
+print(i)",mcq,6|5|8|4,6,,3,coding
 "What does this print?
-print(""-"".join([""a"", ""b"", ""c""]))",one_word,,a-b-c,,3,coding
+print(""-"".join([""a"", ""b"", ""c""]))",mcq,a-b-c|a b c|-a-b-c|abc,a-b-c,,3,coding
 "What does this print?
 print(""Python""[1:4])",mcq,yth|Pyt|ytho|thon,yth,,3,coding
 "What does this print?
-print(abs(-7))",one_word,,7,,3,coding
+print(abs(-7))",mcq,7|-7|Error|0,7,,3,coding
 "What does this print?
-print(""hello"".find(""l""))",one_word,,2,,3,coding
+print(""hello"".find(""l""))",mcq,1|-1|2|3,2,,3,coding
 Which protocol does your browser use to load web pages?,mcq,HTTP|FTP|SMTP|SSH,HTTP,,3,tech
-What is the binary number 1010 in decimal?,one_word,,10,,3,tech
+What is the binary number 1010 in decimal?,mcq,1010|2|10|5,10,,3,tech
 "Which data structure is ""first in, first out""?",mcq,Tree|Graph|Queue|Stack,Queue,,3,tech
 Which of these is a version control system?,mcq,Jira|Slack|Figma|Git,Git,,3,tech
 "What does a ""404"" error on a website mean?",mcq,Wrong password|Page not found|The server is on fire|No internet at all,Page not found,,3,tech
 Which file extension do Python files use?,mcq,.pt|.pn|.java|.py,.py,,3,coding
 Which HTML tag makes a clickable link?,mcq,<a>|<link>|<href>|<url>,<a>,,3,tech
-What do you call software that protects a computer from viruses?,one_word,,antivirus,anti-virus|antivirus software|anti virus,3,tech
+What do you call software that protects a computer from viruses?,mcq,Antivirus|Spreadsheet|Browser|Firewall,Antivirus,,3,tech
 "Who wrote ""Romeo and Juliet""?",mcq,Rabindranath Tagore|Mark Twain|William Shakespeare|Charles Dickens,William Shakespeare,,3,culture
-What is the smallest prime number?,one_word,,2,,3,math
+What is the smallest prime number?,mcq,2|0|1|3,2,,3,math
 Which country gave the Statue of Liberty to the USA?,mcq,France|United Kingdom|Spain|Italy,France,,3,history
-What is the capital of Australia?,one_word,,Canberra,,3,geography
-How many bones does an adult human have?,one_word,,206,,3,science
+What is the capital of Australia?,mcq,Canberra|Perth|Melbourne|Sydney,Canberra,,3,geography
+How many bones does an adult human have?,mcq,196|300|206|208,206,,3,science
 Which vitamin does your skin make in sunlight?,mcq,Vitamin C|Vitamin A|Vitamin B12|Vitamin D,Vitamin D,,3,science
-Which Indian city is called the Pink City?,one_word,,Jaipur,,3,geography
-At what temperature in Celsius does water boil at sea level?,one_word,,100,,3,science
+Which Indian city is called the Pink City?,mcq,Jaipur|Agra|Jodhpur|Udaipur,Jaipur,,3,geography
+At what temperature in Celsius does water boil at sea level?,mcq,90|120|100|212,100,,3,science
 Which planet is most famous for its rings?,mcq,Mercury|Venus|Saturn|Mars,Saturn,,3,science
-What is the longest bone in the human body?,one_word,,femur,thigh bone|thighbone,3,science
+What is the longest bone in the human body?,mcq,Spine|Humerus|Femur|Tibia,Femur,,3,science
 Who discovered penicillin?,mcq,Alexander Fleming|Isaac Newton|Thomas Edison|Marie Curie,Alexander Fleming,,3,history
-How many teeth does an adult human usually have?,one_word,,32,,3,science
-Who wrote the national anthem of India?,one_word,,Rabindranath Tagore,tagore|rabindranath,3,history
+How many teeth does an adult human usually have?,mcq,30|28|36|32,32,,3,science
+Who wrote the national anthem of India?,mcq,Sarojini Naidu|Bankim Chandra Chatterjee|Muhammad Iqbal|Rabindranath Tagore,Rabindranath Tagore,,3,history
 Which is the tallest mountain in the world?,mcq,K2|Kangchenjunga|Mount Kilimanjaro|Mount Everest,Mount Everest,,3,geography
-Which continent is the Sahara Desert in?,one_word,,Africa,,3,geography
-How many players from one team are on a basketball court?,one_word,,5,,3,sports
+Which continent is the Sahara Desert in?,mcq,South America|Australia|Asia|Africa,Africa,,3,geography
+How many players from one team are on a basketball court?,mcq,6|5|7|4,5,,3,sports
 Which part of a plant makes food using sunlight?,mcq,Stem|Flower|Leaf|Root,Leaf,,3,science
-Which language has the most native speakers in the world?,one_word,,Mandarin,chinese|mandarin chinese,3,gk
-How many degrees are in a right angle?,one_word,,90,,3,math
+Which language has the most native speakers in the world?,mcq,Mandarin|English|Spanish|Hindi,Mandarin,,3,gk
+How many degrees are in a right angle?,mcq,180|90|60|45,90,,3,math
 Who was the first woman Prime Minister of India?,mcq,Sonia Gandhi|Indira Gandhi|Sarojini Naidu|Pratibha Patil,Indira Gandhi,,3,history
-In which country is the Eiffel Tower?,one_word,,France,,3,geography
-What is 25% of 200?,one_word,,50,,3,math
+In which country is the Eiffel Tower?,mcq,Italy|Germany|Spain|France,France,,3,geography
+What is 25% of 200?,mcq,40|50|100|25,50,,3,math
 Which animal is the fastest on land?,mcq,Cheetah|Lion|Horse|Kangaroo,Cheetah,,3,science
-What is the name of the galaxy we live in?,one_word,,Milky Way,the milky way|milkyway,3,science
+What is the name of the galaxy we live in?,mcq,Andromeda|Milky Way|Whirlpool|Sombrero,Milky Way,,3,science
 Which game has pieces called a rook and a bishop?,mcq,Ludo|Snakes and ladders|Chess|Carrom,Chess,,3,sports
-How many years are in a decade?,one_word,,10,,3,gk
+How many years are in a decade?,mcq,100|12|10|5,10,,3,gk
 What is the largest organ of the human body?,mcq,Skin|Liver|Heart|Brain,Skin,,3,science
-Which Indian monument is famous as a symbol of love?,one_word,,Taj Mahal,tajmahal|the taj|taj,3,history
-"How many states of matter do we usually learn in school: solid, liquid and…?",one_word,,3,,3,science
+Which Indian monument is famous as a symbol of love?,mcq,Taj Mahal|Qutub Minar|Red Fort|India Gate,Taj Mahal,,3,history
+"How many states of matter do we usually learn in school: solid, liquid and…?",mcq,5|3|2|4,3,,3,science
 Which Indian festival is famous for throwing colours?,mcq,Diwali|Onam|Pongal|Holi,Holi,,3,culture
-What is the capital of the United Kingdom?,one_word,,London,,3,geography
-How many seconds are in 3 minutes?,one_word,,180,,3,math
-"The more you take, the more you leave behind. What are they?",one_word,,footsteps,steps|footprints|foot steps,3,riddle
-What has many teeth but can't bite?,one_word,,comb,a comb,3,riddle
-You have 3 apples and take away 2. How many apples do you have?,one_word,,2,,3,riddle
+What is the capital of the United Kingdom?,mcq,London|Edinburgh|Paris|Manchester,London,,3,geography
+How many seconds are in 3 minutes?,mcq,360|120|300|180,180,,3,math
+"The more you take, the more you leave behind. What are they?",mcq,Coins|Photos|Breaths|Footsteps,Footsteps,,3,riddle
+What has many teeth but can't bite?,mcq,Shark|Comb|Saw|Zip,Comb,,3,riddle
+You have 3 apples and take away 2. How many apples do you have?,mcq,0|2|1|3,2,,3,riddle
 "Finish the nerd joke: ""There are 10 kinds of people: those who understand binary and…""",mcq,those who eat|those who don't|those who code|those who sleep,those who don't,,3,meme
-What has a neck but no head?,one_word,,bottle,a bottle,3,riddle
+What has a neck but no head?,mcq,Guitar|Shirt|Bottle|Giraffe,Bottle,,3,riddle
 "What does ""LOL"" usually mean in a chat?",mcq,Lots of love|Look online later|Leave our lobby|Laughing out loud,Laughing out loud,,3,meme
-A train leaves at 3 pm and the trip takes 2 hours. At what hour (pm) does it arrive?,one_word,,5,,3,math
-What word becomes shorter when you add two letters to it?,one_word,,short,,3,riddle
+A train leaves at 3 pm and the trip takes 2 hours. At what hour (pm) does it arrive?,mcq,6|5|4|2,5,,3,math
+What word becomes shorter when you add two letters to it?,mcq,Long|Small|Tiny|Short,Short,,3,riddle
 "What does ""BRB"" mean in a chat?",mcq,"Big red button|Bored, really bored|Be right back|Bring real bread",Be right back,,3,meme
-What can fill a room but takes up no space?,one_word,,light,the light,3,riddle
+What can fill a room but takes up no space?,mcq,Light|Sound|Air|Water,Light,,3,riddle
 "Which game made ""Winner winner chicken dinner"" famous with players?",mcq,PUBG|Minecraft|Tetris|Chess,PUBG,,3,meme
-"What is the next number: 2, 4, 8, 16, …?",one_word,,32,,3,math
+"What is the next number: 2, 4, 8, 16, …?",mcq,20|32|18|24,32,,3,math
 Which famous puzzle is a cube with six coloured faces?,mcq,Jenga|Tangram|Rubik's Cube|Sudoku,Rubik's Cube,,3,meme
 "What does this print?
 def f(n):
     if n <= 1:
         return 1
     return n * f(n - 1)
-print(f(4))",one_word,,24,,4,coding
+print(f(4))",mcq,12|24|16|10,24,,4,coding
 "What does this print?
 x = [1, 2, 3]
 y = x
 y.append(4)
 print(len(x))",mcq,4|3|Error|0,4,,4,coding
 "What does this print?
-print(sum(range(1, 6)))",one_word,,15,,4,coding
+print(sum(range(1, 6)))",mcq,10|6|21|15,15,,4,coding
 "What does this print?
 print([n * n for n in range(4)])",mcq,"[0, 1, 2, 3]|[1, 2, 3, 4]|[0, 1, 4, 9]|[1, 4, 9, 16]","[0, 1, 4, 9]",,4,coding
 "What does this print?
 s = ""level""
-print(s == s[::-1])",one_word,,True,,4,coding
+print(s == s[::-1])",mcq,level|Error|False|True,True,,4,coding
 "What does this print?
 d = {""a"": 1, ""b"": 2}
 d[""a""] = 5
-print(d[""a""] + d[""b""])",one_word,,7,,4,coding
+print(d[""a""] + d[""b""])",mcq,8|6|7|3,7,,4,coding
 "In JavaScript, what does this print?
 console.log(""3"" * ""4"")",mcq,Error|12|34|NaN,12,,4,coding
 "Fix the bug: this should print 1 to 5 but stops at 4. What should the 5 become?
 for i in range(1, 5):
-    print(i)",one_word,,6,,4,coding
+    print(i)",mcq,6|10|5|4,6,,4,coding
 "What does this print?
 x = 0
 for i in range(3):
     for j in range(2):
         x += 1
-print(x)",one_word,,6,,4,coding
+print(x)",mcq,2|6|5|3,6,,4,coding
 "What does this print?
 print(""Hi"" + str(5))",mcq,Hi5|Hi 5|Error|5Hi,Hi5,,4,coding
 "What does this print?
-print(sorted([""pear"", ""apple"", ""fig""])[0])",one_word,,apple,,4,coding
+print(sorted([""pear"", ""apple"", ""fig""])[0])",mcq,pear|fig|apple|Error,apple,,4,coding
 "What does this print?
-print(2 ** 10)",one_word,,1024,,4,coding
+print(2 ** 10)",mcq,1024|512|20|100,1024,,4,coding
 "What does this print?
 print(""abc"" * 0)",mcq,abc|0|Error|An empty line,An empty line,,4,coding
 How fast is binary search on a sorted list of n items?,mcq,O(log n)|O(n)|O(1)|O(n²),O(log n),,4,tech
-Which port does HTTPS use by default?,one_word,,443,,4,tech
-A DNS server turns a website name into what?,one_word,,IP address,ip|an ip address|ip addresses,4,tech
+Which port does HTTPS use by default?,mcq,22|80|21|443,443,,4,tech
+A DNS server turns a website name into what?,mcq,IP address|Web page|Password|Email address,IP address,,4,tech
 Which language runs natively inside web browsers?,mcq,Python|C++|Java|JavaScript,JavaScript,,4,tech
 "Which data structure is ""last in, first out""?",mcq,Stack|Queue|Linked list|Hash map,Stack,,4,tech
-What is the name of the penguin mascot of Linux?,one_word,,Tux,,4,tech
-What is the binary number 1111 in decimal?,one_word,,15,,4,tech
+What is the name of the penguin mascot of Linux?,mcq,Linus|Pingu|Tux|Pengo,Tux,,4,tech
+What is the binary number 1111 in decimal?,mcq,15|8|16|11,15,,4,tech
 "In Git, which command saves your staged changes as a snapshot?",mcq,git commit|git push|git pull|git clone,git commit,,4,tech
 Which shortcut takes a screenshot of the whole screen on Windows 10 and 11?,mcq,Alt + F4|Ctrl + P|Windows + PrtScn|Ctrl + S,Windows + PrtScn,,4,tech
 Who was the first person to walk on the Moon?,mcq,Buzz Aldrin|Yuri Gagarin|Rakesh Sharma|Neil Armstrong,Neil Armstrong,,4,history
-In which year did World War II end?,one_word,,1945,,4,history
-What is the capital of Canada?,one_word,,Ottawa,,4,geography
+In which year did World War II end?,mcq,1944|1945|1939|1947,1945,,4,history
+What is the capital of Canada?,mcq,Montreal|Ottawa|Toronto|Vancouver,Ottawa,,4,geography
 Which element has the chemical symbol Fe?,mcq,Lead|Silver|Iron|Fluorine,Iron,,4,science
-Who is known as the Missile Man of India?,one_word,,APJ Abdul Kalam,kalam|abdul kalam|a p j abdul kalam|a.p.j. abdul kalam|apj kalam,4,history
-How many small squares are on a chess board?,one_word,,64,,4,sports
+Who is known as the Missile Man of India?,mcq,Vikram Sarabhai|Homi Bhabha|C. V. Raman|APJ Abdul Kalam,APJ Abdul Kalam,,4,history
+How many small squares are on a chess board?,mcq,100|64|32|81,64,,4,sports
 Which is the largest hot desert in the world?,mcq,Kalahari|Sahara|Thar|Gobi,Sahara,,4,geography
-Which Mughal emperor built the Taj Mahal?,one_word,,Shah Jahan,shahjahan,4,history
+Which Mughal emperor built the Taj Mahal?,mcq,Shah Jahan|Akbar|Babur|Aurangzeb,Shah Jahan,,4,history
 About how fast does light travel?,mcq,"3,000 km per second|30 km per second|3 km per second|300,000 km per second","300,000 km per second",,4,science
-How many strings does a standard guitar have?,one_word,,6,,4,culture
+How many strings does a standard guitar have?,mcq,6|5|7|4,6,,4,culture
 Which country has the most people in the world?,mcq,Indonesia|India|China|United States,India,,4,geography
-What is the square root of 144?,one_word,,12,,4,math
-Which planet is often called the Morning Star?,one_word,,Venus,,4,science
+What is the square root of 144?,mcq,72|14|12|11,12,,4,math
+Which planet is often called the Morning Star?,mcq,Mercury|Jupiter|Venus|Mars,Venus,,4,science
 Who invented the telephone?,mcq,Alexander Graham Bell|Thomas Edison|Nikola Tesla|Guglielmo Marconi,Alexander Graham Bell,,4,history
-How many players from one team are on the field in hockey?,one_word,,11,,4,sports
-What is the capital of Germany?,one_word,,Berlin,,4,geography
+How many players from one team are on the field in hockey?,mcq,12|9|11|10,11,,4,sports
+What is the capital of Germany?,mcq,Frankfurt|Berlin|Vienna|Munich,Berlin,,4,geography
 What does a thermometer measure?,mcq,Pressure|Speed|Weight|Temperature,Temperature,,4,science
-How many zeros are in one lakh?,one_word,,5,,4,math
-"Who said ""Give me blood, and I will give you freedom""?",one_word,,Subhas Chandra Bose,bose|netaji|subhash chandra bose|subhas bose|netaji subhas chandra bose,4,history
+How many zeros are in one lakh?,mcq,6|4|7|5,5,,4,math
+"Who said ""Give me blood, and I will give you freedom""?",mcq,Bhagat Singh|Mahatma Gandhi|Bal Gangadhar Tilak|Subhas Chandra Bose,Subhas Chandra Bose,,4,history
 Which gas makes up most of the air on Earth?,mcq,Carbon dioxide|Argon|Nitrogen|Oxygen,Nitrogen,,4,science
-Which scientist gave the three laws of motion?,one_word,,Isaac Newton,newton|sir isaac newton,4,history
-How many minutes are in a day?,one_word,,1440,,4,math
+Which scientist gave the three laws of motion?,mcq,Isaac Newton|Galileo Galilei|Johannes Kepler|Albert Einstein,Isaac Newton,,4,history
+How many minutes are in a day?,mcq,2400|1240|1440|1200,1440,,4,math
 Which Indian state is famous for backwaters and houseboats?,mcq,Gujarat|Kerala|Goa|Punjab,Kerala,,4,geography
-"In which country did chess begin, as chaturanga?",one_word,,India,,4,history
+"In which country did chess begin, as chaturanga?",mcq,China|India|Persia|Russia,India,,4,history
 What is Jupiter's famous giant storm called?,mcq,The Big Blue Eye|The Dark Ring|The White Whirl|The Great Red Spot,The Great Red Spot,,4,science
-What can travel around the world while staying in a corner?,one_word,,stamp,a stamp|postage stamp,4,riddle
-A farmer has 17 sheep. All but 9 run away. How many are left?,one_word,,9,,4,riddle
+What can travel around the world while staying in a corner?,mcq,Stamp|Map|Spider|Shadow,Stamp,,4,riddle
+A farmer has 17 sheep. All but 9 run away. How many are left?,mcq,8|9|0|17,9,,4,riddle
 """Have you tried turning it off and on again?"" is the famous line from which TV show?",mcq,Sherlock|The Office|The IT Crowd|Friends,The IT Crowd,,4,meme
-What has words but never speaks?,one_word,,book,a book,4,riddle
+What has words but never speaks?,mcq,Parrot|Radio|Painting|Book,Book,,4,riddle
 "In a meme, what does ""404: brain not found"" mean?",mcq,Someone can't think right now|A website is very fast|The internet is free today|A phone is brand new,Someone can't think right now,,4,meme
-"What is the next number: 1, 1, 2, 3, 5, 8, …?",one_word,,13,,4,math
-What has a ring but no finger?,one_word,,phone,a phone|telephone|bell|a bell,4,riddle
+"What is the next number: 1, 1, 2, 3, 5, 8, …?",mcq,13|12|10|11,13,,4,math
+What has a ring but no finger?,mcq,Phone|Circus|Bell|Planet,Phone,,4,riddle
 "Which dog breed stars in the ""Doge"" meme?",mcq,Pug|Labrador|Husky|Shiba Inu,Shiba Inu,,4,meme
-5 machines make 5 toys in 5 minutes. How many minutes do 100 machines take to make 100 toys?,one_word,,5,,4,riddle
-"What comes once in a minute, twice in a moment, but never in a thousand years?",one_word,,m,the letter m|letter m,4,riddle
-"I'm light as a feather, yet the strongest person can't hold me for five minutes. What am I?",one_word,,breath,your breath|a breath,4,riddle
+5 machines make 5 toys in 5 minutes. How many minutes do 100 machines take to make 100 toys?,mcq,20|5|1|100,5,,4,riddle
+"What comes once in a minute, twice in a moment, but never in a thousand years?",mcq,E|T|N|M,M,,4,riddle
+"I'm light as a feather, yet the strongest person can't hold me for five minutes. What am I?",mcq,Breath|Shadow|Air|Smoke,Breath,,4,riddle
 "What does this print?
 def f(n):
     return n if n < 2 else f(n - 1) + f(n - 2)
-print(f(7))",one_word,,13,,5,coding
+print(f(7))",mcq,7|13|8|21,13,,5,coding
 "What does this print?
 a = [1, 2, 3]
 b = a[:]
@@ -508,18 +508,18 @@ x = 10
 def change():
     x = 5
 change()
-print(x)",one_word,,10,,5,coding
+print(x)",mcq,5|Error|15|10,10,,5,coding
 "What does this print?
 print({1, 2, 2, 3})",mcq,"[1, 2, 3]|Error|{1, 2, 3}|{1, 2, 2, 3}","{1, 2, 3}",,5,coding
 "What does this print?
-print(len({""a"": 1, ""b"": 2, ""a"": 3}))",one_word,,2,,5,coding
+print(len({""a"": 1, ""b"": 2, ""a"": 3}))",mcq,Error|1|2|3,2,,5,coding
 "What does this print?
-print(""Hello World"".split()[1][::-1])",one_word,,dlroW,,5,coding
+print(""Hello World"".split()[1][::-1])",mcq,olleH|dlroW|Hello|World,dlroW,,5,coding
 "In JavaScript, what does this print?
 console.log(0.1 + 0.2 === 0.3)",mcq,Error|false|true|undefined,false,,5,coding
 "What does this print?
 nums = [1, 2, 3, 4, 5, 6]
-print(sum(n for n in nums if n % 3 == 0))",one_word,,9,,5,coding
+print(sum(n for n in nums if n % 3 == 0))",mcq,3|6|9|21,9,,5,coding
 "What does this print?
 print(type([]) == type(()))",mcq,True|Error|None|False,False,,5,coding
 "What does this print?
@@ -528,58 +528,58 @@ for i in range(10):
     if i == 5:
         break
     s += i
-print(s)",one_word,,10,,5,coding
+print(s)",mcq,45|5|10|15,10,,5,coding
 "What does this print?
-print(""abc""[1:])",one_word,,bc,,5,coding
+print(""abc""[1:])",mcq,bc|ab|abc|b,bc,,5,coding
 "What does this print?
-print(int(""1010"", 2))",one_word,,10,,5,coding
+print(int(""1010"", 2))",mcq,10|8|1010|2,10,,5,coding
 "What does this print?
 print([0] * 3)",mcq,"[0]|[3]|0003|[0, 0, 0]","[0, 0, 0]",,5,coding
 "Fix the bug: this crashes. Which line prints the last number instead?
 nums = [1, 2, 3]
 print(nums[3])",mcq,print(nums[2])|print(nums(3))|print(nums{3})|print(nums.3),print(nums[2]),,5,coding
 "What does this print?
-print(len(str(2 ** 10)))",one_word,,4,,5,coding
+print(len(str(2 ** 10)))",mcq,10|1024|4|3,4,,5,coding
 What does an HTTP 500 error mean?,mcq,You are not logged in|The page loaded fine|Something broke on the server|The page was moved,Something broke on the server,,5,tech
-What does API stand for?,one_word,,Application Programming Interface,application program interface,5,tech
+What does API stand for?,mcq,Application Process Index|Automated Process Interface|Advanced Program Integration|Application Programming Interface,Application Programming Interface,,5,tech
 Which sorting method keeps swapping neighbouring items until the list is in order?,mcq,Bubble sort|Merge sort|Quick sort|Heap sort,Bubble sort,,5,tech
-How many layers does the OSI network model have?,one_word,,7,,5,tech
+How many layers does the OSI network model have?,mcq,7|8|5|4,7,,5,tech
 "On average, how long does looking up a key in a hash map take?",mcq,O(log n)|O(n log n)|O(1)|O(n),O(1),,5,tech
-Which company first created the Java language?,one_word,,Sun Microsystems,sun|sun micro systems,5,tech
+Which company first created the Java language?,mcq,Sun Microsystems|Oracle|Microsoft|IBM,Sun Microsystems,,5,tech
 Which of these is NOT a standard HTTP method?,mcq,FETCH|GET|POST|DELETE,FETCH,,5,tech
-What is the hexadecimal number FF in decimal?,one_word,,255,,5,tech
-What do we call fake messages that trick you into giving away your password?,one_word,,phishing,phishing attack|fishing,5,tech
+What is the hexadecimal number FF in decimal?,mcq,240|256|255|15,255,,5,tech
+What do we call fake messages that trick you into giving away your password?,mcq,Cookies|Hacking|Spamming|Phishing,Phishing,,5,tech
 "What does ""open source"" software mean?",mcq,It never has bugs|It only runs on Linux|Nobody is allowed to change it|Its code is public for anyone to read and improve,Its code is public for anyone to read and improve,,5,tech
 Who gave the theory of relativity?,mcq,Albert Einstein|Isaac Newton|Stephen Hawking|Galileo Galilei,Albert Einstein,,5,science
-What is the capital of Brazil?,one_word,,Brasilia,,5,geography
-How many hearts does an octopus have?,one_word,,3,,5,science
+What is the capital of Brazil?,mcq,Brasilia|Salvador|Sao Paulo|Rio de Janeiro,Brasilia,,5,geography
+How many hearts does an octopus have?,mcq,2|3|4|1,3,,5,science
 Which Indian mathematician is linked to the famous number 1729?,mcq,Aryabhata|Bhaskara|Brahmagupta|Srinivasa Ramanujan,Srinivasa Ramanujan,,5,history
-In which year did the Constitution of India come into effect?,one_word,,1950,,5,history
+In which year did the Constitution of India come into effect?,mcq,1952|1949|1947|1950,1950,,5,history
 Which planet spins tipped over on its side?,mcq,Neptune|Uranus|Venus|Mars,Uranus,,5,science
-Which metal is a liquid at room temperature?,one_word,,mercury,,5,science
-How many players from one team are on a volleyball court?,one_word,,6,,5,sports
+Which metal is a liquid at room temperature?,mcq,Mercury|Iron|Aluminium|Lead,Mercury,,5,science
+How many players from one team are on a volleyball court?,mcq,6|7|5|11,6,,5,sports
 Which is the smallest country in the world?,mcq,Vatican City|Monaco|Malta|Maldives,Vatican City,,5,geography
-"In which city were the first modern Olympic Games held, in 1896?",one_word,,Athens,,5,history
+"In which city were the first modern Olympic Games held, in 1896?",mcq,Paris|Rome|London|Athens,Athens,,5,history
 Who was the first Indian to win a Nobel Prize?,mcq,Mother Teresa|Amartya Sen|Rabindranath Tagore|C. V. Raman,Rabindranath Tagore,,5,history
-In which year did Chandrayaan-3 land on the Moon?,one_word,,2023,,5,science
-Which is the largest country in the world by area?,one_word,,Russia,,5,geography
+In which year did Chandrayaan-3 land on the Moon?,mcq,2023|2019|2021|2024,2023,,5,science
+Which is the largest country in the world by area?,mcq,Canada|Russia|China|USA,Russia,,5,geography
 Which of the Seven Wonders of the Ancient World still stands?,mcq,The Lighthouse of Alexandria|The Great Pyramid of Giza|The Hanging Gardens of Babylon|The Colossus of Rhodes,The Great Pyramid of Giza,,5,history
-How many time zones does India officially use?,one_word,,1,,5,geography
-Which Indian scientist won the Nobel Prize for the scattering of light?,one_word,,C V Raman,raman|cv raman|c.v. raman|c. v. raman|chandrasekhara venkata raman,5,history
+How many time zones does India officially use?,mcq,1|4|3|2,1,,5,geography
+Which Indian scientist won the Nobel Prize for the scattering of light?,mcq,C V Raman|S. N. Bose|Jagadish Chandra Bose|Homi Bhabha,C V Raman,,5,history
 "Which part is called ""the powerhouse of the cell""?",mcq,Mitochondria|Nucleus|Ribosome|Cell wall,Mitochondria,,5,science
-How many sides does a decagon have?,one_word,,10,,5,math
-Which famous ship sank in 1912 after hitting an iceberg?,one_word,,Titanic,the titanic|rms titanic,5,history
+How many sides does a decagon have?,mcq,12|8|9|10,10,,5,math
+Which famous ship sank in 1912 after hitting an iceberg?,mcq,Britannic|Mayflower|Titanic|Lusitania,Titanic,,5,history
 Which space agency launched Mangalyaan to Mars?,mcq,NASA|DRDO|ESA|ISRO,ISRO,,5,science
-What is 17 × 6?,one_word,,102,,5,math
-Which blood group is known as the universal donor?,one_word,,O negative,o-|o neg|onegative|o -ve|o-ve|o negative blood,5,science
+What is 17 × 6?,mcq,112|106|102|96,102,,5,math
+Which blood group is known as the universal donor?,mcq,AB positive|B negative|O negative|A positive,O negative,,5,science
 Which emperor gave up war after the Kalinga war?,mcq,Chandragupta Maurya|Harsha|Ashoka|Akbar,Ashoka,,5,history
-Which word is spelled wrong in every dictionary?,one_word,,wrong,,5,riddle
-"If two's company and three's a crowd, what are four and five?",one_word,,9,,5,riddle
-I speak without a mouth and hear without ears. What am I?,one_word,,echo,an echo,5,riddle
+Which word is spelled wrong in every dictionary?,mcq,Error|Wrong|Dictionary|Misspelled,Wrong,,5,riddle
+"If two's company and three's a crowd, what are four and five?",mcq,20|45|9|Party,9,,5,riddle
+I speak without a mouth and hear without ears. What am I?,mcq,Wind|Radio|Ghost|Echo,Echo,,5,riddle
 A bat and a ball cost ₹110 together. The bat costs ₹100 more than the ball. How much is the ball?,mcq,₹100|₹1|₹5|₹10,₹5,,5,riddle
-A snail climbs 3 m up a 10 m well each day and slips back 2 m each night. On which day does it reach the top?,one_word,,8,,5,riddle
+A snail climbs 3 m up a 10 m well each day and slips back 2 m each night. On which day does it reach the top?,mcq,8|7|5|10,8,,5,riddle
 "Which place completes the meme ""One does not simply walk into…""?",mcq,Mordor|Hogwarts|Narnia|Gotham,Mordor,,5,meme
-What is always in front of you but can't be seen?,one_word,,future,the future,5,riddle
+What is always in front of you but can't be seen?,mcq,Nose|Future|Air|Past,Future,,5,riddle
 "In the ""This is fine"" meme, where is the dog sitting?",mcq,In a spaceship|In a traffic jam|In a room on fire|In a swimming pool,In a room on fire,,5,meme
-How many times can you subtract 5 from 25?,one_word,,1,,5,riddle
-"What has cities but no houses, forests but no trees, and water but no fish?",one_word,,map,a map,5,riddle
+How many times can you subtract 5 from 25?,mcq,5|4|25|1,1,,5,riddle
+"What has cities but no houses, forests but no trees, and water but no fish?",mcq,Book|Globe|Painting|Map,Map,,5,riddle

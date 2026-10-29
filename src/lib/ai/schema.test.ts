@@ -41,8 +41,8 @@ describe("validateDrafts (Gemini output is untrusted)", () => {
         ],
       }),
     );
-    expect(r.drafts).toHaveLength(2); // the one-word item keeps its answer and loses the stray options
-    expect(r.rejected).toBe(3);
+    expect(r.drafts).toHaveLength(1); // one-word items are no longer accepted (D-023)
+    expect(r.rejected).toBe(4);
   });
 
   it("removes duplicates within one batch", () => {

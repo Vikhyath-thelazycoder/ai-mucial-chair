@@ -27,9 +27,8 @@ describe("seed question bank", () => {
     expect(new Set(texts).size).toBe(texts.length);
   });
 
-  it("mixes multiple choice and one-word questions", () => {
-    expect(questions.some((q) => q.type === "mcq")).toBe(true);
-    expect(questions.some((q) => q.type === "one_word")).toBe(true);
+  it("is multiple choice only, with the answer among the options", () => {
+    expect(questions.every((q) => q.type === "mcq" && q.options?.includes(q.answer))).toBe(true);
   });
 });
 

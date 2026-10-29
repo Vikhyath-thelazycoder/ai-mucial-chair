@@ -286,3 +286,18 @@ decisions:
   supersedes: D-014
   status: ACTIVE
   tags: []
+- decision_id: D-023
+  date: '2026-10-29'
+  kind: product
+  topic: question-format
+  decision: Every question is multiple choice (4 options, tap to answer); the 253 one-word questions were converted to MCQ
+    with 3 wrong options each, and the admin's AI generation, file extraction, CSV upload and manual drafts accept MCQ only.
+    The one_word type stays in the table and engine so old attempts still read
+  reason: 'User: add options to every question like the MCQs; one-word answers are not needed (typing on a phone is slow and
+    spelling variants are judged unfairly)'
+  alternatives:
+  - Keep a mix of MCQ and typed one-word answers
+  impact: Players never type an answer; question CSVs and AI drafts with type one_word are rejected
+  supersedes: null
+  status: ACTIVE
+  tags: []

@@ -297,7 +297,7 @@ function UploadDialog({ onClose, onStart, onDone }: { onClose: () => void; onSta
 }
 
 function GenerateDialog({ onClose, onStart, onDone }: { onClose: () => void; onStart: () => void; onDone: Done }) {
-  const [form, setForm] = useState({ topic: "", difficulty: 2, count: 10, type: "mixed" });
+  const [form, setForm] = useState({ topic: "", difficulty: 2, count: 10, type: "mcq" });
   return (
     <Modal
       title="Generate questions with AI"
@@ -334,14 +334,6 @@ function GenerateDialog({ onClose, onStart, onDone }: { onClose: () => void; onS
         <label className="flex flex-col gap-1">
           How many (max 50)
           <input type="number" min={1} max={50} value={form.count} onChange={(e) => setForm({ ...form, count: Number(e.target.value) })} className="min-h-11 rounded-xl border border-line bg-bg px-3" />
-        </label>
-        <label className="col-span-2 flex flex-col gap-1">
-          Type
-          <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })} className="min-h-11 rounded-xl border border-line bg-bg px-3">
-            <option value="mixed">Mix of multiple choice and one word</option>
-            <option value="mcq">Multiple choice only</option>
-            <option value="one_word">One word only</option>
-          </select>
         </label>
       </div>
     </Modal>

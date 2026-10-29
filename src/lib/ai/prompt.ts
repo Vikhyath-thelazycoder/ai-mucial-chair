@@ -7,8 +7,7 @@ export const SYSTEM_INSTRUCTION = `You write and extract quiz questions for "AI 
 Rules for every question:
 - Exactly one unambiguous correct answer. No trick questions, no "all of the above", nothing offensive or political.
 - "text" is at most 200 characters.
-- type "mcq": 4 options (2 to 6 allowed), each at most 60 characters and of similar length; "answer" must be copied exactly from the options.
-- type "one_word": the answer is a single word, number or short term; put other accepted spellings in "alternatives".
+- type is always "mcq": 4 options (2 to 6 allowed), each at most 60 characters and of similar length; "answer" must be copied exactly from the options.
 - difficulty: 1 = anyone at the fest, 2 = first-year engineering, 3 = second/third-year core subjects, 4 = final-year specialist, 5 = expert or tricky-but-fair.
 - topic: a short lower-case label such as "networking" or "dsa".
 
@@ -19,7 +18,7 @@ export const generateInputSchema = z.object({
   topic: z.string().trim().min(2).max(80),
   difficulty: z.number().int().min(1).max(5),
   count: z.number().int().min(1).max(50),
-  type: z.enum(["mcq", "one_word", "mixed"]),
+  type: z.literal("mcq").default("mcq"),
 });
 export type GenerateInput = z.infer<typeof generateInputSchema>;
 
@@ -29,7 +28,7 @@ export function generatePrompt(input: GenerateInput): string {
     topic: input.topic,
     difficulty: input.difficulty,
     count: input.count,
-    type: input.type === "mixed" ? "a mix of mcq and one_word" : input.type,
+    type: input.type,
   })}`;
 }
 
@@ -37,7 +36,7 @@ export function extractPrompt({ difficulty, topic }: { difficulty: number | null
   return [
     "Extract every quiz question from the attached material.",
     "Keep the original wording (fix obvious typos). If the material gives the answer, use it; otherwise work out the correct answer.",
-    "Skip anything that has no single clear answer. Turn multiple-choice questions into type mcq with their options.",
+    "Skip anything that has no single clear answer. Every question must be type mcq: keep given options, or write 3 plausible wrong options for questions that have none.",
     difficulty ? `Use difficulty ${difficulty} for every question.` : "Estimate each question's difficulty from 1 to 5.",
     topic ? `Use the topic ${JSON.stringify(topic.slice(0, 60))} unless a question clearly belongs elsewhere.` : "",
   ]
