@@ -28,6 +28,9 @@ function Watermark({ text }: { text: string }) {
 
 export function QuestionPanel({ attempt, offsetMs, player, timerSeconds, onSubmitted }: Props) {
   const { question } = attempt;
+  // Code questions put the prompt on the first line and the snippet after it; keep its line breaks and indents.
+  const [prompt, ...codeLines] = question.text.split("\n");
+  const code = codeLines.join("\n");
   const [choice, setChoice] = useState<string>("");
   const [left, setLeft] = useState(() => secondsLeft(attempt.deadline, Date.now(), offsetMs));
   const [state, setState] = useState<"answering" | "sending" | "sent" | "timeout">("answering");
@@ -97,7 +100,12 @@ export function QuestionPanel({ attempt, offsetMs, player, timerSeconds, onSubmi
         <div className={`h-full rounded-full transition-[width] duration-200 ${urgent ? "bg-red" : "bg-cyan"}`} style={{ width: `${pct}%` }} />
       </div>
 
-      <h1 className="relative z-10 text-2xl leading-snug font-bold sm:text-3xl">{question.text}</h1>
+      <h1 className="relative z-10 text-2xl leading-snug font-bold sm:text-3xl">{prompt}</h1>
+      {code && (
+        <pre className="relative z-10 overflow-x-auto rounded-xl border border-line bg-bg px-4 py-3 font-mono text-base leading-relaxed sm:text-lg">
+          {code}
+        </pre>
+      )}
 
       <form
         className="relative z-10 flex flex-col gap-3"

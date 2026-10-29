@@ -149,3 +149,437 @@ Which garbage collection technique cannot reclaim reference cycles on its own?,m
 Which pipeline hazard occurs when an instruction needs the result of a previous one?,mcq,Data hazard|Control hazard|Structural hazard|Memory hazard,Data hazard,,5,computers
 Which index structure do relational databases like PostgreSQL use by default?,one_word,,B-tree,btree|b tree|b+ tree|b+tree,5,databases
 Which quantum gate puts a qubit into an equal superposition?,one_word,,Hadamard,h gate|hadamard gate,5,theory
+"What does this print?
+print(2 + 3)",mcq,5|23|2 + 3|Error,5,,1,coding
+"What does this print?
+print(""ha"" * 3)",mcq,Error|hahaha|ha3|ha ha ha,hahaha,,1,coding
+"What does this print?
+print(len(""cat""))",one_word,,3,,1,coding
+"What does this print?
+print(10 - 4)",one_word,,6,,1,coding
+"What does this print?
+print(""Hello""[0])",one_word,,H,,1,coding
+Which symbol starts a comment in Python?,mcq,/*|#|//|--,#,,1,coding
+"What does this print?
+x = 4
+x = x + 1
+print(x)",one_word,,5,,1,coding
+"What does this print?
+print(""cat"" + ""dog"")",one_word,,catdog,,1,coding
+"What does this print?
+print(type(5).__name__)",mcq,int|float|str|bool,int,,1,coding
+"What does this print?
+print(len([4, 8, 15]))",one_word,,3,,1,coding
+Which of these is a Python list?,mcq,"{1, 2, 3}|<1, 2, 3>|[1, 2, 3]|(1, 2, 3)","[1, 2, 3]",,1,coding
+"What does this print?
+print(""5"" + ""5"")",mcq,10|5 + 5|Error|55,55,,1,coding
+"What does this print?
+print(1 + 1 == 2)",mcq,True|False|2|Error,True,,1,coding
+"What does ""www"" stand for in a web address?",mcq,Wide World Web|World Wide Web|World Wide Wire|Web Wide World,World Wide Web,,1,tech
+Which keyboard shortcut copies on Windows?,mcq,Ctrl + X|Ctrl + Z|Ctrl + C|Ctrl + V,Ctrl + C,,1,tech
+What do programmers call a mistake in their code?,one_word,,bug,a bug|bugs,1,tech
+Which of these is a web browser?,mcq,Windows|Chrome|Excel|Photoshop,Chrome,,1,tech
+"What does ""AI"" stand for?",mcq,Automatic Internet|Advanced Input|Actual Information|Artificial Intelligence,Artificial Intelligence,,1,tech
+Which shortcut undoes your last action on most computers?,mcq,Ctrl + Z|Ctrl + U|Ctrl + Y|Ctrl + D,Ctrl + Z,,1,tech
+Which part of a computer do you move around to point at the screen?,one_word,,mouse,a mouse|computer mouse,1,tech
+Which device do you use to type letters into a computer?,mcq,Speaker|Printer|Keyboard|Monitor,Keyboard,,1,tech
+Which of these is a video-calling app?,mcq,Paint|Notepad|Calculator|Zoom,Zoom,,1,tech
+What is the largest planet in our solar system?,one_word,,Jupiter,,1,science
+Which animal is known as the King of the Jungle?,mcq,Bear|Lion|Tiger|Elephant,Lion,,1,gk
+How many continents are there on Earth?,one_word,,7,,1,geography
+What colour do you get when you mix blue and yellow?,one_word,,green,,1,gk
+What is the national animal of India?,mcq,Tiger|Lion|Elephant|Peacock,Tiger,,1,gk
+What is the capital of India?,one_word,,New Delhi,delhi|newdelhi,1,geography
+How many legs does a spider have?,one_word,,8,,1,science
+Which festival is known as the festival of lights?,mcq,Holi|Eid|Christmas|Diwali,Diwali,,1,culture
+What is frozen water called?,one_word,,ice,,1,science
+How many hours are in a day?,one_word,,24,,1,gk
+Which shape has three sides?,mcq,Circle|Pentagon|Triangle|Square,Triangle,,1,math
+What is 12 × 12?,one_word,,144,,1,math
+In which direction does the sun rise?,mcq,East|West|North|South,East,,1,science
+"What is the opposite of ""hot""?",one_word,,cold,,1,gk
+Which organ pumps blood around your body?,one_word,,heart,the heart,1,science
+How many players does a cricket team have on the field?,one_word,,11,,1,sports
+What is the national bird of India?,mcq,Peacock|Parrot|Eagle|Sparrow,Peacock,,1,gk
+What do bees make?,one_word,,honey,,1,science
+How many days are in a leap year?,one_word,,366,,1,gk
+What do caterpillars turn into?,mcq,Bees|Spiders|Worms|Butterflies,Butterflies,,1,science
+What colour is a ripe banana?,one_word,,yellow,,1,gk
+Which planet do we live on?,mcq,Jupiter|Earth|Mars|Venus,Earth,,1,science
+How many sides does a square have?,one_word,,4,,1,math
+Which sport is played at Wimbledon?,one_word,,tennis,lawn tennis,1,sports
+How many colours are in a rainbow?,one_word,,7,,1,science
+Which of these is a fruit?,mcq,Onion|Mango|Potato|Carrot,Mango,,1,gk
+What is the capital of Karnataka?,one_word,,Bengaluru,bangalore,1,geography
+How many wheels does a bicycle have?,one_word,,2,,1,gk
+What is the capital of Maharashtra?,one_word,,Mumbai,bombay,1,geography
+Which of these animals can fly?,mcq,Snake|Bat|Elephant|Dolphin,Bat,,1,science
+What do you call a house made of ice blocks?,one_word,,igloo,an igloo,1,gk
+What is the main ingredient of guacamole?,mcq,Tomato|Potato|Cucumber|Avocado,Avocado,,1,gk
+Which colour is at the top of the Indian flag?,mcq,Saffron|Green|White|Blue,Saffron,,1,gk
+Which animal is known as the ship of the desert?,one_word,,camel,a camel,1,gk
+You have 5 chocolates and eat 2. How many are left?,one_word,,3,,1,math
+What has keys but can't open locks?,one_word,,keyboard,piano|a piano|a keyboard,1,riddle
+What gets wetter the more it dries?,one_word,,towel,a towel,1,riddle
+Why did the developer go broke?,mcq,He deleted the internet|He used up all his cache|He forgot his password|His laptop ran out of charge,He used up all his cache,,1,meme
+I'm tall when I'm young and short when I'm old. What am I?,one_word,,candle,a candle,1,riddle
+"""It works on my machine!"" is a famous excuse from…",mcq,Doctors|Pilots|Chefs|Programmers,Programmers,,1,meme
+What has a head and a tail but no body?,one_word,,coin,a coin,1,riddle
+"Which emoji is called ""face with tears of joy""?",mcq,😡|😂|😭|😅,😂,,1,meme
+What has hands but can't clap?,one_word,,clock,a clock|watch|a watch,1,riddle
+"Which animal says ""moo""?",mcq,Dog|Cat|Duck|Cow,Cow,,1,funny
+What goes up but never comes down?,one_word,,age,your age|my age,1,riddle
+"What does this print?
+print(3 ** 2)",mcq,32|9|6|8,9,,2,coding
+"How many lines does this print?
+for i in range(3):
+    print(i)",one_word,,3,,2,coding
+"What does this print?
+total = 0
+for n in [1, 2, 3, 4]:
+    total += n
+print(total)",one_word,,10,,2,coding
+"What does this print?
+print(""python""[-1])",one_word,,n,,2,coding
+"What does this print?
+print(5 == 5.0)",mcq,None|True|False|Error,True,,2,coding
+"Fix the bug: which word should replace prnt?
+prnt(""Hello"")",one_word,,print,,2,coding
+"What does this print?
+x = [10, 20, 30]
+print(x[1])",one_word,,20,,2,coding
+"What does this print?
+print(bool(0))",mcq,False|True|0|None,False,,2,coding
+"What does this print?
+print(""Hi"".replace(""i"", ""o""))",one_word,,Ho,,2,coding
+"What does this print?
+print(int(""7"") + 3)",mcq,Error|7 + 3|10|73,10,,2,coding
+"What does this print?
+print(len(""hello world""))",one_word,,11,,2,coding
+"In JavaScript, what does this print?
+console.log(typeof ""5"")",mcq,string|number|char|text,string,,2,coding
+"What does this print?
+print(max(4, 9, 2))",one_word,,9,,2,coding
+What does HTML stand for?,mcq,Hyperlink and Text Markup Language|Home Tool Markup Language|HyperText Markup Language|High Text Machine Language,HyperText Markup Language,,2,tech
+Which of these keeps your files when the power goes off?,mcq,RAM|CPU cache|Registers|SSD,SSD,,2,tech
+"What does the ""S"" in HTTPS stand for?",one_word,,secure,,2,tech
+Which company owns Android today?,mcq,Samsung|Google|Apple|Microsoft,Google,,2,tech
+What is the binary number 101 in decimal?,one_word,,5,,2,tech
+Which of these is NOT an operating system?,mcq,Linux|Windows|macOS|Excel,Excel,,2,tech
+What is the main circuit board inside a computer called?,one_word,,motherboard,mainboard|mother board,2,tech
+Which language is mainly used to style web pages?,mcq,Java|CSS|SQL|C,CSS,,2,tech
+Which keyboard shortcut pastes on Windows?,mcq,Ctrl + C|Ctrl + B|Ctrl + V|Ctrl + P,Ctrl + V,,2,tech
+What is the name of Apple's voice assistant?,one_word,,Siri,,2,tech
+What is the capital of Japan?,one_word,,Tokyo,,2,geography
+How many states does India have?,one_word,,28,,2,geography
+Who was the first Prime Minister of India?,mcq,Indira Gandhi|Rajendra Prasad|Jawaharlal Nehru|Sardar Patel,Jawaharlal Nehru,,2,history
+Which planet is closest to the Sun?,one_word,,Mercury,,2,science
+What is the hardest natural substance?,mcq,Diamond|Iron|Gold|Granite,Diamond,,2,science
+How many sides does a hexagon have?,one_word,,6,,2,math
+In which year did India become independent?,one_word,,1947,,2,history
+Which instrument has 88 keys?,mcq,Piano|Guitar|Violin|Flute,Piano,,2,culture
+What is the currency of Japan?,one_word,,yen,,2,geography
+Mount Everest lies on the border of Nepal and…,mcq,Bhutan|Pakistan|China|India,China,,2,geography
+How many minutes are in 2 hours?,one_word,,120,,2,math
+Who painted the Mona Lisa?,one_word,,Leonardo da Vinci,da vinci|leonardo|davinci|leonardo davinci,2,history
+Which blood cells fight infections?,mcq,Plasma|White blood cells|Red blood cells|Platelets,White blood cells,,2,science
+Which ocean is the largest?,one_word,,Pacific,pacific ocean|the pacific,2,geography
+Which gas do we breathe in to stay alive?,mcq,Carbon dioxide|Nitrogen|Helium|Oxygen,Oxygen,,2,science
+How many weeks are in a year?,one_word,,52,,2,gk
+Which country is famous for the pyramids of Giza?,one_word,,Egypt,,2,geography
+Who is known as the Father of the Nation in India?,mcq,Subhas Chandra Bose|B. R. Ambedkar|Mahatma Gandhi|Jawaharlal Nehru,Mahatma Gandhi,,2,history
+How many players from one team are on the mat in kabaddi?,one_word,,7,,2,sports
+What do you call a baby dog?,one_word,,puppy,pup,2,gk
+Which is the largest mammal?,mcq,Hippopotamus|Blue whale|Elephant|Giraffe,Blue whale,,2,science
+Which gas do plants take in from the air?,one_word,,carbon dioxide,co2|carbon-dioxide,2,science
+Which sport uses a shuttlecock?,mcq,Tennis|Squash|Table tennis|Badminton,Badminton,,2,sports
+What is 15 + 27?,one_word,,42,,2,math
+How many years are in a century?,one_word,,100,,2,gk
+What is the national flower of India?,one_word,,lotus,,2,gk
+How many months have 28 days?,one_word,,12,,2,riddle
+What can you catch but not throw?,one_word,,cold,a cold,2,riddle
+What has to be broken before you can use it?,one_word,,egg,an egg,2,riddle
+"Finish the line: ""Keep calm and…""",mcq,shout loudly|go to sleep|carry on|run away,carry on,,2,meme
+What has one eye but cannot see?,one_word,,needle,a needle,2,riddle
+"What is a ""meme"", usually?",mcq,A funny picture or video shared online|A type of computer virus|A music instrument|A cooking recipe,A funny picture or video shared online,,2,meme
+"What runs but never walks, and has a mouth but never talks?",one_word,,river,a river,2,riddle
+"In the classic arcade game, what does Pac-Man eat?",mcq,Bananas|Stars|Dots|Coins,Dots,,2,meme
+Which building has the most stories?,one_word,,library,a library|the library,2,riddle
+Twitter's old logo (before it became X) was a…,mcq,Bird|Fish|Cat|Star,Bird,,2,meme
+A cat has 4 legs. How many legs do 3 cats have?,one_word,,12,,2,math
+"Which superhero calls himself your ""friendly neighbourhood"" hero?",mcq,Superman|Iron Man|Spider-Man|Batman,Spider-Man,,2,meme
+"What does this print?
+x = 5
+y = x
+x = 10
+print(y)",one_word,,5,,3,coding
+"What does this print?
+print([1, 2, 3][::-1])",mcq,"[3, 2, 1]|[1, 2, 3]|[3]|Error","[3, 2, 1]",,3,coding
+"What does this print?
+count = 0
+for i in range(1, 11):
+    if i % 2 == 0:
+        count += 1
+print(count)",one_word,,5,,3,coding
+"What does this print?
+print(""banana"".count(""a""))",one_word,,3,,3,coding
+"Fix the bug: what is missing?
+if x > 5
+    print(""big"")",mcq,A bracket after if|A semicolon after 5|Quotes around x|A colon after 5,A colon after 5,,3,coding
+"What does this print?
+def double(n):
+    return n * 2
+print(double(double(3)))",one_word,,12,,3,coding
+"What does this print?
+print(10 / 4)",mcq,3|2.5|2|2.0,2.5,,3,coding
+"What does this print?
+words = [""sun"", ""moon"", ""star""]
+print(words[-1])",one_word,,star,,3,coding
+"In JavaScript, what does this print?
+console.log(1 + ""1"")",mcq,2|NaN|Error|11,11,,3,coding
+"What does this print?
+nums = [3, 7, 1, 9]
+print(max(nums) - min(nums))",one_word,,8,,3,coding
+"What does this print?
+print(""a"" in ""cat"")",mcq,a|True|False|Error,True,,3,coding
+"What does this print?
+i = 0
+while i < 5:
+    i += 2
+print(i)",one_word,,6,,3,coding
+"What does this print?
+print(""-"".join([""a"", ""b"", ""c""]))",one_word,,a-b-c,,3,coding
+"What does this print?
+print(""Python""[1:4])",mcq,yth|Pyt|ytho|thon,yth,,3,coding
+"What does this print?
+print(abs(-7))",one_word,,7,,3,coding
+"What does this print?
+print(""hello"".find(""l""))",one_word,,2,,3,coding
+Which protocol does your browser use to load web pages?,mcq,HTTP|FTP|SMTP|SSH,HTTP,,3,tech
+What is the binary number 1010 in decimal?,one_word,,10,,3,tech
+"Which data structure is ""first in, first out""?",mcq,Tree|Graph|Queue|Stack,Queue,,3,tech
+Which of these is a version control system?,mcq,Jira|Slack|Figma|Git,Git,,3,tech
+"What does a ""404"" error on a website mean?",mcq,Wrong password|Page not found|The server is on fire|No internet at all,Page not found,,3,tech
+Which file extension do Python files use?,mcq,.pt|.pn|.java|.py,.py,,3,coding
+Which HTML tag makes a clickable link?,mcq,<a>|<link>|<href>|<url>,<a>,,3,tech
+What do you call software that protects a computer from viruses?,one_word,,antivirus,anti-virus|antivirus software|anti virus,3,tech
+"Who wrote ""Romeo and Juliet""?",mcq,Rabindranath Tagore|Mark Twain|William Shakespeare|Charles Dickens,William Shakespeare,,3,culture
+What is the smallest prime number?,one_word,,2,,3,math
+Which country gave the Statue of Liberty to the USA?,mcq,France|United Kingdom|Spain|Italy,France,,3,history
+What is the capital of Australia?,one_word,,Canberra,,3,geography
+How many bones does an adult human have?,one_word,,206,,3,science
+Which vitamin does your skin make in sunlight?,mcq,Vitamin C|Vitamin A|Vitamin B12|Vitamin D,Vitamin D,,3,science
+Which Indian city is called the Pink City?,one_word,,Jaipur,,3,geography
+At what temperature in Celsius does water boil at sea level?,one_word,,100,,3,science
+Which planet is most famous for its rings?,mcq,Mercury|Venus|Saturn|Mars,Saturn,,3,science
+What is the longest bone in the human body?,one_word,,femur,thigh bone|thighbone,3,science
+Who discovered penicillin?,mcq,Alexander Fleming|Isaac Newton|Thomas Edison|Marie Curie,Alexander Fleming,,3,history
+How many teeth does an adult human usually have?,one_word,,32,,3,science
+Who wrote the national anthem of India?,one_word,,Rabindranath Tagore,tagore|rabindranath,3,history
+Which is the tallest mountain in the world?,mcq,K2|Kangchenjunga|Mount Kilimanjaro|Mount Everest,Mount Everest,,3,geography
+Which continent is the Sahara Desert in?,one_word,,Africa,,3,geography
+How many players from one team are on a basketball court?,one_word,,5,,3,sports
+Which part of a plant makes food using sunlight?,mcq,Stem|Flower|Leaf|Root,Leaf,,3,science
+Which language has the most native speakers in the world?,one_word,,Mandarin,chinese|mandarin chinese,3,gk
+How many degrees are in a right angle?,one_word,,90,,3,math
+Who was the first woman Prime Minister of India?,mcq,Sonia Gandhi|Indira Gandhi|Sarojini Naidu|Pratibha Patil,Indira Gandhi,,3,history
+In which country is the Eiffel Tower?,one_word,,France,,3,geography
+What is 25% of 200?,one_word,,50,,3,math
+Which animal is the fastest on land?,mcq,Cheetah|Lion|Horse|Kangaroo,Cheetah,,3,science
+What is the name of the galaxy we live in?,one_word,,Milky Way,the milky way|milkyway,3,science
+Which game has pieces called a rook and a bishop?,mcq,Ludo|Snakes and ladders|Chess|Carrom,Chess,,3,sports
+How many years are in a decade?,one_word,,10,,3,gk
+What is the largest organ of the human body?,mcq,Skin|Liver|Heart|Brain,Skin,,3,science
+Which Indian monument is famous as a symbol of love?,one_word,,Taj Mahal,tajmahal|the taj|taj,3,history
+"How many states of matter do we usually learn in school: solid, liquid and…?",one_word,,3,,3,science
+Which Indian festival is famous for throwing colours?,mcq,Diwali|Onam|Pongal|Holi,Holi,,3,culture
+What is the capital of the United Kingdom?,one_word,,London,,3,geography
+How many seconds are in 3 minutes?,one_word,,180,,3,math
+"The more you take, the more you leave behind. What are they?",one_word,,footsteps,steps|footprints|foot steps,3,riddle
+What has many teeth but can't bite?,one_word,,comb,a comb,3,riddle
+You have 3 apples and take away 2. How many apples do you have?,one_word,,2,,3,riddle
+"Finish the nerd joke: ""There are 10 kinds of people: those who understand binary and…""",mcq,those who eat|those who don't|those who code|those who sleep,those who don't,,3,meme
+What has a neck but no head?,one_word,,bottle,a bottle,3,riddle
+"What does ""LOL"" usually mean in a chat?",mcq,Lots of love|Look online later|Leave our lobby|Laughing out loud,Laughing out loud,,3,meme
+A train leaves at 3 pm and the trip takes 2 hours. At what hour (pm) does it arrive?,one_word,,5,,3,math
+What word becomes shorter when you add two letters to it?,one_word,,short,,3,riddle
+"What does ""BRB"" mean in a chat?",mcq,"Big red button|Bored, really bored|Be right back|Bring real bread",Be right back,,3,meme
+What can fill a room but takes up no space?,one_word,,light,the light,3,riddle
+"Which game made ""Winner winner chicken dinner"" famous with players?",mcq,PUBG|Minecraft|Tetris|Chess,PUBG,,3,meme
+"What is the next number: 2, 4, 8, 16, …?",one_word,,32,,3,math
+Which famous puzzle is a cube with six coloured faces?,mcq,Jenga|Tangram|Rubik's Cube|Sudoku,Rubik's Cube,,3,meme
+"What does this print?
+def f(n):
+    if n <= 1:
+        return 1
+    return n * f(n - 1)
+print(f(4))",one_word,,24,,4,coding
+"What does this print?
+x = [1, 2, 3]
+y = x
+y.append(4)
+print(len(x))",mcq,4|3|Error|0,4,,4,coding
+"What does this print?
+print(sum(range(1, 6)))",one_word,,15,,4,coding
+"What does this print?
+print([n * n for n in range(4)])",mcq,"[0, 1, 2, 3]|[1, 2, 3, 4]|[0, 1, 4, 9]|[1, 4, 9, 16]","[0, 1, 4, 9]",,4,coding
+"What does this print?
+s = ""level""
+print(s == s[::-1])",one_word,,True,,4,coding
+"What does this print?
+d = {""a"": 1, ""b"": 2}
+d[""a""] = 5
+print(d[""a""] + d[""b""])",one_word,,7,,4,coding
+"In JavaScript, what does this print?
+console.log(""3"" * ""4"")",mcq,Error|12|34|NaN,12,,4,coding
+"Fix the bug: this should print 1 to 5 but stops at 4. What should the 5 become?
+for i in range(1, 5):
+    print(i)",one_word,,6,,4,coding
+"What does this print?
+x = 0
+for i in range(3):
+    for j in range(2):
+        x += 1
+print(x)",one_word,,6,,4,coding
+"What does this print?
+print(""Hi"" + str(5))",mcq,Hi5|Hi 5|Error|5Hi,Hi5,,4,coding
+"What does this print?
+print(sorted([""pear"", ""apple"", ""fig""])[0])",one_word,,apple,,4,coding
+"What does this print?
+print(2 ** 10)",one_word,,1024,,4,coding
+"What does this print?
+print(""abc"" * 0)",mcq,abc|0|Error|An empty line,An empty line,,4,coding
+How fast is binary search on a sorted list of n items?,mcq,O(log n)|O(n)|O(1)|O(n²),O(log n),,4,tech
+Which port does HTTPS use by default?,one_word,,443,,4,tech
+A DNS server turns a website name into what?,one_word,,IP address,ip|an ip address|ip addresses,4,tech
+Which language runs natively inside web browsers?,mcq,Python|C++|Java|JavaScript,JavaScript,,4,tech
+"Which data structure is ""last in, first out""?",mcq,Stack|Queue|Linked list|Hash map,Stack,,4,tech
+What is the name of the penguin mascot of Linux?,one_word,,Tux,,4,tech
+What is the binary number 1111 in decimal?,one_word,,15,,4,tech
+"In Git, which command saves your staged changes as a snapshot?",mcq,git commit|git push|git pull|git clone,git commit,,4,tech
+Which shortcut takes a screenshot of the whole screen on Windows 10 and 11?,mcq,Alt + F4|Ctrl + P|Windows + PrtScn|Ctrl + S,Windows + PrtScn,,4,tech
+Who was the first person to walk on the Moon?,mcq,Buzz Aldrin|Yuri Gagarin|Rakesh Sharma|Neil Armstrong,Neil Armstrong,,4,history
+In which year did World War II end?,one_word,,1945,,4,history
+What is the capital of Canada?,one_word,,Ottawa,,4,geography
+Which element has the chemical symbol Fe?,mcq,Lead|Silver|Iron|Fluorine,Iron,,4,science
+Who is known as the Missile Man of India?,one_word,,APJ Abdul Kalam,kalam|abdul kalam|a p j abdul kalam|a.p.j. abdul kalam|apj kalam,4,history
+How many small squares are on a chess board?,one_word,,64,,4,sports
+Which is the largest hot desert in the world?,mcq,Kalahari|Sahara|Thar|Gobi,Sahara,,4,geography
+Which Mughal emperor built the Taj Mahal?,one_word,,Shah Jahan,shahjahan,4,history
+About how fast does light travel?,mcq,"3,000 km per second|30 km per second|3 km per second|300,000 km per second","300,000 km per second",,4,science
+How many strings does a standard guitar have?,one_word,,6,,4,culture
+Which country has the most people in the world?,mcq,Indonesia|India|China|United States,India,,4,geography
+What is the square root of 144?,one_word,,12,,4,math
+Which planet is often called the Morning Star?,one_word,,Venus,,4,science
+Who invented the telephone?,mcq,Alexander Graham Bell|Thomas Edison|Nikola Tesla|Guglielmo Marconi,Alexander Graham Bell,,4,history
+How many players from one team are on the field in hockey?,one_word,,11,,4,sports
+What is the capital of Germany?,one_word,,Berlin,,4,geography
+What does a thermometer measure?,mcq,Pressure|Speed|Weight|Temperature,Temperature,,4,science
+How many zeros are in one lakh?,one_word,,5,,4,math
+"Who said ""Give me blood, and I will give you freedom""?",one_word,,Subhas Chandra Bose,bose|netaji|subhash chandra bose|subhas bose|netaji subhas chandra bose,4,history
+Which gas makes up most of the air on Earth?,mcq,Carbon dioxide|Argon|Nitrogen|Oxygen,Nitrogen,,4,science
+Which scientist gave the three laws of motion?,one_word,,Isaac Newton,newton|sir isaac newton,4,history
+How many minutes are in a day?,one_word,,1440,,4,math
+Which Indian state is famous for backwaters and houseboats?,mcq,Gujarat|Kerala|Goa|Punjab,Kerala,,4,geography
+"In which country did chess begin, as chaturanga?",one_word,,India,,4,history
+What is Jupiter's famous giant storm called?,mcq,The Big Blue Eye|The Dark Ring|The White Whirl|The Great Red Spot,The Great Red Spot,,4,science
+What can travel around the world while staying in a corner?,one_word,,stamp,a stamp|postage stamp,4,riddle
+A farmer has 17 sheep. All but 9 run away. How many are left?,one_word,,9,,4,riddle
+"""Have you tried turning it off and on again?"" is the famous line from which TV show?",mcq,Sherlock|The Office|The IT Crowd|Friends,The IT Crowd,,4,meme
+What has words but never speaks?,one_word,,book,a book,4,riddle
+"In a meme, what does ""404: brain not found"" mean?",mcq,Someone can't think right now|A website is very fast|The internet is free today|A phone is brand new,Someone can't think right now,,4,meme
+"What is the next number: 1, 1, 2, 3, 5, 8, …?",one_word,,13,,4,math
+What has a ring but no finger?,one_word,,phone,a phone|telephone|bell|a bell,4,riddle
+"Which dog breed stars in the ""Doge"" meme?",mcq,Pug|Labrador|Husky|Shiba Inu,Shiba Inu,,4,meme
+5 machines make 5 toys in 5 minutes. How many minutes do 100 machines take to make 100 toys?,one_word,,5,,4,riddle
+"What comes once in a minute, twice in a moment, but never in a thousand years?",one_word,,m,the letter m|letter m,4,riddle
+"I'm light as a feather, yet the strongest person can't hold me for five minutes. What am I?",one_word,,breath,your breath|a breath,4,riddle
+"What does this print?
+def f(n):
+    return n if n < 2 else f(n - 1) + f(n - 2)
+print(f(7))",one_word,,13,,5,coding
+"What does this print?
+a = [1, 2, 3]
+b = a[:]
+b.append(4)
+print(len(a), len(b))",mcq,3 4|4 4|3 3|4 3,3 4,,5,coding
+"What does this print?
+x = 10
+def change():
+    x = 5
+change()
+print(x)",one_word,,10,,5,coding
+"What does this print?
+print({1, 2, 2, 3})",mcq,"[1, 2, 3]|Error|{1, 2, 3}|{1, 2, 2, 3}","{1, 2, 3}",,5,coding
+"What does this print?
+print(len({""a"": 1, ""b"": 2, ""a"": 3}))",one_word,,2,,5,coding
+"What does this print?
+print(""Hello World"".split()[1][::-1])",one_word,,dlroW,,5,coding
+"In JavaScript, what does this print?
+console.log(0.1 + 0.2 === 0.3)",mcq,Error|false|true|undefined,false,,5,coding
+"What does this print?
+nums = [1, 2, 3, 4, 5, 6]
+print(sum(n for n in nums if n % 3 == 0))",one_word,,9,,5,coding
+"What does this print?
+print(type([]) == type(()))",mcq,True|Error|None|False,False,,5,coding
+"What does this print?
+s = 0
+for i in range(10):
+    if i == 5:
+        break
+    s += i
+print(s)",one_word,,10,,5,coding
+"What does this print?
+print(""abc""[1:])",one_word,,bc,,5,coding
+"What does this print?
+print(int(""1010"", 2))",one_word,,10,,5,coding
+"What does this print?
+print([0] * 3)",mcq,"[0]|[3]|0003|[0, 0, 0]","[0, 0, 0]",,5,coding
+"Fix the bug: this crashes. Which line prints the last number instead?
+nums = [1, 2, 3]
+print(nums[3])",mcq,print(nums[2])|print(nums(3))|print(nums{3})|print(nums.3),print(nums[2]),,5,coding
+"What does this print?
+print(len(str(2 ** 10)))",one_word,,4,,5,coding
+What does an HTTP 500 error mean?,mcq,You are not logged in|The page loaded fine|Something broke on the server|The page was moved,Something broke on the server,,5,tech
+What does API stand for?,one_word,,Application Programming Interface,application program interface,5,tech
+Which sorting method keeps swapping neighbouring items until the list is in order?,mcq,Bubble sort|Merge sort|Quick sort|Heap sort,Bubble sort,,5,tech
+How many layers does the OSI network model have?,one_word,,7,,5,tech
+"On average, how long does looking up a key in a hash map take?",mcq,O(log n)|O(n log n)|O(1)|O(n),O(1),,5,tech
+Which company first created the Java language?,one_word,,Sun Microsystems,sun|sun micro systems,5,tech
+Which of these is NOT a standard HTTP method?,mcq,FETCH|GET|POST|DELETE,FETCH,,5,tech
+What is the hexadecimal number FF in decimal?,one_word,,255,,5,tech
+What do we call fake messages that trick you into giving away your password?,one_word,,phishing,phishing attack|fishing,5,tech
+"What does ""open source"" software mean?",mcq,It never has bugs|It only runs on Linux|Nobody is allowed to change it|Its code is public for anyone to read and improve,Its code is public for anyone to read and improve,,5,tech
+Who gave the theory of relativity?,mcq,Albert Einstein|Isaac Newton|Stephen Hawking|Galileo Galilei,Albert Einstein,,5,science
+What is the capital of Brazil?,one_word,,Brasilia,,5,geography
+How many hearts does an octopus have?,one_word,,3,,5,science
+Which Indian mathematician is linked to the famous number 1729?,mcq,Aryabhata|Bhaskara|Brahmagupta|Srinivasa Ramanujan,Srinivasa Ramanujan,,5,history
+In which year did the Constitution of India come into effect?,one_word,,1950,,5,history
+Which planet spins tipped over on its side?,mcq,Neptune|Uranus|Venus|Mars,Uranus,,5,science
+Which metal is a liquid at room temperature?,one_word,,mercury,,5,science
+How many players from one team are on a volleyball court?,one_word,,6,,5,sports
+Which is the smallest country in the world?,mcq,Vatican City|Monaco|Malta|Maldives,Vatican City,,5,geography
+"In which city were the first modern Olympic Games held, in 1896?",one_word,,Athens,,5,history
+Who was the first Indian to win a Nobel Prize?,mcq,Mother Teresa|Amartya Sen|Rabindranath Tagore|C. V. Raman,Rabindranath Tagore,,5,history
+In which year did Chandrayaan-3 land on the Moon?,one_word,,2023,,5,science
+Which is the largest country in the world by area?,one_word,,Russia,,5,geography
+Which of the Seven Wonders of the Ancient World still stands?,mcq,The Lighthouse of Alexandria|The Great Pyramid of Giza|The Hanging Gardens of Babylon|The Colossus of Rhodes,The Great Pyramid of Giza,,5,history
+How many time zones does India officially use?,one_word,,1,,5,geography
+Which Indian scientist won the Nobel Prize for the scattering of light?,one_word,,C V Raman,raman|cv raman|c.v. raman|c. v. raman|chandrasekhara venkata raman,5,history
+"Which part is called ""the powerhouse of the cell""?",mcq,Mitochondria|Nucleus|Ribosome|Cell wall,Mitochondria,,5,science
+How many sides does a decagon have?,one_word,,10,,5,math
+Which famous ship sank in 1912 after hitting an iceberg?,one_word,,Titanic,the titanic|rms titanic,5,history
+Which space agency launched Mangalyaan to Mars?,mcq,NASA|DRDO|ESA|ISRO,ISRO,,5,science
+What is 17 × 6?,one_word,,102,,5,math
+Which blood group is known as the universal donor?,one_word,,O negative,o-|o neg|onegative|o -ve|o-ve|o negative blood,5,science
+Which emperor gave up war after the Kalinga war?,mcq,Chandragupta Maurya|Harsha|Ashoka|Akbar,Ashoka,,5,history
+Which word is spelled wrong in every dictionary?,one_word,,wrong,,5,riddle
+"If two's company and three's a crowd, what are four and five?",one_word,,9,,5,riddle
+I speak without a mouth and hear without ears. What am I?,one_word,,echo,an echo,5,riddle
+A bat and a ball cost ₹110 together. The bat costs ₹100 more than the ball. How much is the ball?,mcq,₹100|₹1|₹5|₹10,₹5,,5,riddle
+A snail climbs 3 m up a 10 m well each day and slips back 2 m each night. On which day does it reach the top?,one_word,,8,,5,riddle
+"Which place completes the meme ""One does not simply walk into…""?",mcq,Mordor|Hogwarts|Narnia|Gotham,Mordor,,5,meme
+What is always in front of you but can't be seen?,one_word,,future,the future,5,riddle
+"In the ""This is fine"" meme, where is the dog sitting?",mcq,In a spaceship|In a traffic jam|In a room on fire|In a swimming pool,In a room on fire,,5,meme
+How many times can you subtract 5 from 25?,one_word,,1,,5,riddle
+"What has cities but no houses, forests but no trees, and water but no fish?",one_word,,map,a map,5,riddle
